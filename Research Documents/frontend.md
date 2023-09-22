@@ -1,12 +1,17 @@
 ### Front End and UI Links
 #### React Tutorials
 https://react.dev/ (react homepage)
+
 https://react.dev/learn (short react tutorial)
+
 https://www.youtube.com/watch?v=SqcY0GlETPk (in depth tutorial)
+
 https://www.youtube.com/watch?v=Tn6-PIqc4UM (fireship video about what react is)
+
+
 - react is good for creating dynamically updating websites
-- react uses javascript/typescript and can render changing variables by using inline js code: {items.map(item => <li key = {item}className="list-group-item">{item}</li>)}
-bootstrap is commonly used with react https://getbootstrap.com/docs/5.3/getting-started/introduction/
+- react uses javascript/typescript and can render changing variables by using inline js code: ` {items.map(item => <li key = {item}className="list-group-item">{item}</li>)}`
+- bootstrap is commonly used with react https://getbootstrap.com/docs/5.3/getting-started/introduction/
 
 
 
