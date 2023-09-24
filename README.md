@@ -3,7 +3,7 @@
 - You must have nodejs installed https://nodejs.org/en
 - Clone the project from the github dev branch
 - Open the project folder in vscode `project-group-generic-application`
-- Open a new terminal in vscode and run `npm run dev`
+- Open a new terminal in vscode and run `npm install`, then run `npm run dev`
 - Your website should now be running locally (follow the link in the terminal to see it)
 
 (this website will auto update using vite, so any changes you make will automatically show up without you having to re-run the terminal command)
