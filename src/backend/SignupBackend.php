@@ -13,6 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $first_name = $_POST["first name"];
     $last_name = $_POST["last name"];
     $role = $_POST["role"];
+    $classToken = $_POST["class token"];
 
     $sql = "Select * from users where username='$username'";
 
@@ -23,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if($num == 0){
         if(($password == $cpassword) && $exists==false){
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO 'users' ( 'username', 'password', 'date', 'first name', 'last name', 'role') VALUES ('$username', '$hash', current_timestamp(), '$first_name', '$last_name', '$role')";
+            $sql = "INSERT INTO 'users' ( 'username', 'password', 'date', 'first name', 'last name', 'role', 'class token') VALUES ('$username', '$hash', current_timestamp(), '$first_name', '$last_name', '$role', '$classToken')";
             $result = mysqli_query($conn, $sql);
             if($result){
                 $showAlert = true;
