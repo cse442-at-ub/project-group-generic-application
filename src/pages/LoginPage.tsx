@@ -17,6 +17,8 @@ function handleSubmit() {
 
 const LoginPage = () => {
   return (
+    <>
+    <div className="mainDiv">
     <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -80,6 +82,8 @@ const LoginPage = () => {
           </Box>
         </Box>
       </Container>
+      </div>
+      </>
   )
 }
 
