@@ -1,0 +1,62 @@
+body{
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  padding-top: 1vh;
+  text-align: center;
+  min-height: 100vh;
+  transition: ease-in-out 100ms;
+  background: linear-gradient(0.36turn,#66abf5, #6969eb);
+}
+
+
+.mainDiv {
+  line-height: 10vh;
+  width: 150vh;
+  position:absolute;
+  left: 0; 
+  right: 0; 
+  height: auto;
+  margin-left: auto; 
+  margin-right: auto; 
+  top:5vh;
+  background: linear-gradient(0.35turn,#ffffff, #9cc9fc);
+  border-radius: 15px;
+  box-shadow: 5px 10px 20px #0000001e;
+  
+}
+
+.footer{
+  position:absolute;
+  left:0;
+  bottom:0;
+  right:0;    
+  box-shadow: 5px -10px 20px #0000001e;
+  background: linear-gradient(0.35turn,#a3cef9, #6e87da);
+  padding:2vh;
+  display: flex;
+
+
+}
+.profile{
+  background: linear-gradient(0.35turn,#ffffff, #acc2ff);
+  margin: 1%;
+  width: 10%;
+  box-shadow: 5px -10px 20px #0000001e;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.attendanceExit {
+  margin-top: 3vh;
+  position: relative; right: -40%;;
+}
+.container img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  box-shadow: 5px 10px 20px #0000003b;
+  margin-top: 10px;
+
+}
