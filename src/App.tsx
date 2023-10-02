@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Router>
-        <Route path="/main" element={<MainPage />} />
+        <Route path="/main" element={<MainPage attendanceCode={''} studentNumber={0} />} />
      </Router>
       <Router>
         <Route path="/login" element={<LoginPage />} />

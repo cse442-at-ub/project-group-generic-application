@@ -10,7 +10,7 @@ body{
 
 
 .mainDiv {
-  width: 80%;
+  width: 70%;
   position:absolute;
   left: 0; 
   right: 0; 
@@ -32,17 +32,15 @@ body{
   right:0;    
   box-shadow: 5px -10px 20px #0000001e;
   background: linear-gradient(0.35turn,#a3cef9, #6e87da);
-  padding:2%;
   display: flex;
-
-
 }
+
 .profile{
   background: linear-gradient(0.35turn,#ffffff, #acc2ff);
   margin: 1%;
-  width: 10%;
+  width: 9%;
   box-shadow: 5px -10px 20px #0000001e;
-  border-radius: 20px;
+  border-radius: 5%;
   font-weight: bold;
 }
 
@@ -51,11 +49,11 @@ body{
   position: relative; right: -40%;;
 }
 .container img {
-  object-fit: cover;
+  /* object-fit: cover; */
   height: 100%;
   width: 100%;
-  border-radius: 100px;
+  border-radius: 100%;
   box-shadow: 5px 10px 20px #0000003b;
-  margin-top: 10px;
+  margin-top: 5%;
 
 }
