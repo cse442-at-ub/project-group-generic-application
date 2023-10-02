@@ -1,8 +1,7 @@
 body{
   display: flex;
   justify-content: center;
-  /* align-items: center; */
-  padding-top: 1vh;
+  align-items: center;
   text-align: center;
   min-height: 100vh;
   transition: ease-in-out 100ms;
@@ -11,15 +10,15 @@ body{
 
 
 .mainDiv {
-  line-height: 10vh;
-  width: 150vh;
+  width: 70%;
   position:absolute;
   left: 0; 
   right: 0; 
   height: auto;
   margin-left: auto; 
   margin-right: auto; 
-  top:5vh;
+  padding-bottom: 5%;
+  top:5%;
   background: linear-gradient(0.35turn,#ffffff, #9cc9fc);
   border-radius: 15px;
   box-shadow: 5px 10px 20px #0000001e;
@@ -33,18 +32,17 @@ body{
   right:0;    
   box-shadow: 5px -10px 20px #0000001e;
   background: linear-gradient(0.35turn,#a3cef9, #6e87da);
-  padding:2vh;
   display: flex;
-
-
 }
+
 .profile{
   background: linear-gradient(0.35turn,#ffffff, #acc2ff);
   margin: 1%;
-  width: 10%;
+  width: 9%;
   box-shadow: 5px -10px 20px #0000001e;
-  border-radius: 20px;
+  border-radius: 5%;
   font-weight: bold;
+  font-size: 2.2vh;
 }
 
 .attendanceExit {
@@ -52,11 +50,11 @@ body{
   position: relative; right: -40%;;
 }
 .container img {
-  object-fit: cover;
+  /* object-fit: cover; */
   height: 100%;
   width: 100%;
-  border-radius: 100px;
+  border-radius: 100%;
   box-shadow: 5px 10px 20px #0000003b;
-  margin-top: 10px;
+  margin-top: 5%;
 
 }
