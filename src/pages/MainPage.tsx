@@ -44,7 +44,7 @@ function MainPage({attendanceCode, studentNumber}: Props) {
     return (
         <>
             <div className="mainDiv">
-                <button type="button" onClick={handleClick} className="btn btn-primary attendanceExit" >Close Attendance (debug)</button>
+                <button type="button" onClick={handleClick} className="btn btn-primary attendanceExit" >Close Attendance</button>
                 <h1 style={{fontSize:'3vh'}}>Attendance Code:</h1>
                 <h1 style={{fontSize:'20vh', fontWeight:"bold", textShadow:"5px 10px 10px #0000001e"}}>{tempCode}</h1>
                 <h1 style={{fontSize:'3vh', fontStyle:"italic"}}>{"Please go to <sitename.com> and enter the code"}</h1>
