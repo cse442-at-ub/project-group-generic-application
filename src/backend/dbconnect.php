@@ -2,7 +2,7 @@
     $servername = "oceanus.cse.buffalo.edu";
     $username = "bchow3";
     $password = "50405819";
-
+    echo "Hello World";
     $database = "cse442_2023_fall_team_ab_db";
 
     $conn = mysqli_connect($servername, $username, $password, $database);
@@ -11,7 +11,7 @@
         echo "success";
     }
     else {
-        die("Error". mysqli_connect_error())
+        die("Error". mysqli_connect_error());
     }
 ?>
 
