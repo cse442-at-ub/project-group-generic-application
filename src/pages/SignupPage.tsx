@@ -10,7 +10,6 @@ const SignupPage: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // You can perform sign up logic here. For now, just logging the state.
         console.log({
             firstname,
             lastname,
