@@ -10,9 +10,9 @@ function HomePage() {
             <a style={{fontSize:20}} href={"/login"}>Click here to go to the Login Page</a>
             <br></br>
             <a style={{fontSize:20}} href={"/function"}>Click here to go to the Function Page</a>
+            <br></br>
+            <a style={{fontSize:20}} href={"/signup"}>Click here to go to the Signup Page</a>
             
-
-
     </div>
     )
 
