@@ -8,6 +8,9 @@ function HomePage() {
             <a style={{fontSize:20}} href={"/main"}>Click here to go to the Main Page</a>
             <br></br>
             <a style={{fontSize:20}} href={"/login"}>Click here to go to the Login Page</a>
+            <br></br>
+            <a style={{fontSize:20}} href={"/function"}>Click here to go to the Function Page</a>
+            
 
 
     </div>

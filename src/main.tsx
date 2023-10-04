@@ -9,6 +9,7 @@ import {
 import './index.css'
 import MainPage from './pages/MainPage.tsx';
 import HomePage from './pages/HomePage.tsx';
+import FunctionPage from './pages/FunctionPage.tsx';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage/>
+  },
+  {
+    path: "/function",
+    element: <FunctionPage/>
   }
 ]);
 
