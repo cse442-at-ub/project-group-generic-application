@@ -6,7 +6,7 @@ $exists = false;
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     include 'dbconnect.php';
-    echo "success";
+    
     $username = $_POST["username"];
     $password = $_POST["password"];
     $cpassword = $_POST["cpassword"];
