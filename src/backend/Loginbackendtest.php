@@ -21,16 +21,18 @@ if (isset($_SESSION['username'])) {
     $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
     echo "$sql";
     $result = $conn->query($sql);
+    echo "$result";
     // Check if a user with the provided credentials exists
     if ($result->num_rows == 1) {
         // Authentication successful, store user information in the session
         $_SESSION['username'] = $username;
         header("Location: dashboard.php");
-        echo "$id";
+        echo "$result";
         exit;
     } else {
         // Authentication failed
         $error_message = "Invalid username or password";
+        echo "invalid";
     }
     // Close the database connection
     $conn->close();
