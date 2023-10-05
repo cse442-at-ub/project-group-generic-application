@@ -6,7 +6,7 @@ if (isset($_SESSION['username'])) {
     exit;
 }
 // Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include 'dbconnect.php';
     // Retrieve user input
     $username = "bchow3";
