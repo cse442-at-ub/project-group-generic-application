@@ -1,5 +1,4 @@
 <?php
-include 'dbconnect.php';
 session_start();
 echo "success1";
 //echo "success";
@@ -11,6 +10,7 @@ if (isset($_SESSION['username'])) {
 }
 // Check if the form is submitted
 //if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    include 'dbconnect.php';
     echo "success2";
     echo "success3";
     // Retrieve user input
@@ -18,24 +18,25 @@ if (isset($_SESSION['username'])) {
     $password = "123456";
     $hash = password_hash($password, PASSWORD_DEFAULT);
     // Query the database for the user
-    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$hash'";
     echo "$sql";
     echo "$password";
     $result = $conn->query($sql);
+    $row = $result->fetch_all(MYSQLI_ASSOC);  
     //echo "$result";
     // Check if a user with the provided credentials exists
-    if ($result->num_rows == 1) {
+    //if ($result->num_rows == 1) {
         // Authentication successful, store user information in the session
         $_SESSION['username'] = $username;
-        header("Location: dashboard.php");
-        echo "$username";
+        //header("Location: dashboard.php");
+        echo "$row";
         exit;
-    } else {
+    //} else {
         // Authentication failed
-        $error_message = "Invalid username or password";
-        echo "invalid";
-    }
+       // $error_message = "Invalid username or password";
+        //echo "invalid";
+    //}
     // Close the database connection
-    $conn->close();
+    //$conn->close();
 //}
 ?>
