@@ -16,16 +16,15 @@ if (isset($_SESSION['username'])) {
     $password = "123456";
     echo "success3";
     // Retrieve user input
-    $hash = password_hash($password, PASSWORD_DEFAULT);
     // Query the database for the user
-    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$hash'";
+    $sql = "SELECT * FROM users WHERE username = '$username'";
     echo "$sql";
     echo "$password";
     $result = $conn->query($sql);
     $row = $result->fetch_all(MYSQLI_ASSOC);  
     //echo "$result";
     // Check if a user with the provided credentials exists
-    if ($result->num_rows == 1) {
+    if ($result->num_rows == 1 && password_verify($password, $password)) {
         // Authentication successful, store user information in the session
         $_SESSION['username'] = $username;
         //header("Location: dashboard.php");
