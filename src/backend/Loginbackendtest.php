@@ -12,6 +12,7 @@ if (isset($_SESSION['username'])) {
 include 'dbconnect.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "success";
+    echo "success";
     // Retrieve user input
     $username = "bchow3";
     $password = "123456";
