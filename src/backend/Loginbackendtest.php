@@ -17,7 +17,7 @@ if (isset($_SESSION['username'])) {
     echo "success3";
     // Retrieve user input
     // Query the database for the user
-    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $sql = "SELECT * FROM test WHERE username = '$username'";
     echo "$sql";
     echo "$password";
     $result = $conn->query($sql);
