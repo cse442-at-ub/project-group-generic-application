@@ -1,7 +1,7 @@
 <?php
 include 'dbconnect.php';
 session_start();
-echo "success";
+echo "success1";
 //echo "success";
  //Check if the user is already logged in
 if (isset($_SESSION['username'])) {
@@ -11,8 +11,8 @@ if (isset($_SESSION['username'])) {
 }
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    echo "success";
-    echo "success";
+    echo "success2";
+    echo "success3";
     // Retrieve user input
     $username = "bchow3";
     $password = "123456";
