@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $hash = password_hash($password, PASSWORD_DEFAULT);
     // Query the database for the user
     $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-    echo "$sql";
+    echo "bchow";
     $result = $conn->query($sql);
     // Check if a user with the provided credentials exists
     if ($result->num_rows == 1) {
