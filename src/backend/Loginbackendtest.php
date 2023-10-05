@@ -3,11 +3,11 @@ session_start();
 echo "success";
 echo "success";
  //Check if the user is already logged in
-/*if (isset($_SESSION['username'])) {
+if (isset($_SESSION['username'])) {
     header("Location: dashboard.php");
     echo "already connected";
     exit;
-}*/
+}
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include 'dbconnect.php';
@@ -32,5 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     // Close the database connection
     $conn->close();
+}
+else{
+    echo "form not submitted";
 }
 ?>
