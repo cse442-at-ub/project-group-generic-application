@@ -10,7 +10,7 @@ if (isset($_SESSION['username'])) {
     exit;
 }
 // Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "success2";
     echo "success3";
     // Retrieve user input
@@ -34,5 +34,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     // Close the database connection
     $conn->close();
-}
+//}
 ?>

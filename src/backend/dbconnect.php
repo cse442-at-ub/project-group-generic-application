@@ -1,5 +1,5 @@
 <?php
-echo "success";
+//echo "success";
     $servername = "oceanus.cse.buffalo.edu";
     $username = "bchow3";
     $password = "50405819";
