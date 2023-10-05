@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Authentication successful, store user information in the session
         $_SESSION['username'] = $username;
         header("Location: dashboard.php");
-        echo "success";
+        echo "$id";
         exit;
     } else {
         // Authentication failed
@@ -32,8 +32,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     // Close the database connection
     $conn->close();
-}
-else{
-    echo "form not submitted";
 }
 ?>
