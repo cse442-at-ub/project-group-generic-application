@@ -33,6 +33,7 @@ if (isset($_SESSION['username'])) {
     } else {
         //Authentication failed
         $error_message = "Invalid username or password";
+        print_r($row);
         echo "invalid";
     }
      //Close the database connection
