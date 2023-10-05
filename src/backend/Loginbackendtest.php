@@ -29,7 +29,7 @@ echo "success1";
         // Authentication successful, store user information in the session
         $_SESSION['username'] = $username;
         //header("Location: dashboard.php");
-        echo "$row";
+        print_r($row);
         exit;
     //} else {
         // Authentication failed
