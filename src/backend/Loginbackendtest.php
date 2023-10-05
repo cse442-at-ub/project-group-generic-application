@@ -1,7 +1,7 @@
 <?php
 session_start();
 echo "success";
-echo "success";
+//echo "success";
  //Check if the user is already logged in
 if (isset($_SESSION['username'])) {
     header("Location: dashboard.php");
