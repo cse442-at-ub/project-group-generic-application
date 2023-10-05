@@ -20,6 +20,7 @@ if (isset($_SESSION['username'])) {
     // Query the database for the user
     $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
     echo "$sql";
+    echo "$password";
     $result = $conn->query($sql);
     //echo "$result";
     // Check if a user with the provided credentials exists
@@ -27,7 +28,7 @@ if (isset($_SESSION['username'])) {
         // Authentication successful, store user information in the session
         $_SESSION['username'] = $username;
         header("Location: dashboard.php");
-        echo "$result";
+        echo "$username";
         exit;
     } else {
         // Authentication failed
