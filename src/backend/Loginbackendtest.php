@@ -19,7 +19,7 @@ if (isset($_SESSION['username'])) {
     $hash = password_hash($password, PASSWORD_DEFAULT);
     // Query the database for the user
     $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-    echo "bchow";
+    echo "$sql";
     $result = $conn->query($sql);
     // Check if a user with the provided credentials exists
     if ($result->num_rows == 1) {
