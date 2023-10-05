@@ -21,7 +21,7 @@ if (isset($_SESSION['username'])) {
     $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
     echo "$sql";
     $result = $conn->query($sql);
-    echo "$result";
+    //echo "$result";
     // Check if a user with the provided credentials exists
     if ($result->num_rows == 1) {
         // Authentication successful, store user information in the session
