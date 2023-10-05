@@ -39,4 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      //Close the database connection
     $conn->close();
 }
+{
+    echo "invalid post";
+}
 ?>
