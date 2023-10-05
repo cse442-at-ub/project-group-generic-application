@@ -1,4 +1,5 @@
 <?php
+include 'dbconnect.php';
 session_start();
 echo "success";
 //echo "success";
@@ -9,7 +10,6 @@ if (isset($_SESSION['username'])) {
     exit;
 }
 // Check if the form is submitted
-include 'dbconnect.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "success";
     echo "success";
