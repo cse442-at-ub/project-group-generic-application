@@ -7,21 +7,10 @@ if (isset($_SESSION['username'])) {
 }
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Replace these with your actual database credentials
-    $db_host = "localhost";
-    $db_user = "your_db_username";
-    $db_pass = "your_db_password";
-    $db_name = "your_db_name";
-    // Create a database connection
-    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-    // Check for connection errors
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    include 'dbconnect.php';
     // Retrieve user input
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $hash = password_hash($password, PASSWORD_DEFAULT);
     // Query the database for the user
     $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
     $result = $conn->query($sql);
@@ -30,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Authentication successful, store user information in the session
         $_SESSION['username'] = $username;
         header("Location: dashboard.php");
-        echo "success";
         exit;
     } else {
         // Authentication failed
