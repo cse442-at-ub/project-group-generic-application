@@ -1,6 +1,6 @@
 <?php
 session_start();
-// Check if the user is already logged in
+ //Check if the user is already logged in
 if (isset($_SESSION['username'])) {
     header("Location: dashboard.php");
     exit;
@@ -9,8 +9,9 @@ if (isset($_SESSION['username'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include 'dbconnect.php';
     // Retrieve user input
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = "bchow3";
+    $password = "123456";
+    $hash = password_hash($password, PASSWORD_DEFAULT);
     // Query the database for the user
     $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
     $result = $conn->query($sql);
