@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const SignupPage: React.FC = () => {
     const [firstname, setFirstname] = useState('');
@@ -18,6 +19,24 @@ const SignupPage: React.FC = () => {
             confirmpassword,
             classtoken
         });
+
+        const userData = {
+            'username': email,
+            'password': password,
+            'cpassword': confirmpassword,
+            'first name': firstname,
+            'last name': lastname,
+            'class token': classtoken
+        };
+
+        axios.post('http://localhost:3000/src/backend/SignupBackend.php', userData)
+        .then(response => {
+            console.log('Data submitted successful');
+        })
+        .catch(error => {
+            console.error('Error submitting data', error);
+        });
+        
     };
 
     return (

@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $cpassword = $_POST["cpassword"];
     $first_name = $_POST["first name"];
     $last_name = $_POST["last name"];
-    $role = $_POST["role"];
+    /* $role = $_POST["role"]; */
     $classToken = $_POST["class token"];
 
     $sql = "Select * from users where username='$username'";
@@ -39,4 +39,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $exists="Email already used";
     }
 }
+
 ?>
