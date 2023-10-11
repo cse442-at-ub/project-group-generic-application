@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage"
 import MainPage from './pages/MainPage';
 import FunctionPage from './pages/FunctionPage';
 import SignupPage from './pages/SignupPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
 
@@ -21,6 +22,9 @@ function App() {
      <Router>
         <Route path="/signup" element={<SignupPage />} />
      </Router>
+     <Router>
+        <Route path="/profile" element={<ProfilePage />} />
+      </Router>
     </>
   )
 }
