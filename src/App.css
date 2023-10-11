@@ -8,7 +8,20 @@ body{
   background: linear-gradient(0.36turn,#66abf5, #6969eb);
 }
 
-
+.mobileDiv {
+  width: 100%;
+  position:absolute;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  transform: translate(0, -50%);
+  top:50%;
+  padding-top: 30%;
+  padding-bottom: 30%;
+  background: linear-gradient(0.35turn,#ffffff, #9cc9fc);
+  box-shadow: 5px 10px 20px #0000001e;
+}
 .mainDiv {
   width: 70%;
   position:absolute;
@@ -29,6 +42,16 @@ body{
   position:absolute;
   left:0;
   bottom:0;
+  right:0;    
+  box-shadow: 5px -10px 20px #0000001e;
+  background: linear-gradient(0.35turn,#a3cef9, #6e87da);
+  display: flex;
+}
+
+.footerMobile{
+  position:absolute;
+  left:0;
+  bottom:0%;
   right:0;    
   box-shadow: 5px -10px 20px #0000001e;
   background: linear-gradient(0.35turn,#a3cef9, #6e87da);

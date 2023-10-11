@@ -10,6 +10,9 @@ interface Props {
 
 function MainPage({attendanceCode, studentNumber}: Props) {
 
+    // detect if mobile view
+    let isMobile = window.screen.width <= 1280
+
     //debug
     attendanceCode
     studentNumber
@@ -40,8 +43,24 @@ function MainPage({attendanceCode, studentNumber}: Props) {
     }
 
 
+    if (isMobile) {
+        return (
+            <>
+            <div className="mobileDiv">
 
-    return (
+                <h1 style={{fontSize:'3vh'}}>Attendance Code:</h1>
+                <h1 style={{fontSize:'10vh', fontWeight:"bold", textShadow:"5px 10px 10px #0000001e"}}>{tempCode}</h1>
+                <h1 style={{fontSize:'2vh', fontStyle:"italic"}}>{"Please go to <sitename.com> and enter the code"}</h1>
+                <h1 style={{fontWeight:"bold", fontSize:'3vh'}}>{studentNumberTemp}/100 students</h1>
+                <button type="button" onClick={handleClick} className="btn btn-primary" >Close Attendance</button>
+                
+            </div>
+            <Footer></Footer>
+            </>
+        )
+    } else {
+        //desktop view
+        return (
         <>
             <div className="mainDiv">
                 <button type="button" onClick={handleClick} className="btn btn-primary attendanceExit" >Close Attendance</button>
@@ -56,6 +75,7 @@ function MainPage({attendanceCode, studentNumber}: Props) {
         
         </>
     )
+    }
 }
 
 export default MainPage;
