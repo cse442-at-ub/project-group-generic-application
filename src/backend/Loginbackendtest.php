@@ -12,8 +12,8 @@ if (isset($_SESSION['username'])) {
 // Check if the form is submitted
 //if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "success2";
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+    $username = "bchow3";
+    $password = "123456";
     echo "success3";
     // Retrieve user input
     // Query the database for the user
