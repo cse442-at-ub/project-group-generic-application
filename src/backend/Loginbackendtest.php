@@ -24,7 +24,7 @@ if (isset($_SESSION['username'])) {
     $row = $result->fetch_all(MYSQLI_ASSOC);  
     //echo "$result";
     // Check if a user with the provided credentials exists
-    if ($result->num_rows == 1 /*&& password_verify($password, $password)*/) {
+    if ($result->num_rows == 1 && password_verify($password, $password)*/) {
         // Authentication successful, store user information in the session
         $_SESSION['username'] = $username;
         //header("Location: dashboard.php");
