@@ -5,7 +5,7 @@ echo "success1";
 //echo "success";
  //Check if the user is already logged in
 if (isset($_SESSION['username'])) {
-    header("Location: dashboard.php");
+    //header("Location: dashboard.php");
     echo "already connected";
     exit;
 }
