@@ -21,10 +21,11 @@ if (isset($_SESSION['username'])) {
     echo "$sql";
     echo "$password";
     $result = $conn->query($sql);
-    $row = $result->fetch_all(MYSQLI_ASSOC);  
+    $row = $result->fetch_all(MYSQLI_ASSOC);
+    $passwordtocompare = "SELECT password FROM test WHERE username = '$username'";
     //echo "$result";
     // Check if a user with the provided credentials exists
-    if ($result->num_rows == 1 && password_verify($password, $password)) {
+    if ($result->num_rows == 1 && password_verify($password, $passwordtocompare)) {
         // Authentication successful, store user information in the session
         $_SESSION['username'] = $username;
         //header("Location: dashboard.php");
