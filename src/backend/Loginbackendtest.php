@@ -12,8 +12,9 @@ if (isset($_SESSION['username'])) {
 // Check if the form is submitted
 //if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "success2";
-    $username = "bchow3";
-    $password = "123456";
+    $username = 'bchow3';
+    $password = '123456';
+    //$password = password_hash($password, PASSWORD_DEFAULT);
     echo "success3";
     // Retrieve user input
     // Query the database for the user
@@ -21,11 +22,11 @@ if (isset($_SESSION['username'])) {
     echo "$sql";
     echo "$password";
     $result = $conn->query($sql);
-    $row = $result->fetch_all(MYSQLI_ASSOC);
+    //$row = $result->fetch_all(MYSQLI_ASSOC);
     $passwordtocompare = "SELECT password FROM test WHERE username = '$username'";
-    //echo "$result";
+    $row = mysqli_fetch_assoc($result);
     // Check if a user with the provided credentials exists
-    if ($result->num_rows == 1 && password_verify($password, $passwordtocompare)) {
+    if ($result->num_rows == 1 && password_verify($password, $row['password'])) {
         // Authentication successful, store user information in the session
         $_SESSION['username'] = $username;
         //header("Location: dashboard.php");
