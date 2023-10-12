@@ -20,15 +20,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $result = mysqli_query($conn, $sql);
 
     $num = mysqli_num_rows($result);
-
+    
     if($num == 0){
         if(($password == $cpassword) && $exists==false){
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO 'users' ( 'username', 'password', 'date', 'first name', 'last name', 'role', 'class token') VALUES ('$username', '$hash', current_timestamp(), '$first_name', '$last_name', '$role', $classToken)";
+            
+            $sql = "INSERT INTO users (username, password, firstname, lastname, role, `class token`)
+             VALUES ('$username', '$hash', '$first_name', '$last_name', '$role', '$classToken')";
+
             $result = mysqli_query($conn, $sql);
             if($result){
                 $showAlert = true;
-            }
+            }        
         }
         else{
             $showError = "Passwords to not match";
