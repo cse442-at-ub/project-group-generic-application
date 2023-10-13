@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+
 //import 'bootstrap/dist/css/bootstrap.css'
 import LoginPage from "./pages/LoginPage"
 import {
@@ -37,6 +38,17 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <ProfilePage/>
+  }
+]);
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <div>Hello world!</div>,
+  },
+  {
+    path: "/login",
+    element: <LoginPage/>
   }
 ]);
 

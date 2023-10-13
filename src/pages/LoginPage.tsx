@@ -1,4 +1,6 @@
+
 //import React from 'react'
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,6 +12,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -37,6 +40,7 @@ const LoginPage = () => {
   return (
     <>
     <div className="mainDiv">
+
     <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -62,8 +66,10 @@ const LoginPage = () => {
               name="email"
               autoComplete="email"
               autoFocus
+
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+
             />
             <TextField
               margin="normal"
@@ -74,8 +80,10 @@ const LoginPage = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -104,8 +112,10 @@ const LoginPage = () => {
           </Box>
         </Box>
       </Container>
+
       </div>
       </>
+
   )
 }
 

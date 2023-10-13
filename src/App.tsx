@@ -1,15 +1,18 @@
 import './App.css'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage"
+
 import MainPage from './pages/MainPage';
 import FunctionPage from './pages/FunctionPage';
 import SignupPage from './pages/SignupPage';
 import ProfilePage from './pages/ProfilePage';
 
+
 function App() {
 
   return (
     <>
+
       <Router>
         <Route path="/main" element={<MainPage attendanceCode={''} studentNumber={0} />} />
      </Router>
@@ -25,6 +28,7 @@ function App() {
      <Router>
         <Route path="/profile" element={<ProfilePage />} />
       </Router>
+
     </>
   )
 }
