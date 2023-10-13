@@ -1,42 +1,172 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  min-height: 100vh;
+  transition: ease-in-out 100ms;
+  background: linear-gradient(0.36turn,#66abf5, #6969eb);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.mobileDiv {
+  width: 100%;
+  position:absolute;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  transform: translate(0, -50%);
+  top:50%;
+  padding-top: 30%;
+  padding-bottom: 30%;
+  background: linear-gradient(0.35turn,#ffffff, #9cc9fc);
+  box-shadow: 5px 10px 20px #0000001e;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
+.mainDiv {
+  width: 70%;
+  position:absolute;
+  left: 0; 
+  right: 0; 
+  height: auto;
+  margin-left: auto; 
+  margin-right: auto; 
+  padding-bottom: 5%;
+  top:5%;
+  background: linear-gradient(0.35turn,#ffffff, #9cc9fc);
+  border-radius: 15px;
+  box-shadow: 5px 10px 20px #0000001e;
+  
 }
 
-.read-the-docs {
-  color: #888;
+.footer{
+  position:absolute;
+  left:0;
+  bottom:0;
+  right:0;    
+  box-shadow: 5px -10px 20px #0000001e;
+  background: linear-gradient(0.35turn,#a3cef9, #6e87da);
+  display: flex;
+}
+
+.footerMobile{
+  position:absolute;
+  left:0;
+  bottom:0%;
+  right:0;    
+  box-shadow: 5px -10px 20px #0000001e;
+  background: linear-gradient(0.35turn,#a3cef9, #6e87da);
+  display: flex;
+}
+
+.profile{
+  background: linear-gradient(0.35turn,#ffffff, #acc2ff);
+  margin: 1%;
+  width: 9%;
+  box-shadow: 5px -10px 20px #0000001e;
+  border-radius: 5%;
+  font-weight: bold;
+  font-size: 2.2vh;
+}
+
+.attendanceExit {
+  margin-top: 3vh;
+  position: relative; right: -40%;;
+}
+.container img {
+  /* object-fit: cover; */
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  box-shadow: 5px 10px 20px #0000003b;
+  margin-top: 5%;
+
+}
+
+/* Signup */
+.App {
+  text-align: center;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: #D3E4F4;
+}
+
+.signup-form, .row, .form-group{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-form {
+  display: flex;
+  padding: 6rem;
+  padding-top: 3rem;
+  border: 0.5px solid white;
+  background-color: #627D91;
+  border-radius: 45px;
+  margin: 0.5rem;
+  height: 665px;
+}
+
+label {
+  width: 160%;
+  text-align: left;
+  padding: 0.25rem 0;
+}
+
+input {
+  width: 160%;
+  padding: 0.5rem;
+  margin: 0.2rem 0;
+  border: none;
+  border-radius: 10px;
+}
+
+input[name="classtoken"] {
+  margin-bottom: 20px;
+}
+
+.signup-submit, .signup {
+  padding: 10px;
+  border: none;
+  background-color: #40C62B;
+  border-radius: 100px;
+  cursor: pointer;
+  color: white;
+  margin: 4px auto;
+  width: 188px;
+}
+
+.signup {
+  font-size: 18px;
+}
+
+.role-container {
+  display: flex;
+  gap: 30px;
+  margin: 10px auto;
+}
+
+.role {
+  padding-bottom: 5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: #D9D9D9;
+  border-radius: 20px;
+}
+
+
+.signup-form h1 {
+  font-size: 20px;
+  align-self: flex-start;
+}
+
+.signup-form h2 {
+  font-size: 16px;
+}
+
+.signup-form h3 {
+  font-size: 16px;
+  text-decoration: underline;
 }

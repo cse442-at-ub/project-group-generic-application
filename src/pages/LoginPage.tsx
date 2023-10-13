@@ -1,4 +1,6 @@
-import React from 'react'
+
+//import React from 'react'
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,12 +13,34 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-function handleSubmit() {
-  console.log("Hello World");
-}
+import React, { useState } from 'react';
+import axios from 'axios';
 
 const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const loginData = {
+      email: email,
+      password: password
+    };
+
+    axios.post('http://localhost:3000/src/backend/SignupBackend.php', loginData)
+      .then(response => {
+        console.log('Login successful', response.data);
+      })
+      .catch(error => {
+        console.error('Error during login', error);
+      });
+  };
+
   return (
+    <>
+    <div className="mainDiv">
+
     <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -42,6 +66,10 @@ const LoginPage = () => {
               name="email"
               autoComplete="email"
               autoFocus
+
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+
             />
             <TextField
               margin="normal"
@@ -52,6 +80,10 @@ const LoginPage = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -80,6 +112,10 @@ const LoginPage = () => {
           </Box>
         </Box>
       </Container>
+
+      </div>
+      </>
+
   )
 }
 
