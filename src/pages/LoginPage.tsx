@@ -28,7 +28,7 @@ const LoginPage = () => {
       password: password
     };
 
-    axios.post('http://localhost:3000/src/backend/SignupBackend.php', loginData)
+    axios.post('http://localhost:3000/Loginbackend.php', loginData)
       .then(response => {
         console.log('Login successful', response.data);
       })
@@ -40,7 +40,6 @@ const LoginPage = () => {
   return (
     <>
     <div className="mainDiv">
-
     <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -66,10 +65,8 @@ const LoginPage = () => {
               name="email"
               autoComplete="email"
               autoFocus
-
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-
             />
             <TextField
               margin="normal"
@@ -80,10 +77,8 @@ const LoginPage = () => {
               type="password"
               id="password"
               autoComplete="current-password"
-
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -112,10 +107,8 @@ const LoginPage = () => {
           </Box>
         </Box>
       </Container>
-
       </div>
       </>
-
   )
 }
 
