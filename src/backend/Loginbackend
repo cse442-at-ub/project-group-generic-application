@@ -1,40 +1,57 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Content-Type");
+print "success1";
 session_start();
-// Check if the user is already logged in
+include 'dbconnect.php';
+echo "success1";
+//echo "success";
+ //Check if the user is already logged in
 if (isset($_SESSION['username'])) {
-    header("Location: dashboard.php");
+    //header("Location: dashboard.php");
+    echo "already connected";
     exit;
 }
+
+$jsonData = file_get_contents('php://input');
+
+$data = json_decode($jsonData, true);
 // Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Replace these with your actual database credentials
-    $db_host = "localhost";
-    $db_user = "your_db_username";
-    $db_pass = "your_db_password";
-    $db_name = "your_db_name";
-    // Create a database connection
-    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-    // Check for connection errors
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    echo "success2";
+    $email = $data["email"];;
+    $password = $data["password"];;
+    //$password = password_hash($password, PASSWORD_DEFAULT);
+    echo "success3";
     // Retrieve user input
-    $username = $_POST['username'];
-    $password = $_POST['password'];
     // Query the database for the user
-    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM userLogin WHERE username = '$email'";
+    echo "$sql";
+    echo "$password";
     $result = $conn->query($sql);
+    //$row = $result->fetch_all(MYSQLI_ASSOC);
+    $passwordtocompare = "SELECT password FROM userLogin WHERE password = '$password'";
+    $row = mysqli_fetch_assoc($result);
+
     // Check if a user with the provided credentials exists
-    if ($result->num_rows == 1) {
+    if ($result->num_rows == 1 && password_verify($password, $row['password'])) {
         // Authentication successful, store user information in the session
         $_SESSION['username'] = $username;
-        header("Location: dashboard.php");
+        //header("Location: dashboard.php");
+        print_r($row);
+        echo  "login_success!!!";
         exit;
     } else {
-        // Authentication failed
+        //Authentication failed
         $error_message = "Invalid username or password";
+        print_r($row);
+        echo "invalid";
     }
-    // Close the database connection
+     //Close the database connection
     $conn->close();
 }
+//{
+//    echo "invalid post";
+//}
 ?>
+
