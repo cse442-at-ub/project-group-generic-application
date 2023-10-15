@@ -24,19 +24,19 @@ const SignupPage: React.FC = () => {
             'username': email,
             'password': password,
             'cpassword': confirmpassword,
-            'first name': firstname,
-            'last name': lastname,
-            'class token': classtoken
+            'firstname': firstname,
+            'lastname': lastname,
+            'classtoken': classtoken
         };
-
-        axios.post('http://localhost:3000/src/backend/SignupBackend.php', userData)
-        .then(response => {
-            console.log('Data submitted successful');
-        })
-        .catch(error => {
-            console.error('Error submitting data', error);
-        });
         
+        axios.post('http://localhost:3000/SignupBackend.php', userData)
+            .then(response => {
+                console.log('Data submitted successful');
+            })
+            .catch(error => {
+                console.error('Error submitting data', error);
+            });
+
     };
 
     return (
