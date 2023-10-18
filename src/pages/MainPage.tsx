@@ -14,7 +14,7 @@ interface Props {
 function MainPage({attendanceCode, studentNumber}: Props) {
 
     // detect if mobile view
-    let isMobile = window.screen.width <= 1280
+    let isMobile = window.screen.width <= 1000
 
     //debug
     attendanceCode
