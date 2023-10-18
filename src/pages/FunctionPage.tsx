@@ -5,12 +5,31 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-
-function handleSubmit() {
-  console.log("Hello World");
-}
+import axios from 'axios';
+import React, { useState } from 'react';
 
 const FunctionPage = () => {
+  const [code, setcode] = useState('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log({
+        code,
+    });
+
+    const attendCode = {
+        'code': code,
+    };
+    
+    axios.post('http://localhost:3000/FunctionBackend.php', attendCode)
+        .then(response => {
+            console.log('Data submitted successful', response.data);
+        })
+        .catch(error => {
+            console.error('Error submitting data', error);
+        });
+  };
+
   return (
     <>
     <div className="mainDiv">
@@ -37,6 +56,8 @@ const FunctionPage = () => {
               name="code"
               autoComplete="code"
               autoFocus
+              value={code}
+              onChange={(e) => setcode(e.target.value)}
             />
             <Grid container>
               <Grid item xs>
