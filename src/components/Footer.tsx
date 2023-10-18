@@ -10,7 +10,7 @@ function Footer() {
     if (isMobile) {
         return (
             <>
-            <div className="footerMobile">
+            <div className="footerMobile" style={{textAlign: 'center'}}>
                 <Profile profilePicture={"https://www.artst.org/wp-content/uploads/2021/12/Broadway-Boogie-Woogie-Piet-Mondrian.jpg"} username={"username"}></Profile>
                 <Profile profilePicture={"https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/daily-painting-4-jane-davies.jpg"} username={"helloworld"}></Profile>
                 <Profile profilePicture={"https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/flanneur-square-sylvie-demers.jpg"} username={"longusername"}></Profile>
@@ -25,7 +25,7 @@ function Footer() {
     } else {
         return (
             <>
-                <div className="footer">
+                <div className="footer" style={{textAlign: 'center'}}>
                     <Profile profilePicture={"https://www.artst.org/wp-content/uploads/2021/12/Broadway-Boogie-Woogie-Piet-Mondrian.jpg"} username={"username"}></Profile>
                     <Profile profilePicture={"https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/daily-painting-4-jane-davies.jpg"} username={"helloworld"}></Profile>
                     <Profile profilePicture={"https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/flanneur-square-sylvie-demers.jpg"} username={"longusername"}></Profile>
