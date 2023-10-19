@@ -28,7 +28,7 @@ const LoginPage = () => {
       password: password
     };
 
-    axios.post('http://localhost:3000/Loginbackend.php', loginData)
+    axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Loginbackend.php', loginData)
       .then(response => {
         console.log('Login successful', response.data);
       })

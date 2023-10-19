@@ -29,7 +29,7 @@ const SignupPage: React.FC = () => {
             'classtoken': classtoken
         };
         
-        axios.post('http://localhost:3000/SignupBackend.php', userData)
+        axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/SignupBackend.php', userData)
             .then(response => {
                 console.log('Data submitted successful');
             })
