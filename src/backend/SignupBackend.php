@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $last_name = $data["lastname"];
     $classToken = $data["classtoken"];
 
-    $sql = "Select * from userSignup where username='$username'";
+    $sql = "SELECT * from userSignup where username='$username'";
 
     $result = mysqli_query($conn, $sql);
 
