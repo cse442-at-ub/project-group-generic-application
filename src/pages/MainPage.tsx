@@ -1,7 +1,7 @@
+import 'bootstrap/dist/css/bootstrap.css'
 import Footer from "../components/Footer";
 import { useState } from 'react';
-import '../App.css'
-import 'bootstrap/dist/css/bootstrap.css'
+import '/src/App.css'
 import Form from 'react-bootstrap/Form';
 
 
@@ -35,7 +35,7 @@ function MainPage({attendanceCode, studentNumber}: Props) {
     }
 
 
-    const [studentNumberTemp, setStudentNumberTemp] = useState(0);
+    const [studentNumberTemp] = useState(0);
     const [mainPageView, setMainPageView] = useState(0);
     const [attendanceCodeUpdater, setAttendanceCodeUpdater] = useState("");
 
@@ -65,8 +65,8 @@ function MainPage({attendanceCode, studentNumber}: Props) {
                     
                     <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Class Name Here</h1>
                     <Form>
-                        <Form.Group className="mb-3">
-                        <Form.Control type="text" placeholder="Enter Class Name" />
+                        <Form.Group className="centerForm mb-3">
+                        <Form.Control className='w-50' type="text" placeholder="Enter Class Name" />
                             <Form.Text className="text-muted">
                             Update Your Class Name.
                             </Form.Text>
@@ -120,9 +120,9 @@ function MainPage({attendanceCode, studentNumber}: Props) {
                 <div className="mainDiv" style={{textAlign: 'center', padding:'10vh'}}>   
                     <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Class Name Here</h1>
                     <Form >
-                        <Form.Group className="mb-3">
-                        <Form.Control type="text" placeholder="Enter Class Name" />
-                            <Form.Text className="text-muted">
+                        <Form.Group className="centerForm">
+                        <Form.Control className='w-50' type="text" placeholder="Enter Class Name" />
+                        <Form.Text className="text-muted">
                             Update Your Class Name.
                             </Form.Text>
                         </Form.Group>

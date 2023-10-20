@@ -106,7 +106,7 @@ body{
   background-color: #627D91;
   border-radius: 45px;
   margin: 0.5rem;
-  height: 665px;
+  height: 800px;
 }
 
 label {
@@ -116,7 +116,7 @@ label {
 }
 
 input {
-  width: 160%;
+  width: 160% !important;
   padding: 0.5rem;
   margin: 0.2rem 0;
   border: none;
@@ -169,4 +169,11 @@ input[name="classtoken"] {
 .signup-form h3 {
   font-size: 16px;
   text-decoration: underline;
+}
+
+.centerForm {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
