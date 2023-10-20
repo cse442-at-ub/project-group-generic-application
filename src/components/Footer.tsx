@@ -5,7 +5,7 @@ import Profile from "./Profile";
 function Footer() {
 
     // detect if mobile view
-    let isMobile = window.screen.width <= 1280
+    let isMobile = window.screen.width <= 1000
 
     if (isMobile) {
         return (
