@@ -32,6 +32,7 @@ const SignupPage: React.FC = () => {
         axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/SignupBackend.php', userData)
             .then(response => {
                 console.log('Data submitted successful');
+                response;
             })
             .catch(error => {
                 console.error('Error submitting data', error);

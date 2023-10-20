@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage"
 
 import MainPage from './pages/MainPage';
@@ -9,26 +9,15 @@ import ProfilePage from './pages/ProfilePage';
 
 
 function App() {
-
   return (
     <>
-
-      <Router>
+      <HashRouter>
         <Route path="/main" element={<MainPage attendanceCode={''} studentNumber={0} />} />
-     </Router>
-      <Router>
         <Route path="/login" element={<LoginPage />} />
-     </Router>
-     <Router>
         <Route path="/function" element={<FunctionPage />} />
-     </Router>
-     <Router>
         <Route path="/signup" element={<SignupPage />} />
-     </Router>
-     <Router>
         <Route path="/profile" element={<ProfilePage />} />
-      </Router>
-
+      </HashRouter>
     </>
   )
 }
