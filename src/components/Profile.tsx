@@ -6,7 +6,7 @@ interface Props {
 
 function Profile({profilePicture, username}: Props) {
     // detect if mobile view
-    let isMobile = window.screen.width <= 1280
+    let isMobile = window.screen.width <= 1000
 
     if (isMobile) {
         return (
@@ -16,6 +16,8 @@ function Profile({profilePicture, username}: Props) {
                 <img src={profilePicture}></img>
 
                 </div>
+                <p>@{username}</p>
+
             </div>
         </>
         )
