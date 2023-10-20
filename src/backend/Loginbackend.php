@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "success3";
     // Retrieve user input
     // Query the database for the user
-    $sql = "SELECT * FROM test WHERE username = '$username'";
+    $sql = "SELECT * FROM users WHERE username = '$username'";
     echo "$sql";
     echo "$password";
     $result = $conn->query($sql);
