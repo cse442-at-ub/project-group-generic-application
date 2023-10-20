@@ -41,21 +41,21 @@ const ProfilePage = () => {
                 }}
               >
                 {/* Sidebar Items as hyperlinks */}
-                <Link href="/" variant="body2" style={linkStyle}>
+                <Link href="./" variant="body2" style={linkStyle}>
                   <Box sx={{ border: 0, padding: 1, margin: 1 }}>
                   <Typography component="h1" variant="h6">
                     Home Page
                   </Typography>
                   </Box>
                 </Link>
-                <Link href="/#/profile" variant="body2" style={linkStyle}>
+                <Link href="./#/profile" variant="body2" style={linkStyle}>
                   <Box sx={{ border: 0, padding: 1, margin: 1 }}>
                   <Typography component="h1" variant="h6">
                     My Profile
                   </Typography>  
                   </Box>
                 </Link>
-                <Link href="/#/function" variant="body2" style={linkStyle}>
+                <Link href="./#/function" variant="body2" style={linkStyle}>
                   <Box sx={{ border: 0, padding: 1, margin: 1 }}>
                   <Typography component="h1" variant="h6">
                     Attendance
@@ -97,17 +97,17 @@ const ProfilePage = () => {
                     Classes Joined:
                   </Typography>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-                    <Link href="/#/main" variant="body2" style={linkStyle}>
+                    <Link href="./#/main" variant="body2" style={linkStyle}>
                       <Box sx={{ width: '80px', height: '80px', background: 'red', border: '3px solid white' }}>
                         Class 1
                       </Box>
                     </Link>
-                    <Link href="/#/main" variant="body2" style={linkStyle}>
+                    <Link href="./#/main" variant="body2" style={linkStyle}>
                       <Box sx={{ width: '80px', height: '80px', background: 'blue', border: '3px solid white' }}>
                         Class 2
                       </Box>
                     </Link>
-                    <Link href="/#/main" variant="body2" style={linkStyle}>
+                    <Link href="./#/main" variant="body2" style={linkStyle}>
                       <Box sx={{ width: '80px', height: '80px', background: 'green', border: '3px solid white' }}>
                         Class 3
                       </Box>
@@ -140,21 +140,21 @@ const ProfilePage = () => {
               }}
             >
               {/* Sidebar Items as hyperlinks */}
-              <Link href="/" variant="body2" style={linkStyle}>
+              <Link href="./" variant="body2" style={linkStyle}>
                 <Box sx={{ border: 0, padding: 1, margin: 1 }}>
                 <Typography component="h1" variant="h6">
                   Home Page
                 </Typography>
                 </Box>
               </Link>
-              <Link href="/#/profile" variant="body2" style={linkStyle}>
+              <Link href="./#/profile" variant="body2" style={linkStyle}>
                 <Box sx={{ border: 0, padding: 1, margin: 1 }}>
                 <Typography component="h1" variant="h6">
                   My Profile
                 </Typography>  
                 </Box>
               </Link>
-              <Link href="/#/function" variant="body2" style={linkStyle}>
+              <Link href="./#/function" variant="body2" style={linkStyle}>
                 <Box sx={{ border: 0, padding: 1, margin: 1 }}>
                 <Typography component="h1" variant="h6">
                   Attendance
@@ -196,17 +196,17 @@ const ProfilePage = () => {
                   Classes Joined:
                 </Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-                  <Link href="/#/main" variant="body2" style={linkStyle}>
+                  <Link href="./#/main" variant="body2" style={linkStyle}>
                     <Box sx={{ width: '200px', height: '200px', background: 'red', border: '5px solid white' }}>
                       Class 1
                     </Box>
                   </Link>
-                  <Link href="/#/main" variant="body2" style={linkStyle}>
+                  <Link href="./#/main" variant="body2" style={linkStyle}>
                     <Box sx={{ width: '200px', height: '200px', background: 'blue', border: '5px solid white' }}>
                       Class 2
                     </Box>
                   </Link>
-                  <Link href="/#/main" variant="body2" style={linkStyle}>
+                  <Link href="./#/main" variant="body2" style={linkStyle}>
                     <Box sx={{ width: '200px', height: '200px', background: 'green', border: '5px solid white' }}>
                       Class 3
                     </Box>
