@@ -8,5 +8,8 @@
 
 (this website will auto update using vite, so any changes you make will automatically show up without you having to re-run the terminal command)
 
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/L3I96ePi)
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-7f7980b617ed060a017424585567c406b6ee15c891e84e1186181d67ecf80aa0.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=11774306)
+## How to build the website
+- Open the project in vscode, and run the command `npm run build`
+- This will build the website within the `project-group-generic-application\dist` folder
+- Optionally but highly recommended to run `npm run preview` to preview the website using the dist files that were just created
+- You can now upload the website onto cheshire by deleting the existing `index.html` and `assets` folders if they exist, then move the files from `dist` onto cheshire
