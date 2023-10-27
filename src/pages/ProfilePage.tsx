@@ -18,6 +18,11 @@ const ProfilePage = () => {
     cursor: 'pointer', // Change cursor to pointer on hover
   };
 
+function handleButtonClick() {
+  console.log("Hello World");
+}
+
+
   // detect if mobile view
   let isMobile = window.screen.width <= 1000
 
@@ -114,6 +119,8 @@ const ProfilePage = () => {
                     </Link>
                   </Box>
                 </Box>
+                <br></br>        
+                <button type="button" onClick={handleButtonClick} className="btn btn-success" >Download Attendance Records</button>
               </Box>
             </Grid>
           </Grid>
@@ -134,7 +141,7 @@ const ProfilePage = () => {
                 borderColor: 'divider',
                 padding: 2,
                 backgroundColor: 'darkgray',
-                height: '113.5%', // Set a fixed height to reach the bottom of the page
+                height: '110%', // Set a fixed height to reach the bottom of the page
                 display: 'flex',
                 flexDirection: 'column',
               }}
@@ -197,30 +204,31 @@ const ProfilePage = () => {
                 </Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
                   <Link href="./#/main" variant="body2" style={linkStyle}>
-                    <Box sx={{ width: '200px', height: '200px', background: 'red', border: '5px solid white' }}>
+                    <Box sx={{ width: '180px', height: '180px', background: 'red', border: '5px solid white' }}>
                       Class 1
                     </Box>
                   </Link>
                   <Link href="./#/main" variant="body2" style={linkStyle}>
-                    <Box sx={{ width: '200px', height: '200px', background: 'blue', border: '5px solid white' }}>
+                    <Box sx={{ width: '180px', height: '180px', background: 'blue', border: '5px solid white' }}>
                       Class 2
                     </Box>
                   </Link>
                   <Link href="./#/main" variant="body2" style={linkStyle}>
-                    <Box sx={{ width: '200px', height: '200px', background: 'green', border: '5px solid white' }}>
+                    <Box sx={{ width: '180px', height: '180px', background: 'green', border: '5px solid white' }}>
                       Class 3
                     </Box>
                   </Link>
                 </Box>
               </Box>
+                <br></br>        
+                <button type="button" onClick={handleButtonClick} className="btn btn-success" >Download Attendance Records</button>
             </Box>
           </Grid>
         </Grid>
       </Container>
     </div>
   );
-}
-  }
+}}
 
   
 
