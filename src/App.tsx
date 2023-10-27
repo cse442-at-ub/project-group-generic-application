@@ -1,18 +1,23 @@
 import './App.css'
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage"
+
 import MainPage from './pages/MainPage';
+import FunctionPage from './pages/FunctionPage';
+import SignupPage from './pages/SignupPage';
+import ProfilePage from './pages/ProfilePage';
+
 
 function App() {
-
   return (
     <>
-      <Router>
-        <Route path="/main" element={<MainPage />} />
-     </Router>
-      <Router>
+      <HashRouter>
+        <Route path="/main" element={<MainPage attendanceCode={''} studentNumber={0} />} />
         <Route path="/login" element={<LoginPage />} />
-     </Router>
+        <Route path="/function" element={<FunctionPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+      </HashRouter>
     </>
   )
 }
