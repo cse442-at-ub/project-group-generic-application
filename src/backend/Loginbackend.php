@@ -25,16 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "success3";
     // Retrieve user input
     // Query the database for the user
-    $sql = "SELECT * FROM userLogin WHERE username = '$email'";
+    $sql = "SELECT * FROM users WHERE username = '$email'";
     echo "$sql";
     echo "$password";
     $result = $conn->query($sql);
     //$row = $result->fetch_all(MYSQLI_ASSOC);
-    $passwordtocompare = "SELECT password FROM userLogin WHERE password = '$password'";
+    $passwordtocompare = "SELECT password FROM users WHERE password = '$password'";
     $row = mysqli_fetch_assoc($result);
-
     // Check if a user with the provided credentials exists
-    if ($result->num_rows == 1 && password_verify($password, $row['password'])) {
+	//$pop = $row['password'];
+	//echo $pop;
+   if (mysqli_num_rows($result) == 1 && password_verify($password, $row['password'])) {
         // Authentication successful, store user information in the session
         $_SESSION['username'] = $username;
         //header("Location: dashboard.php");
