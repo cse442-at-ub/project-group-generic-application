@@ -5,7 +5,7 @@ include 'dbconnect.php';
 $Attendcode = '12345';
 $classToken = '123456';
 //if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $sql = "INSERT INTO 'AttendanceCode' ( 'code', 'classtoken', 'date') VALUES ('$Attendcode', '$classToken', current_timestamp())";
+    $sql = "INSERT INTO 'AttendanceCode' ( 'code', 'class token', 'date') VALUES ('$Attendcode', '$classToken', current_timestamp())";
     $result2 = mysqli_query($conn, $sql);
     echo "success2";
     $passwordtocompare = "SELECT username FROM Attendance WHERE 'classtoken' = '$classToken'";
