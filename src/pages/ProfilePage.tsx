@@ -6,6 +6,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
+import React, { useState } from 'react';
+import Modal from '@mui/material/Modal';
+import axios from 'axios';
 
 function handleSubmit() {
   console.log("Hello World");
@@ -18,10 +21,46 @@ const ProfilePage = () => {
     cursor: 'pointer', // Change cursor to pointer on hover
   };
 
+  
+  const [open, setOpen] = useState(false);
+  const [classesJoined, setClassesJoined] = useState([' ']);
+  const [classToken, setClassToken] = useState('');
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleJoinClass = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    console.log({
+      classToken,
+    })
+    setClassesJoined([...classesJoined, classToken]);
+    handleClose();
+    setClassToken('');
+
+    const joinClassInfo = {
+      'classToken': classToken,
+    };
+
+    axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/attendanceinput.php', joinClassInfo)
+      .then(response => {
+          console.log('Data submitted successful');
+          response;
+      })
+      .catch(error => {
+          console.error('Error submitting data', error);
+      });
+
+  };
+
 function handleButtonClick() {
   console.log("Hello World");
 }
-
 
   // detect if mobile view
   let isMobile = window.screen.width <= 1000
@@ -119,7 +158,8 @@ function handleButtonClick() {
                     </Link>
                   </Box>
                 </Box>
-                <br></br>        
+                <br></br>
+                <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>
                 <button type="button" onClick={handleButtonClick} className="btn btn-success" >Download Attendance Records</button>
               </Box>
             </Grid>
@@ -203,39 +243,63 @@ function handleButtonClick() {
                   Classes Joined:
                 </Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-                  <Link href="./#/main" variant="body2" style={linkStyle}>
-                    <Box sx={{ width: '180px', height: '180px', background: 'red', border: '5px solid white' }}>
-                      Class 1
-                    </Box>
-                  </Link>
-                  <Link href="./#/main" variant="body2" style={linkStyle}>
-                    <Box sx={{ width: '180px', height: '180px', background: 'blue', border: '5px solid white' }}>
-                      Class 2
-                    </Box>
-                  </Link>
-                  <Link href="./#/main" variant="body2" style={linkStyle}>
-                    <Box sx={{ width: '180px', height: '180px', background: 'green', border: '5px solid white' }}>
-                      Class 3
-                    </Box>
-                  </Link>
+                  {classesJoined.map((className, idx) => (
+                    <Link href="./#/main" key={idx} variant="body2" style={linkStyle}>
+                      <Box sx={{ width: isMobile ? '80px' : '180px', height: isMobile ? '80px' : '180px', background: 'red', border: isMobile ? '3px' : '5px solid white' }}>
+                        {className}
+                      </Box>
+                    </Link>
+                  ))}
                 </Box>
               </Box>
-                <br></br>        
+                <br></br>
+                <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>        
                 <button type="button" onClick={handleButtonClick} className="btn btn-success" >Download Attendance Records</button>
-            </Box>
+              </Box>
+              <Modal open={open} onClose={handleClose}>
+                <div style={{ 
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  position: 'absolute',
+                  width: 400,
+                  backgroundColor: '#AAC9F9',
+                  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+                  padding: '20px',
+                  borderRadius: '8px'
+                }}>
+                  <h2>Join a Class</h2>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="classToken"
+                    label="Enter Class Token"
+                    name="classToken"
+                    onChange={(e) => setClassToken(e.target.value)}
+                  />
+                  <button 
+                    onClick={handleJoinClass}
+                    style={{
+                      backgroundColor: 'green',
+                      border: 'none',
+                      color: 'white',
+                      padding: '10px 20px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      transition: '0.3s',
+                    }}
+                  >
+                    Join
+                  </button>
+                </div>
+              </Modal>
           </Grid>
         </Grid>
       </Container>
     </div>
   );
 }}
-
   
 
 export default ProfilePage;
-
-
-
-
-
-
