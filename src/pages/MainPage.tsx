@@ -117,6 +117,7 @@ function MainPage({attendanceCode, studentNumber}: Props) {
         if (mainPageView == 0) {
             return (
                 <>
+                
                 <div className="mainDiv" style={{textAlign: 'center', padding:'10vh'}}>   
                     <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Class Name Here</h1>
                     <Form >
