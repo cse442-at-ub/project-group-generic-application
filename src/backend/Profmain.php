@@ -1,16 +1,18 @@
 <?php
 session_start();
 include 'dbconnect.php';
-$current_time = date("Y-m-d H:i:s");
+//$current_time = date("Y-m-d H:i:s");
 $Attendcode = $_POST["attendancecode"];
 $classToken = $request->session()->get('class token');
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $sql = "INSERT INTO 'AttendanceCode' ( 'code', 'class token', 'date') VALUES ('$Attendcode', '$classToken', '$current_time')";
+    $sql = "INSERT INTO AttendanceCode ( code, `class token`) VALUES ('$Attendcode', '$classToken')";
     $result2 = mysqli_query($conn, $sql);
-    $passwordtocompare = "SELECT username FROM Attendance WHERE 'classtoken' = '$classToken'";
+    echo "success2";
+    $passwordtocompare = "SELECT username FROM Attendance WHERE `class token` = '$classToken'";
     $result = mysqli_query($conn, $passwordtocompare);
-    $row = mysqli_fetch_assoc($result); // array used on frontend hopefully
+    $row = mysqli_fetch_all($result); // array used on frontend hopefully
     print_r($row);
+    echo "success3";
 }
 $conn->close();
 ?>
