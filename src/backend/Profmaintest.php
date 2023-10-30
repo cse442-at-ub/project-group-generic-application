@@ -3,7 +3,7 @@ session_start();
 include 'dbconnect.php';
 //$current_time = date("Y-m-d H:i:s");
 $Attendcode = '12345';
-$classToken = $request->session()->get('class token');
+$classToken = $request4->session()->get(`class token`);
 //if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $sql = "INSERT INTO AttendanceCode ( code, `class token`) VALUES ('$Attendcode', '$classToken')";
     $result2 = mysqli_query($conn, $sql);
