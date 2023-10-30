@@ -10,7 +10,7 @@ $classToken = '123456';
     echo "success2";
     $passwordtocompare = "SELECT username FROM Attendance WHERE `class token` = '$classToken'";
     $result = mysqli_query($conn, $passwordtocompare);
-    $row = mysqli_fetch_assoc($result); // array used on frontend hopefully
+    $row = mysqli_fetch_all($result); // array used on frontend hopefully
     print_r($row);
     echo "success3";
 //}
