@@ -3,8 +3,16 @@ session_start();
 include 'dbconnect.php';
 //$current_time = date("Y-m-d H:i:s");
 $Attendcode = '12345';
-$classToken = $_SESSION['class token'];
+$classToken = $row['class token'];
 echo "$classsToken";
+if (!isset($_SESSION['username'])) {
+    //header("Location: dashboard.php");
+    echo "not connected";
+    header("Location: Loginbackend.php");
+    $conn->close();
+    exit;
+}
+
 //if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $sql = "INSERT INTO AttendanceCode ( code, `class token`) VALUES ('$Attendcode', '$classToken')";
     $result2 = mysqli_query($conn, $sql);

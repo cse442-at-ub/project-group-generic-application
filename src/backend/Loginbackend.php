@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //header("Location: dashboard.php");
         print_r($row);
         echo  "login_success!!!";
+        $conn->close();
         exit;
     } else {
         //Authentication failed
