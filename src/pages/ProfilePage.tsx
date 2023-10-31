@@ -63,7 +63,7 @@ const ProfilePage = () => {
 const [isLoading, setIsLoading] = useState(false);
 const handleDownload = async () => {
   setIsLoading(true);
-  const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/attendanceinput.php');
+  const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/downloadAttendance.php');
   const downloadUrl = response.data.downloadUrl;
   window.open(downloadUrl, '_blank');
   setIsLoading(false);
