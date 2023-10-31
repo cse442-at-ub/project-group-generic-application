@@ -58,9 +58,17 @@ const ProfilePage = () => {
 
   };
 
-function handleButtonClick() {
-  console.log("Hello World");
+
+//make a post request to the backend to download the attendance records
+const [isLoading, setIsLoading] = useState(false);
+const handleDownload = async () => {
+  setIsLoading(true);
+  const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/attendanceinput.php');
+  const downloadUrl = response.data.downloadUrl;
+  window.open(downloadUrl, '_blank');
+  setIsLoading(false);
 }
+
 
   // detect if mobile view
   let isMobile = window.screen.width <= 1000
@@ -161,7 +169,7 @@ function handleButtonClick() {
                 <br></br>
                 <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>
                 <br></br>
-                <button type="button" onClick={handleButtonClick} className="btn btn-success" >Download Attendance Records</button>
+                <button type="button" onClick={handleDownload} disabled={isLoading} className="btn btn-success" >Download Attendance Records</button>
               </Box>
             </Grid>
           </Grid>
@@ -256,7 +264,7 @@ function handleButtonClick() {
                 <br></br>
                 <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>    
                 <br></br>    
-                <button type="button" onClick={handleButtonClick} className="btn btn-success" >Download Attendance Records</button>
+                <button type="button" onClick={handleDownload} disabled={isLoading} className="btn btn-success" >Download Attendance Records</button>
               </Box>
               <Modal open={open} onClose={handleClose}>
                 <div style={{ 
