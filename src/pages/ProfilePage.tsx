@@ -58,9 +58,17 @@ const ProfilePage = () => {
 
   };
 
-function handleButtonClick() {
-  console.log("Hello World");
+
+//make a post request to the backend to download the attendance records
+const [isLoading, setIsLoading] = useState(false);
+const handleDownload = async () => {
+  setIsLoading(true);
+  const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/downloadAttendance.php');
+  const downloadUrl = response.data.downloadUrl;
+  window.open(downloadUrl, '_blank');
+  setIsLoading(false);
 }
+
 
   // detect if mobile view
   let isMobile = window.screen.width <= 1000
@@ -116,7 +124,7 @@ function handleButtonClick() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  minHeight: '40vh', // Set a fixed height to reach the bottom of the page
+                  maxHeight: '80vh', // Set a fixed height to reach the bottom of the page
                 }}
             
               >
@@ -160,7 +168,8 @@ function handleButtonClick() {
                 </Box>
                 <br></br>
                 <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>
-                <button type="button" onClick={handleButtonClick} className="btn btn-success" >Download Attendance Records</button>
+                <br></br>
+                <button type="button" onClick={handleDownload} disabled={isLoading} className="btn btn-success" >Download Attendance Records</button>
               </Box>
             </Grid>
           </Grid>
@@ -181,7 +190,7 @@ function handleButtonClick() {
                 borderColor: 'divider',
                 padding: 2,
                 backgroundColor: 'darkgray',
-                height: '110%', // Set a fixed height to reach the bottom of the page
+                height: '113%', // Set a fixed height to reach the bottom of the page
                 display: 'flex',
                 flexDirection: 'column',
               }}
@@ -218,7 +227,7 @@ function handleButtonClick() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                minHeight: '80vh', // Set a fixed height to reach the bottom of the page
+                maxHeight: '84vh', // Set a fixed height to reach the bottom of the page
               }}
           
             >
@@ -253,8 +262,9 @@ function handleButtonClick() {
                 </Box>
               </Box>
                 <br></br>
-                <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>        
-                <button type="button" onClick={handleButtonClick} className="btn btn-success" >Download Attendance Records</button>
+                <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>    
+                <br></br>    
+                <button type="button" onClick={handleDownload} disabled={isLoading} className="btn btn-success" >Download Attendance Records</button>
               </Box>
               <Modal open={open} onClose={handleClose}>
                 <div style={{ 
