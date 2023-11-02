@@ -11,7 +11,7 @@ interface Props {
 }
 
 
-function MainPage({attendanceCode, studentNumber}: Props) {
+function MainPage(this: any, {attendanceCode, studentNumber}: Props) {
 
     // detect if mobile view
     let isMobile = window.screen.width <= 1000
@@ -35,15 +35,22 @@ function MainPage({attendanceCode, studentNumber}: Props) {
     }
 
 
-    const [studentNumberTemp] = useState(0);
+    const [studentNumberTemp, setStudentNumberTemp] = useState(0);
     const [mainPageView, setMainPageView] = useState(0);
     const [attendanceCodeUpdater, setAttendanceCodeUpdater] = useState("");
 
-    // function handleClick() {
-    //     if (studentNumberTemp < 100) {
-    //         setStudentNumberTemp(studentNumberTemp + 1)
-    //     }
-    // }
+    function handleStudentDebugClick() {
+        if (studentNumberTemp < 100) {
+            setStudentNumberTemp(studentNumberTemp + 1)
+        }
+    }
+
+    
+    function handleResetDebugClick() {
+        setStudentNumberTemp(0)
+
+    }
+
     function handleAttendanceButtonClick() {
         if (mainPageView == 0) {
             setMainPageView(mainPageView + 1)
@@ -51,6 +58,7 @@ function MainPage({attendanceCode, studentNumber}: Props) {
             
         } else {
             setMainPageView(mainPageView - 1)
+            setStudentNumberTemp(0)
         }
     }
 
@@ -144,9 +152,12 @@ function MainPage({attendanceCode, studentNumber}: Props) {
                     <h1 style={{fontSize:'3vh', fontStyle:"italic"}}>{"Please go to <sitename.com> and enter the code"}</h1>
                     <h1 style={{fontWeight:"bold", fontSize:'5vh'}}>{studentNumberTemp}/100 students</h1>
 
+                    {/* <h1 style={{fontSize:'3vh'}}>{"Debug Buttons"}</h1> */}
+                    <button type="button" onClick={handleStudentDebugClick} className="btn btn-primary" >Add Student</button>
+                    <button type="button" onClick={handleResetDebugClick} className="btn btn-danger" >Reset Students</button>
 
                 </div>
-                <Footer></Footer>
+                <Footer studentNumber={studentNumberTemp}></Footer>
             
             </>
             )
