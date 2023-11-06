@@ -16,6 +16,7 @@ function MainPage(this: any, {attendanceCode, studentNumber}: Props) {
     // detect if mobile view
     let isMobile = window.screen.width <= 1000
 
+
     //debug
     attendanceCode
     studentNumber
@@ -69,6 +70,14 @@ function MainPage(this: any, {attendanceCode, studentNumber}: Props) {
         }
     }
 
+    let pluralStudent = "s"
+    // detect plurality
+    if (studentNumberTemp == 1) {
+        pluralStudent = ""
+    } else {
+        pluralStudent = "s"
+    }
+
     
 
     if (isMobile) {
@@ -118,7 +127,7 @@ function MainPage(this: any, {attendanceCode, studentNumber}: Props) {
                     <h1 style={{fontSize:'3vh'}}>Attendance Code:</h1>
                     <h1 style={{fontSize:'10vh', fontWeight:"bold", textShadow:"5px 10px 10px #0000001e"}}>{attendanceCodeUpdater}</h1>
                     <h1 style={{fontSize:'2vh', fontStyle:"italic"}}>{"Please go to <sitename.com> and enter the code"}</h1>
-                    <h1 style={{fontWeight:"bold", fontSize:'3vh'}}>{studentNumberTemp}/100 students</h1>
+                    <h1 style={{fontWeight:"bold", fontSize:'3vh'}}>{studentNumberTemp} student{pluralStudent}</h1>
                     <button type="button" onClick={handleAttendanceButtonClick} className="btn btn-success" >Close Attendance</button>
                     
                 </div>
@@ -157,7 +166,7 @@ function MainPage(this: any, {attendanceCode, studentNumber}: Props) {
                     <h1 style={{fontSize:'3vh'}}>Attendance Code:</h1>
                     <h1 style={{fontSize:'20vh', fontWeight:"bold", textShadow:"5px 10px 10px #0000001e"}}>{attendanceCodeUpdater}</h1>
                     <h1 style={{fontSize:'3vh', fontStyle:"italic"}}>{"Please go to <sitename.com> and enter the code"}</h1>
-                    <h1 style={{fontWeight:"bold", fontSize:'5vh'}}>{studentNumberTemp}/100 students</h1>
+                    <h1 style={{fontWeight:"bold", fontSize:'5vh'}}>{studentNumberTemp} student{pluralStudent}</h1>
 
                     {/* <h1 style={{fontSize:'3vh'}}>{"Debug Buttons"}</h1> */}
                     <button type="button" onClick={handleStudentDebugClick} className="btn btn-primary" >Add Student</button>
