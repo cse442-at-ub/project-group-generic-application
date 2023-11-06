@@ -148,22 +148,26 @@ const handleDownload = async () => {
                   <Typography component="h1" variant="h6">
                     Classes Joined:
                   </Typography>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-                    <Link href="./#/main" variant="body2" style={linkStyle}>
-                      <Box sx={{ width: '80px', height: '80px', background: 'red', border: '3px solid white' }}>
-                        Class 1
-                      </Box>
-                    </Link>
-                    <Link href="./#/main" variant="body2" style={linkStyle}>
-                      <Box sx={{ width: '80px', height: '80px', background: 'blue', border: '3px solid white' }}>
-                        Class 2
-                      </Box>
-                    </Link>
-                    <Link href="./#/main" variant="body2" style={linkStyle}>
-                      <Box sx={{ width: '80px', height: '80px', background: 'green', border: '3px solid white' }}>
-                        Class 3
-                      </Box>
-                    </Link>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 2 }}>
+                    {classesJoined.map((className, idx) => (
+                      <Link href="./#/main" key={idx} variant="body2" style={{ textDecoration: 'none' }}>
+                        <Box
+                          sx={{
+                            width: isMobile ? '60px' : '180px',
+                            height: isMobile ? '60px' : '180px',
+                            background: 'red',
+                            border: '3px solid white',
+                            margin: isMobile ? '5px' : '10px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderRadius: '4px',
+                          }}
+                        >
+                          <Typography variant="body2">{className}</Typography>
+                        </Box>
+                      </Link>
+                    ))}
                   </Box>
                 </Box>
                 <br></br>
@@ -171,6 +175,50 @@ const handleDownload = async () => {
                 <br></br>
                 <button type="button" onClick={handleDownload} disabled={isLoading} className="btn btn-success" >Download Attendance Records</button>
               </Box>
+              <Modal open={open} onClose={handleClose}>
+              <Box sx={{
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                position: 'absolute',
+                width: 400,
+                bgcolor: 'background.paper',
+                boxShadow: 24,
+                p: 4,
+                borderRadius: '8px',
+              }}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Join a Class
+                </Typography>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="classToken"
+                  label="Enter Class Token"
+                  name="classToken"
+                  autoFocus
+                  onChange={(e) => setClassToken(e.target.value)}
+                />
+                <Box sx={{ mt: 2 }}>
+                  <button
+                    onClick={handleJoinClass}
+                    style={{
+                      backgroundColor: 'green',
+                      border: 'none',
+                      color: 'white',
+                      padding: '10px 20px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      transition: '0.3s',
+                      marginTop: '16px',
+                    }}
+                  >
+                    Join
+                  </button>
+                </Box>
+              </Box>
+            </Modal>
             </Grid>
           </Grid>
         </Container>
