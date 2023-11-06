@@ -34,6 +34,13 @@ function MainPage(this: any, {attendanceCode, studentNumber}: Props) {
         return result;
     }
 
+    // function for retrieving the student list array from backend
+    // - this should just run a php file and do things based on the return value
+    // - should update an array var
+    // - should be run every x seconds
+
+
+    // function for sending attendance code + other prof info to the backend
 
     const [studentNumberTemp, setStudentNumberTemp] = useState(0);
     const [mainPageView, setMainPageView] = useState(0);
