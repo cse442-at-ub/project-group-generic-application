@@ -62,10 +62,6 @@ const ProfilePage = () => {
     });
   };
 
-<<<<<<< Updated upstream
-function handleButtonClick() {
-  console.log("Hello World");
-=======
 //make a post request to the backend to download the attendance records
 const [isLoading, setIsLoading] = useState(false);
 const handleDownload = async () => {
@@ -74,7 +70,6 @@ const handleDownload = async () => {
   const downloadUrl = response.data.downloadUrl;
   window.open(downloadUrl, '_blank');
   setIsLoading(false);
->>>>>>> Stashed changes
 }
 
   // detect if mobile view
@@ -179,7 +174,7 @@ const handleDownload = async () => {
                 </Box>
                 <br></br>
                 <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>
-                <button type="button" onClick={handleButtonClick} className="btn btn-success" >Download Attendance Records</button>
+                <button type="button" onClick={handleDownload} className="btn btn-success" >Download Attendance Records</button>
               </Box>
               <Modal open={open} onClose={handleClose}>
               <Box sx={{
@@ -316,14 +311,9 @@ const handleDownload = async () => {
                   </Box>
                 </Box>
                 <br></br>
-<<<<<<< Updated upstream
-                <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>        
-                <button type="button" onClick={handleButtonClick} className="btn btn-success" >Download Attendance Records</button>
-=======
                 <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>
                 <br></br>
                 <button type="button" onClick={handleDownload} disabled={isLoading} className="btn btn-success" >Download Attendance Records</button>
->>>>>>> Stashed changes
               </Box>
               <Modal open={open} onClose={handleClose}>
                 <div style={{
