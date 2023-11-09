@@ -19,7 +19,7 @@ body{
   top:50%;
   padding-top: 30%;
   padding-bottom: 30%;
-  background: linear-gradient(0.35turn,#ffffff, #9cc9fc);
+  background: linear-gradient(0.35turn,#ffffff, #bfddff);
   box-shadow: 5px 10px 20px #0000001e;
 }
 .mainDiv {
@@ -32,7 +32,7 @@ body{
   margin-right: auto; 
   padding-bottom: 5%;
   top:5%;
-  background: linear-gradient(0.35turn,#ffffff, #9cc9fc);
+  background: linear-gradient(0.35turn,#ffffff, #bcdbff);
   border-radius: 15px;
   box-shadow: 5px 10px 20px #0000001e;
   
@@ -43,9 +43,14 @@ body{
   left:0;
   bottom:0;
   right:0;    
+  height:35%;
   box-shadow: 5px -10px 20px #0000001e;
-  background: linear-gradient(0.35turn,#a3cef9, #6e87da);
-  display: flex;
+  background: linear-gradient(0.35turn,#b2d4ea, #6880cf);
+  display: grid;
+  flex-direction: column;
+  overflow-x: hidden;
+  grid-template-columns: 25vh 25vh 25vh 25vh 25vh 25vh 25vh 25vh ;
+  overflow-y: scroll;
 }
 
 .footerMobile{
@@ -59,13 +64,19 @@ body{
 }
 
 .profile{
-  background: linear-gradient(0.35turn,#ffffff, #acc2ff);
-  margin: 1%;
-  width: 9%;
+  background: linear-gradient(0.35turn,#ffffff, #c1d0f8);
+  margin: 10%;
+  width: 20vh;
   box-shadow: 5px -10px 20px #0000001e;
   border-radius: 5%;
   font-weight: bold;
-  font-size: 2.2vh;
+  font-size: 2.1vh;
+  height:23vh;
+}
+
+.profile:hover {
+  box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
+  transition: 0.3s;
 }
 
 .attendanceExit {
