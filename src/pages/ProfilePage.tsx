@@ -23,7 +23,7 @@ const ProfilePage = () => {
 
   
   const [open, setOpen] = useState(false);
-  const [classesJoined, setClassesJoined] = useState([' ']);
+  const [classesJoined, setClassesJoined] = useState<string[]>([]);
   const [classToken, setClassToken] = useState('');
 
   const handleOpen = () => {
@@ -36,30 +36,45 @@ const ProfilePage = () => {
 
   const handleJoinClass = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    console.log({
-      classToken,
-    })
-    setClassesJoined([...classesJoined, classToken]);
-    handleClose();
-    setClassToken('');
-
     const joinClassInfo = {
-      'classToken': classToken,
+      'classCode': classToken,
     };
-
-    axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/attendanceinput.php', joinClassInfo)
-      .then(response => {
-          console.log('Data submitted successful');
-          response;
-      })
-      .catch(error => {
-          console.error('Error submitting data', error);
-      });
-
+    
+  axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/JoinClassTest.php', joinClassInfo)
+    .then(response => {
+      const jsonResponse = JSON.parse(response.data.substring(response.data.indexOf('{')));
+      console.log(response);
+       if(jsonResponse.message === "Invalid class code") {
+        alert('Invalid class code. Please try again.');
+      } else if(jsonResponse.message === "Already in class") {
+        alert('You are already in this class.');
+      } else {
+        setClassesJoined(prevClassesJoined => [...prevClassesJoined, classToken]);
+      }
+      
+    })
+    .catch(error => {
+      console.error('Error', error);
+    })
+    .finally(() => {
+      handleClose();
+      setClassToken('');
+    });
   };
 
+<<<<<<< Updated upstream
 function handleButtonClick() {
   console.log("Hello World");
+=======
+//make a post request to the backend to download the attendance records
+const [isLoading, setIsLoading] = useState(false);
+const handleDownload = async () => {
+  setIsLoading(true);
+  const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/downloadAttendance.php');
+  const downloadUrl = response.data.downloadUrl;
+  window.open(downloadUrl, '_blank');
+  setIsLoading(false);
+>>>>>>> Stashed changes
 }
 
   // detect if mobile view
@@ -286,26 +301,32 @@ function handleButtonClick() {
                   autoComplete="email"
                   autoFocus
                 />
-                {/* Classes Joined */}
-                <Typography component="h1" variant="h6">
-                  Classes Joined:
-                </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-                  {classesJoined.map((className, idx) => (
-                    <Link href="./#/main" key={idx} variant="body2" style={linkStyle}>
-                      <Box sx={{ width: isMobile ? '80px' : '180px', height: isMobile ? '80px' : '180px', background: 'red', border: isMobile ? '3px' : '5px solid white' }}>
-                        {className}
-                      </Box>
-                    </Link>
-                  ))}
+                  {/* Classes Joined */}
+                  <Typography component="h1" variant="h6">
+                    Classes Joined:
+                  </Typography>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+                    {classesJoined.map((className, idx) => (
+                      <Link href="./#/main" key={idx} variant="body2" style={linkStyle}>
+                        <Box sx={{ width: isMobile ? '80px' : '180px', height: isMobile ? '80px' : '180px', background: 'red', border: isMobile ? '3px' : '5px solid white' }}>
+                          {className}
+                        </Box>
+                      </Link>
+                    ))}
+                  </Box>
                 </Box>
-              </Box>
                 <br></br>
+<<<<<<< Updated upstream
                 <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>        
                 <button type="button" onClick={handleButtonClick} className="btn btn-success" >Download Attendance Records</button>
+=======
+                <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>
+                <br></br>
+                <button type="button" onClick={handleDownload} disabled={isLoading} className="btn btn-success" >Download Attendance Records</button>
+>>>>>>> Stashed changes
               </Box>
               <Modal open={open} onClose={handleClose}>
-                <div style={{ 
+                <div style={{
                   top: '50%',
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
@@ -326,7 +347,7 @@ function handleButtonClick() {
                     name="classToken"
                     onChange={(e) => setClassToken(e.target.value)}
                   />
-                  <button 
+                  <button
                     onClick={handleJoinClass}
                     style={{
                       backgroundColor: 'green',
