@@ -11,7 +11,7 @@ if (isset($_SESSION['username'])) {
     $username = $_SESSION['username']; // email to be retrieved
     $passwordtocompare10 = "SELECT role FROM userSignup WHERE username = '$username'";
     $result10 = mysqli_query($conn, $passwordtocompare10);
-    $row10 = mysqli_fetch_all($result);
+    $row10 = mysqli_fetch_all($result10);
     print_r($row10);
     echo "already connected";
     exit;
@@ -48,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $username = $_SESSION['username']; // email to be retrieved
         $passwordtocompare1 = "SELECT role FROM userSignup WHERE username = '$username'";
         $result1 = mysqli_query($conn, $passwordtocompare1);
-        $row1 = mysqli_fetch_all($result);
-    print_r($row10);
+        $row1 = mysqli_fetch_all($result1);
+    print_r($row1);
         $conn->close();
         exit;
     } else {

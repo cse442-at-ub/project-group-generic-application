@@ -14,7 +14,7 @@ else{
     $row = mysqli_fetch_all($result); // first name to be retrieved
     $passwordtocompare4 = "SELECT lastname FROM userSignup WHERE username = '$username'";
     $result4 = mysqli_query($conn, $passwordtocompare4);
-    $row4 = mysqli_fetch_all($result); // last name to be retrieved
+    $row4 = mysqli_fetch_all($result4); // last name to be retrieved
     $passwordtocompare2 = "SELECT code FROM class_token WHERE username = '$username'";
     $result2 = mysqli_query($conn, $passwordtocompare2);
     $row2 = mysqli_fetch_all($result2); // classes to be retrieved
