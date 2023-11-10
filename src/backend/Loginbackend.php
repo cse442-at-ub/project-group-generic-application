@@ -9,10 +9,10 @@ echo "success1";
  //Check if the user is already logged in
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username']; // email to be retrieved
-    $passwordtocompare10 = "SELECT role FROM userSignup WHERE username = '$username'";
-    $result10 = mysqli_query($conn, $passwordtocompare10);
-    $row10 = mysqli_fetch_all($result10);
-    print_r($row10);
+	$passwordtocompare10 = "SELECT role FROM userSignup WHERE username = '$username'";
+	$result10 = mysqli_query($conn, $passwordtocompare10);
+	$row10 = mysqli_fetch_all($result10);
+	$row20 = $row10[0][0]; // returns student or teacher or whatever is in row
     echo "already connected";
     exit;
 }
@@ -33,23 +33,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "$sql";
     echo "$password";
     $result = $conn->query($sql);
-    //$row = $result->fetch_all(MYSQLI_ASSOC);
     $passwordtocompare = "SELECT password FROM userSignup WHERE password = '$password'";
     $row = mysqli_fetch_assoc($result);
-    // Check if a user with the provided credentials exists
-	//$pop = $row['password'];
-	//echo $pop;
-   if (mysqli_num_rows($result) == 1 && password_verify($password, $row['password'])) {
+       if (mysqli_num_rows($result) == 1 && password_verify($password, $row['password'])) {
         // Authentication successful, store user information in the session
-        $_SESSION['username'] = $username;
+        $_SESSION['username'] = $email;
         //header("Location: dashboard.php");
         print_r($row);
         echo  "login_success!!!";
-        $username = $_SESSION['username']; // email to be retrieved
-        $passwordtocompare1 = "SELECT * FROM userSignup WHERE username = '$username'";
-        $result1 = mysqli_query($conn, $passwordtocompare1);
-        $row1 = mysqli_fetch_all($result1);
-    print_r($row1);
+       $username = $_SESSION['username']; // email to be retrieved
+	$passwordtocompare10 = "SELECT role FROM userSignup WHERE username = '$username'";
+	$result10 = mysqli_query($conn, $passwordtocompare10);
+	$row10 = mysqli_fetch_all($result10);
+	$row20 = $row10[0][0]; // returns student or teacher or whatever is in row
+	echo $row20;
         $conn->close();
         exit;
     } else {
