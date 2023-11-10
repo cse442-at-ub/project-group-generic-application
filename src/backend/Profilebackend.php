@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'dbconnect.php';
 if (!isset($_SESSION['username'])) {
     //header("Location: dashboard.php");
     echo "not connected";
@@ -25,6 +26,7 @@ else{
     print_r($row4);
     print_r($row2);
     print_r($row3);
+    
 }
 $conn->close();
 ?>
