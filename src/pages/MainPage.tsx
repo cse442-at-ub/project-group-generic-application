@@ -17,16 +17,19 @@ function MainPage(this: any) {
 
     // function for handling sending the attendance code to backend
     function sendAttendanceCode () {
-        console.log("hello")
         console.log({
             attendanceCodeUpdater,
         });
     
         const attendanceCode = {
-            'code': attendanceCodeUpdater,
+            code: attendanceCodeUpdater,
         };
         
-        axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Profmain.php', attendanceCode)
+        axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Profmain.php', attendanceCode, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
             .then(response => {
                 console.log('Data submitted successful', response.data);
             })
@@ -34,6 +37,10 @@ function MainPage(this: any) {
                 console.error('Error submitting data', error);
             });
       };
+
+    function wait() {
+        setTimeout(() => sendAttendanceCode(), 1000)
+    }
 
     
 
@@ -53,7 +60,7 @@ function MainPage(this: any) {
 
     const [studentNumberTemp, setStudentNumberTemp] = useState(0);
     const [mainPageView, setMainPageView] = useState(0);
-    const [attendanceCodeUpdater, setAttendanceCodeUpdater] = useState("");
+    const [attendanceCodeUpdater, setAttendanceCodeUpdater] = useState("test");
 
     function handleStudentDebugClick() {
         if (studentNumberTemp < 100) {
@@ -71,7 +78,7 @@ function MainPage(this: any) {
         if (mainPageView == 0) {
             setMainPageView(mainPageView + 1)
             setAttendanceCodeUpdater(makeid(5))
-            sendAttendanceCode()
+            wait()
             
         } else {
             setMainPageView(mainPageView - 1)
