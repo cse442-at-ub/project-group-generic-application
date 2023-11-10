@@ -1,4 +1,5 @@
 import Profile from "./Profile";
+import axios from 'axios';
 
 interface Props {
     studentNumber: number;
@@ -28,9 +29,14 @@ function Footer({studentNumber}: Props) {
     // - username
     // - icon
 
+    // function for repeatedly updating the student list
+
+
     function renderDivs(){
         let count = studentNumber
         let uiItems = []
+
+        
 
         while(count--)
            uiItems.unshift(

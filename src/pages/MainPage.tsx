@@ -3,23 +3,39 @@ import Footer from "../components/Footer";
 import { useState } from 'react';
 import '/src/App.css'
 import Form from 'react-bootstrap/Form';
+import axios from 'axios';
 
 
-interface Props {
-    attendanceCode: string;
-    studentNumber: number;
-}
 
 
-function MainPage(this: any, {attendanceCode, studentNumber}: Props) {
+
+function MainPage(this: any) {
 
     // detect if mobile view
     let isMobile = window.screen.width <= 1000
 
 
-    //debug
-    attendanceCode
-    studentNumber
+    // function for handling sending the attendance code to backend
+    function sendAttendanceCode () {
+        console.log("hello")
+        console.log({
+            attendanceCodeUpdater,
+        });
+    
+        const attendanceCode = {
+            'code': attendanceCodeUpdater,
+        };
+        
+        axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Profmain.php', attendanceCode)
+            .then(response => {
+                console.log('Data submitted successful', response.data);
+            })
+            .catch(error => {
+                console.error('Error submitting data', error);
+            });
+      };
+
+    
 
     // temp code to make the attendance code randomized
     function makeid(length: number) {
@@ -31,17 +47,9 @@ function MainPage(this: any, {attendanceCode, studentNumber}: Props) {
           result += characters.charAt(Math.floor(Math.random() * charactersLength));
           counter += 1;
         }
-        console.log(result)
+        // console.log(result)
         return result;
     }
-
-    // function for retrieving the student list array from backend
-    // - this should just run a php file and do things based on the return value
-    // - should update an array var
-    // - should be run every x seconds
-
-
-    // function for sending attendance code + other prof info to the backend
 
     const [studentNumberTemp, setStudentNumberTemp] = useState(0);
     const [mainPageView, setMainPageView] = useState(0);
@@ -63,6 +71,7 @@ function MainPage(this: any, {attendanceCode, studentNumber}: Props) {
         if (mainPageView == 0) {
             setMainPageView(mainPageView + 1)
             setAttendanceCodeUpdater(makeid(5))
+            sendAttendanceCode()
             
         } else {
             setMainPageView(mainPageView - 1)
