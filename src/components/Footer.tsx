@@ -39,6 +39,7 @@ function Footer({studentNumber}: Props) {
         axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Profmainstudentarray.php')
             .then(response => {
                 console.log('Data submitted successful', response.data);
+                console.log(response)
             })
             .catch(error => {
                 console.error('Error submitting data', error);
@@ -83,8 +84,9 @@ function Footer({studentNumber}: Props) {
     } else {
         return (
             <>
-                <div className="footer" style={{textAlign: 'center'}}>
-                    <button type="button" onClick={fetchStudents} className="btn btn-success" >Fetch Students</button>
+            <button type="button" className="btn btn-success" >Fetch Students</button>
+                <div className="footer" onClick={fetchStudents} style={{textAlign: 'center'}}>
+                    
 
                     {renderDivs()}
                     
