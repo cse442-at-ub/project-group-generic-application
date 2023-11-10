@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         print_r($row);
         echo  "login_success!!!";
         $username = $_SESSION['username']; // email to be retrieved
-        $passwordtocompare1 = "SELECT role FROM userSignup WHERE username = '$username'";
+        $passwordtocompare1 = "SELECT * FROM userSignup WHERE username = '$username'";
         $result1 = mysqli_query($conn, $passwordtocompare1);
         $row1 = mysqli_fetch_all($result1);
     print_r($row1);
