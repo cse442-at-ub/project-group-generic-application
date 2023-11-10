@@ -136,17 +136,9 @@ const handleDownload = async () => {
                 <Typography component="h1" variant="h6">
                   @Full Name
                 </Typography>
-                <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email"
-                    name="email"
-                    autoComplete="email"
-                    autoFocus
-                  />
+                <Typography component="h1" variant="h6">
+                  Email
+                </Typography>  
                   {/* Classes Joined */}
                   <Typography component="h1" variant="h6">
                     Classes Joined:
@@ -172,9 +164,10 @@ const handleDownload = async () => {
                       </Link>
                     ))}
                   </Box>
-                </Box>
+                
                 <br></br>
                 <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>
+                <br></br>
                 <button type="button" onClick={handleDownload} className="btn btn-success" >Download Attendance Records</button>
               </Box>
               <Modal open={open} onClose={handleClose}>
@@ -240,7 +233,7 @@ const handleDownload = async () => {
                 borderColor: 'divider',
                 padding: 2,
                 backgroundColor: 'darkgray',
-                height: '113%', // Set a fixed height to reach the bottom of the page
+                height: '119%', // Set a fixed height to reach the bottom of the page
                 display: 'flex',
                 flexDirection: 'column',
               }}
@@ -286,17 +279,9 @@ const handleDownload = async () => {
               <Typography component="h1" variant="h6">
                 @Full Name
               </Typography>
-              <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email"
-                  name="email"
-                  autoComplete="email"
-                  autoFocus
-                />
+              <Typography component="h1" variant="h6">
+                Email
+              </Typography>  
                   {/* Classes Joined */}
                   <Typography component="h1" variant="h6">
                     Classes Joined:
@@ -314,8 +299,9 @@ const handleDownload = async () => {
                 <br></br>
                 <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>
                 <br></br>
-                <button type="button" onClick={handleDownload} disabled={isLoading} className="btn btn-success" >Download Attendance Records</button>
-              </Box>
+                <br></br>
+                <button type="button" onClick={handleDownload} disabled={isLoading} className="btn btn-success">Download Attendance Records</button>
+              
               <Modal open={open} onClose={handleClose}>
                 <div style={{
                   top: '50%',
