@@ -88,7 +88,7 @@ const SignupPage: React.FC = () => {
         };
         
         axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/SignupBackend.php', userData)
-            .then(response => {
+            .then(_response => {
                 alert('Signup successful');
                 setTimeout(() => {
                     navigate('/login');

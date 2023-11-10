@@ -29,7 +29,7 @@ const LoginPage = () => {
       password: password
     };
 
-    axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/LoginTest.php', loginData)
+    axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Loginbackend.php', loginData)
     .then(response => {
       if (response.data.includes('login_success!!!')) {
         alert('Login successful');

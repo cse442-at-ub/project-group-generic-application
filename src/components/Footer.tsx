@@ -1,4 +1,5 @@
 import Profile from "./Profile";
+import axios from 'axios';
 
 interface Props {
     studentNumber: number;
@@ -28,9 +29,35 @@ function Footer({studentNumber}: Props) {
     // - username
     // - icon
 
+    let studentList = ["test"]
+    // function for repeatedly updating the student list
+    // use state?
+    function fetchStudents () {
+        // console.log("hello")
+    
+        
+        axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Profmainstudentarray.php')
+            .then(response => {
+                console.log('Data submitted successful', response.data);
+            })
+            .catch(error => {
+                console.error('Error submitting data', error);
+            });
+
+            console.log({
+                studentList,
+    
+            });
+      };
+
+
+
+
     function renderDivs(){
         let count = studentNumber
         let uiItems = []
+
+        
 
         while(count--)
            uiItems.unshift(
@@ -57,7 +84,10 @@ function Footer({studentNumber}: Props) {
         return (
             <>
                 <div className="footer" style={{textAlign: 'center'}}>
+                    <button type="button" onClick={fetchStudents} className="btn btn-success" >Fetch Students</button>
+
                     {renderDivs()}
+                    
                 </div>
             
             </>
