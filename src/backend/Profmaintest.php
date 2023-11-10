@@ -14,7 +14,7 @@ if (!isset($_SESSION['username'])) {
 //if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $username = $_SESSION['username'];
     echo "$username";
-    $passwordtocompare4 = "SELECT `class token` FROM users WHERE username = '$username'";
+    $passwordtocompare4 = "SELECT `class token` FROM userSignup WHERE username = '$username'";
     $result5 = mysqli_query($conn, $passwordtocompare4);
     $row = mysqli_fetch_assoc($result5);
     $classToken = $row['class token'];

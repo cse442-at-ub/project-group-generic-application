@@ -9,13 +9,13 @@ if (!isset($_SESSION['username'])) {
 }
 else{
     $username = $_SESSION['username']; // email to be retrieved
-    $passwordtocompare = "SELECT firstname FROM users WHERE username = '$username'";
+    $passwordtocompare = "SELECT firstname FROM userSignup WHERE username = '$username'";
     $result = mysqli_query($conn, $passwordtocompare);
     $row = mysqli_fetch_all($result); // first name to be retrieved
-    $passwordtocompare4 = "SELECT lastname FROM users WHERE username = '$username'";
+    $passwordtocompare4 = "SELECT lastname FROM userSignup WHERE username = '$username'";
     $result4 = mysqli_query($conn, $passwordtocompare);
     $row4 = mysqli_fetch_all($result); // last name to be retrieved
-    $passwordtocompare2 = "SELECT code FROM users WHERE username = '$username'";
+    $passwordtocompare2 = "SELECT code FROM userSignup WHERE username = '$username'";
     $result2 = mysqli_query($conn, $passwordtocompare);
     $row2 = mysqli_fetch_all($result2); // classes to be retrieved
     $passwordtocompare3 = "SELECT * FROM Attendance WHERE username = '$username'";

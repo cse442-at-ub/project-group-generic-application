@@ -25,12 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "success3";
     // Retrieve user input
     // Query the database for the user
-    $sql = "SELECT * FROM users WHERE username = '$email'";
+    $sql = "SELECT * FROM userSignup WHERE username = '$email'";
     echo "$sql";
     echo "$password";
     $result = $conn->query($sql);
     //$row = $result->fetch_all(MYSQLI_ASSOC);
-    $passwordtocompare = "SELECT password FROM users WHERE password = '$password'";
+    $passwordtocompare = "SELECT password FROM userSignup WHERE password = '$password'";
     $row = mysqli_fetch_assoc($result);
     // Check if a user with the provided credentials exists
 	//$pop = $row['password'];
