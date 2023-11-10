@@ -2,7 +2,7 @@
 session_start();
 include 'dbconnect.php';
 //$current_time = date("Y-m-d H:i:s");
-$Attendcode = $_POST["attendancecode"];
+$Attendcode = '12345';
 if (!isset($_SESSION['username'])) {
     //header("Location: dashboard.php");
     echo "not connected";
