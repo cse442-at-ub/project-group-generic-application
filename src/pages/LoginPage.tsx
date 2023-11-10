@@ -1,6 +1,6 @@
 
 //import React from 'react'
-
+import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -19,6 +19,7 @@ import axios from 'axios';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,13 +29,17 @@ const LoginPage = () => {
       password: password
     };
 
-    axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Loginbackend.php', loginData)
-      .then(response => {
-        console.log('Login successful', response.data);
-      })
-      .catch(error => {
-        console.error('Error during login', error);
-      });
+    axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/LoginTest.php', loginData)
+    .then(response => {
+      if (response.data.includes('login_success!!!')) {
+        alert('Login successful');
+        setTimeout(() => {
+          navigate('/profile');
+      }, 2000);
+      } else {
+        alert('Login failed: ' + response.data);
+      }
+    })
   };
 
   return (
