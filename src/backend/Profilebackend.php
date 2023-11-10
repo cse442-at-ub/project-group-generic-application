@@ -26,10 +26,10 @@ else{
     $result3 = mysqli_query($conn, $passwordtocompare3);
     $row3 = mysqli_fetch_all($result3); 
     $row30 = $row3[0];// attendance to be retrieved
-    print_r($row);
-    print_r($row4);
-    print_r($row2);
-    print_r($row3);
+    print_r($row10);
+    print_r($row40);
+    print_r($row20);
+    print_r($row30);
     
 }
 $conn->close();
