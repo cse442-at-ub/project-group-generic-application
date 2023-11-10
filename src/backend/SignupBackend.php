@@ -12,15 +12,15 @@ $data = json_decode($jsonData, true);
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     include 'dbconnect.php';
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $cpassword = $_POST["cpassword"];
+    $first_name = $_POST["first name"];
+    $last_name = $_POST["last name"];
+    $role = $_POST["role"];
+    $classToken = $_POST["class token"];
 
-    $username = $data["username"];
-    $password = $data["password"];
-    $cpassword = $data["cpassword"];
-    $first_name = $data["firstname"];
-    $last_name = $data["lastname"];
-    $classToken = $data["classtoken"];
-
-    $sql = "SELECT * from userSignup where username='$username'";
+    $sql = "Select * from users where username='$username'";
 
     $result = mysqli_query($conn, $sql);
 
@@ -29,9 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if($num == 0){
         if(($password == $cpassword) && $exists==false){
             $hash = password_hash($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO userSignup (username, password, firstname, lastname, `classtoken`, cpassword)
-             VALUES ('$username', '$hash', '$first_name', '$last_name', '$classToken', '$cpassword')";
-             
+            $sql = "INSERT INTO 'users' ( 'username', 'password', 'date', 'first name', 'last name', 'role', 'class token') VALUES ('$username', '$hash', current_timestamp(), '$first_name', '$last_name', '$role', '$classToken')";
             $result = mysqli_query($conn, $sql);
             if($result){
                 $showAlert = true;

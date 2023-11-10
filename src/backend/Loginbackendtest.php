@@ -31,6 +31,7 @@ if (isset($_SESSION['username'])) {
         $_SESSION['username'] = $username;
         //header("Location: dashboard.php");
         print_r($row);
+        $conn->close();
         exit;
     } else {
         //Authentication failed
