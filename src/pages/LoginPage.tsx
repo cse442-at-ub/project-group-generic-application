@@ -24,22 +24,32 @@ const LoginPage = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!email.trim() || !password.trim()) {
+      alert("Email and password can't be empty!");
+      return;
+    }
+
     const loginData = {
       email: email,
       password: password
     };
 
-    axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/LoginTest.php', loginData)
+    axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Loginbackend.php', loginData)
     .then(response => {
-      if (response.data.includes('login_success!!!')) {
+      if (response.data.includes('login_success!!!Student')) {
         alert('Login successful');
         setTimeout(() => {
           navigate('/profile');
       }, 2000);
+      } else if (response.data.includes('login_success!!!Teacher')) {
+        alert('Login successful');
+        setTimeout(() => {
+          navigate('/main');
+        }, 2000);
       } else {
         alert('Login failed: ' + response.data);
       }
-    })
+    });
   };
 
   return (
