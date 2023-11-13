@@ -9,6 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import React, { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import axios from 'axios';
+import NameFetcher from '../components/UserState';
 
 function handleSubmit() {
   console.log("Hello World");
@@ -40,17 +41,18 @@ const ProfilePage = () => {
       'classCode': classToken,
     };
     
-  axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/JoinClassTest.php', joinClassInfo)
+    axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/JoinClassTest.php', joinClassInfo)
     .then(response => {
       const jsonResponse = JSON.parse(response.data.substring(response.data.indexOf('{')));
       console.log(response);
-       if(jsonResponse.message === "Invalid class code") {
+      setClassesJoined(prevClassesJoined => [...prevClassesJoined, classToken]);
+/*        if(jsonResponse.message === "Invalid class code") {
         alert('Invalid class code. Please try again.');
       } else if(jsonResponse.message === "Already in class") {
         alert('You are already in this class.');
       } else {
         setClassesJoined(prevClassesJoined => [...prevClassesJoined, classToken]);
-      }
+      } */
       
     })
     .catch(error => {
@@ -133,7 +135,7 @@ const handleDownload = async () => {
               <Avatar sx={{ width: 80, height: 80, bgcolor: 'secondary.main', mt: 2, mb: 2 }}>
               </Avatar>
                 <Typography component="h1" variant="h6">
-                  @Full Name
+                  <NameFetcher />
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                   <TextField
@@ -150,20 +152,20 @@ const handleDownload = async () => {
                   <Typography component="h1" variant="h6">
                     Classes Joined:
                   </Typography>
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 2 }}>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
                     {classesJoined.map((className, idx) => (
                       <Link href="./#/main" key={idx} variant="body2" style={{ textDecoration: 'none' }}>
                         <Box
                           sx={{
-                            width: isMobile ? '60px' : '180px',
-                            height: isMobile ? '60px' : '180px',
-                            background: 'red',
+                            width: isMobile ? '60px' : '150px',
+                            height: isMobile ? '60px' : '80px',
+                            background: '#87CEFA',
                             border: '3px solid white',
                             margin: isMobile ? '5px' : '10px',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            borderRadius: '4px',
+                            borderRadius: '10px',
                           }}
                         >
                           <Typography variant="body2">{className}</Typography>
@@ -283,7 +285,9 @@ const handleDownload = async () => {
             <Avatar sx={{ width: 200, height: 200, bgcolor: 'secondary.main', mt: 4, mb: 4 }}>
             </Avatar>
               <Typography component="h1" variant="h6">
-                @Full Name
+              <div>
+                <NameFetcher />
+              </div>
               </Typography>
               <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                 <TextField
@@ -300,10 +304,15 @@ const handleDownload = async () => {
                   <Typography component="h1" variant="h6">
                     Classes Joined:
                   </Typography>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
                     {classesJoined.map((className, idx) => (
                       <Link href="./#/main" key={idx} variant="body2" style={linkStyle}>
-                        <Box sx={{ width: isMobile ? '80px' : '180px', height: isMobile ? '80px' : '180px', background: 'red', border: isMobile ? '3px' : '5px solid white' }}>
+                        <Box sx={{ 
+                          width: isMobile ? '80px' : '150px', 
+                          height: isMobile ? '80px' : '80px', 
+                          background: '#87CEFA', 
+                          border: isMobile ? '1px' : '2px solid white', 
+                          borderRadius: '30px' }}>
                           {className}
                         </Box>
                       </Link>
