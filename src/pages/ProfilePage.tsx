@@ -9,10 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import React, { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import axios from 'axios';
-
-// function handleSubmit() {
-//   console.log("Hello World");
-// }
+//import NameFetcher from '../components/UserState';
 
 const ProfilePage = () => {
   const linkStyle = {
@@ -40,17 +37,18 @@ const ProfilePage = () => {
       'classCode': classToken,
     };
     
-  axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/JoinClassTest.php', joinClassInfo)
+    axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/JoinClassTest.php', joinClassInfo)
     .then(response => {
-      const jsonResponse = JSON.parse(response.data.substring(response.data.indexOf('{')));
+      //const jsonResponse = JSON.parse(response.data.substring(response.data.indexOf('{')));
       console.log(response);
-       if(jsonResponse.message === "Invalid class code") {
+      setClassesJoined(prevClassesJoined => [...prevClassesJoined, classToken]);
+/*        if(jsonResponse.message === "Invalid class code") {
         alert('Invalid class code. Please try again.');
       } else if(jsonResponse.message === "Already in class") {
         alert('You are already in this class.');
       } else {
         setClassesJoined(prevClassesJoined => [...prevClassesJoined, classToken]);
-      }
+      } */
       
     })
     .catch(error => {
@@ -62,15 +60,48 @@ const ProfilePage = () => {
     });
   };
 
-//make a post request to the backend to download the attendance records
-const [isLoading, setIsLoading] = useState(false);
+
+//Functions for Downloading Attendance Records 
+const [openDownload, setOpenDownload] = useState(false);
+
+const handleOpenDownload = () => {
+  setOpenDownload(true);
+};
+
+const handleCloseDownload = () => {
+  setOpenDownload(false);
+};
+
 const handleDownload = async () => {
-  setIsLoading(true);
-  const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/downloadAttendance.php');
-  const downloadUrl = response.data.downloadUrl;
-  window.open(downloadUrl, '_blank');
-  setIsLoading(false);
-}
+  try {
+    const response = await fetch('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/downloadAttendance.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ class_code: classToken }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to download attendance records');
+    }
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'attendance_report.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  } catch (error) {
+    console.error('Error downloading attendance records:', error);
+  } finally {
+    handleCloseDownload();
+    setClassToken('');
+  }
+};
 
 
   // detect if mobile view
@@ -127,36 +158,36 @@ const handleDownload = async () => {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  maxHeight: '80vh', // Set a fixed height to reach the bottom of the page
+                  minHeight: '40vh', // Set a fixed height to reach the bottom of the page
                 }}
             
               >
               <Avatar sx={{ width: 80, height: 80, bgcolor: 'secondary.main', mt: 2, mb: 2 }}>
               </Avatar>
                 <Typography component="h1" variant="h6">
-                  @Full Name
+                { /* <NameFetcher /> */}
                 </Typography>
                 <Typography component="h1" variant="h6">
                   Email
-                </Typography>  
+                </Typography>
                   {/* Classes Joined */}
                   <Typography component="h1" variant="h6">
                     Classes Joined:
                   </Typography>
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', mt: 2 }}>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
                     {classesJoined.map((className, idx) => (
                       <Link href="./#/main" key={idx} variant="body2" style={{ textDecoration: 'none' }}>
                         <Box
                           sx={{
-                            width: isMobile ? '60px' : '180px',
-                            height: isMobile ? '60px' : '180px',
-                            background: 'red',
+                            width: isMobile ? '60px' : '150px',
+                            height: isMobile ? '60px' : '80px',
+                            background: '#87CEFA',
                             border: '3px solid white',
                             margin: isMobile ? '5px' : '10px',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            borderRadius: '4px',
+                            borderRadius: '10px',
                           }}
                         >
                           <Typography variant="body2">{className}</Typography>
@@ -164,11 +195,10 @@ const handleDownload = async () => {
                       </Link>
                     ))}
                   </Box>
-                
                 <br></br>
                 <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>
                 <br></br>
-                <button type="button" onClick={handleDownload} className="btn btn-success" >Download Attendance Records</button>
+                <button type="button" onClick={handleOpenDownload} className="btn btn-success" >Download Attendance Records</button>
               </Box>
               <Modal open={open} onClose={handleClose}>
               <Box sx={{
@@ -214,6 +244,49 @@ const handleDownload = async () => {
                 </Box>
               </Box>
             </Modal>
+            <Modal open={openDownload} onClose={handleCloseDownload}>
+              <Box sx={{
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  position: 'absolute',
+                  width: 400,
+                  bgcolor: 'background.paper',
+                  boxShadow: 24,
+                  p: 4,
+                  borderRadius: '8px',
+                }}>
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Download Attendance Records
+                </Typography>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="classToken"
+                    label="Enter Class Token"
+                    name="classToken"
+                    onChange={(e) => setClassToken(e.target.value)}
+                  />
+                  <Box sx={{ mt: 2 }}>
+                  <button
+                    onClick={handleDownload}
+                    style={{
+                      backgroundColor: 'green',
+                      border: 'none',
+                      color: 'white',
+                      padding: '10px 20px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      transition: '0.3s',
+                      marginTop: '16px',
+                    }}
+                  >
+                    Download Record
+                  </button>
+                </Box>
+                </Box>
+              </Modal>
             </Grid>
           </Grid>
         </Container>
@@ -233,7 +306,7 @@ const handleDownload = async () => {
                 borderColor: 'divider',
                 padding: 2,
                 backgroundColor: 'darkgray',
-                height: '119%', // Set a fixed height to reach the bottom of the page
+                height: '110%', // Set a fixed height to reach the bottom of the page
                 display: 'flex',
                 flexDirection: 'column',
               }}
@@ -270,38 +343,43 @@ const handleDownload = async () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                maxHeight: '84vh', // Set a fixed height to reach the bottom of the page
+                minHeight: '80vh', // Set a fixed height to reach the bottom of the page
               }}
           
             >
             <Avatar sx={{ width: 200, height: 200, bgcolor: 'secondary.main', mt: 4, mb: 4 }}>
             </Avatar>
               <Typography component="h1" variant="h6">
-                @Full Name
+              <div>
+              {/*  <NameFetcher /> */}
+              </div>
               </Typography>
               <Typography component="h1" variant="h6">
                 Email
-              </Typography>  
+              </Typography>
                   {/* Classes Joined */}
                   <Typography component="h1" variant="h6">
                     Classes Joined:
                   </Typography>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
                     {classesJoined.map((className, idx) => (
                       <Link href="./#/main" key={idx} variant="body2" style={linkStyle}>
-                        <Box sx={{ width: isMobile ? '80px' : '180px', height: isMobile ? '80px' : '180px', background: 'red', border: isMobile ? '3px' : '5px solid white' }}>
+                        <Box sx={{ 
+                          width: isMobile ? '80px' : '150px', 
+                          height: isMobile ? '80px' : '80px', 
+                          background: '#87CEFA', 
+                          border: isMobile ? '1px' : '2px solid white', 
+                          borderRadius: '30px' }}>
                           {className}
                         </Box>
                       </Link>
                     ))}
                   </Box>
-                </Box>
                 <br></br>
                 <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>
                 <br></br>
-                <br></br>
-                <button type="button" onClick={handleDownload} disabled={isLoading} className="btn btn-success">Download Attendance Records</button>
-              
+                <button type="button" onClick={handleOpenDownload} className="btn btn-success" >Download Attendance Records</button>
+              </Box>
               <Modal open={open} onClose={handleClose}>
                 <div style={{
                   top: '50%',
@@ -337,6 +415,44 @@ const handleDownload = async () => {
                     }}
                   >
                     Join
+                  </button>
+                </div>
+              </Modal>
+              <Modal open={openDownload} onClose={handleCloseDownload}>
+                <div style={{
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  position: 'absolute',
+                  width: 400,
+                  backgroundColor: '#AAC9F9',
+                  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+                  padding: '20px',
+                  borderRadius: '8px'
+                }}>
+                  <h2>Download Attendance Records</h2>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="classToken"
+                    label="Enter Class Token"
+                    name="classToken"
+                    onChange={(e) => setClassToken(e.target.value)}
+                  />
+                  <button
+                    onClick={handleDownload}
+                    style={{
+                      backgroundColor: 'green',
+                      border: 'none',
+                      color: 'white',
+                      padding: '10px 20px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      transition: '0.3s',
+                    }}
+                  >
+                    Download Record
                   </button>
                 </div>
               </Modal>
