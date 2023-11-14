@@ -9,6 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import React, { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import axios from 'axios';
+import NavBar from '../components/NavBar';
 //import NameFetcher from '../components/UserState';
 
 const ProfilePage = () => {
@@ -113,54 +114,15 @@ const handleDownload = async () => {
         <CssBaseline />
         <Container component="main" maxWidth="lg">
           <Grid container spacing={2}>
-            {/* Sidebar */}
-            <Grid item xs={12} sm={2}>
-              <Box
-                sx={{
-                  borderRight: 1,
-                  borderColor: 'divider',
-                  padding: 2,
-                  backgroundColor: 'darkgray',
-                  height: '100%', // Set a fixed height to reach the bottom of the page
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
-              >
-                {/* Sidebar Items as hyperlinks */}
-                <Link href="./" variant="body2" style={linkStyle}>
-                  <Box sx={{ border: 0, padding: 1, margin: 1 }}>
-                  <Typography component="h1" variant="h6">
-                    Home Page
-                  </Typography>
-                  </Box>
-                </Link>
-                <Link href="./#/profile" variant="body2" style={linkStyle}>
-                  <Box sx={{ border: 0, padding: 1, margin: 1 }}>
-                  <Typography component="h1" variant="h6">
-                    My Profile
-                  </Typography>  
-                  </Box>
-                </Link>
-                <Link href="./#/function" variant="body2" style={linkStyle}>
-                  <Box sx={{ border: 0, padding: 1, margin: 1 }}>
-                  <Typography component="h1" variant="h6">
-                    Attendance
-                  </Typography>   
-                  </Box>
-                </Link>
-              </Box>
-            </Grid>
-  
             {/* Main Content */}
-            <Grid item xs={12} sm={8}>
+            <Grid item xs={12} sm={12}>
+              <NavBar />
               <Box
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  minHeight: '40vh', // Set a fixed height to reach the bottom of the page
                 }}
-            
               >
               <Avatar sx={{ width: 80, height: 80, bgcolor: 'secondary.main', mt: 2, mb: 2 }}>
               </Avatar>
@@ -297,55 +259,16 @@ const handleDownload = async () => {
     <div className="mainDiv">
       <CssBaseline />
       <Container component="main" maxWidth="lg">
-        <Grid container spacing={2}>
-          {/* Sidebar */}
-          <Grid item xs={12} sm={2}>
-            <Box
-              sx={{
-                borderRight: 1,
-                borderColor: 'divider',
-                padding: 2,
-                backgroundColor: 'darkgray',
-                height: '110%', // Set a fixed height to reach the bottom of the page
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              {/* Sidebar Items as hyperlinks */}
-              <Link href="./" variant="body2" style={linkStyle}>
-                <Box sx={{ border: 0, padding: 1, margin: 1 }}>
-                <Typography component="h1" variant="h6">
-                  Home Page
-                </Typography>
-                </Box>
-              </Link>
-              <Link href="./#/profile" variant="body2" style={linkStyle}>
-                <Box sx={{ border: 0, padding: 1, margin: 1 }}>
-                <Typography component="h1" variant="h6">
-                  My Profile
-                </Typography>  
-                </Box>
-              </Link>
-              <Link href="./#/function" variant="body2" style={linkStyle}>
-                <Box sx={{ border: 0, padding: 1, margin: 1 }}>
-                <Typography component="h1" variant="h6">
-                  Attendance
-                </Typography>   
-                </Box>
-              </Link>
-            </Box>
-          </Grid>
-
+        <Grid container spacing={2}>  
           {/* Main Content */}
-          <Grid item xs={12} sm={10}>
+          <Grid item xs={12} sm={12}>
+            <NavBar />
             <Box
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                minHeight: '80vh', // Set a fixed height to reach the bottom of the page
               }}
-          
             >
             <Avatar sx={{ width: 200, height: 200, bgcolor: 'secondary.main', mt: 4, mb: 4 }}>
             </Avatar>

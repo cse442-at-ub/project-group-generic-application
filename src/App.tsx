@@ -5,13 +5,14 @@ import MainPage from './pages/MainPage';
 import FunctionPage from './pages/FunctionPage';
 import SignupPage from './pages/SignupPage';
 import ProfilePage from './pages/ProfilePage';
-
+import Navbar from './components/NavBar';
 
 
 function App() {
   return (
     <>
       <HashRouter>
+        <Navbar />
         <Route path="/main" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/function" element={<FunctionPage />} />
