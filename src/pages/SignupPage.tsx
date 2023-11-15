@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+//import NavBar from '../components/NavBar';
 
 const SignupPage: React.FC = () => {
     const [firstname, setFirstname] = useState('');
@@ -100,7 +101,7 @@ const SignupPage: React.FC = () => {
 
     };
 
-    return (
+    return (  
         <form className="signup-form" onSubmit={handleSubmit}>
             <h1>Who are you...</h1>
             <div className="role-container">

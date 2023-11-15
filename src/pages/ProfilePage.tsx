@@ -111,12 +111,12 @@ const handleDownload = async () => {
   if(isMobile) {
     return (
       <div className="mainDiv">
+        <NavBar />  
         <CssBaseline />
         <Container component="main" maxWidth="lg">
           <Grid container spacing={2}>
             {/* Main Content */}
             <Grid item xs={12} sm={12}>
-              <NavBar />
               <Box
                 sx={{
                   display: 'flex',
@@ -257,12 +257,12 @@ const handleDownload = async () => {
   } else {
     return (
     <div className="mainDiv">
+      <NavBar />
       <CssBaseline />
       <Container component="main" maxWidth="lg">
         <Grid container spacing={2}>  
           {/* Main Content */}
           <Grid item xs={12} sm={12}>
-            <NavBar />
             <Box
               sx={{
                 display: 'flex',

@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import axios from 'axios';
 import React, { useState } from 'react';
+import NavBar from '../components/NavBar';
 
 const FunctionPage = () => {
   const [code, setcode] = useState('');
@@ -33,6 +34,7 @@ const FunctionPage = () => {
   return (
     <>
     <div className="mainDiv">
+    <NavBar />
     <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
