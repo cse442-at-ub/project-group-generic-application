@@ -9,7 +9,11 @@ import Avatar from '@mui/material/Avatar';
 import React, { useState } from 'react';
 import Modal from '@mui/material/Modal';
 import axios from 'axios';
-//import NameFetcher from '../components/UserState';
+import ClassesFetcher from '../components/UserClass';
+
+function handleSubmit() {
+  console.log("Hello World");
+}
 
 const ProfilePage = () => {
   const linkStyle = {
@@ -30,6 +34,7 @@ const ProfilePage = () => {
   const handleClose = () => {
     setOpen(false);
   };
+  
 
   const handleJoinClass = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -39,16 +44,16 @@ const ProfilePage = () => {
     
     axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/JoinClassTest.php', joinClassInfo)
     .then(response => {
-      //const jsonResponse = JSON.parse(response.data.substring(response.data.indexOf('{')));
+      const jsonResponse = JSON.parse(response.data.substring(response.data.indexOf('{')));
       console.log(response);
       setClassesJoined(prevClassesJoined => [...prevClassesJoined, classToken]);
-/*        if(jsonResponse.message === "Invalid class code") {
+       if(jsonResponse.message === "Invalid class code") {
         alert('Invalid class code. Please try again.');
       } else if(jsonResponse.message === "Already in class") {
         alert('You are already in this class.');
       } else {
         setClassesJoined(prevClassesJoined => [...prevClassesJoined, classToken]);
-      } */
+      } 
       
     })
     .catch(error => {
@@ -165,10 +170,6 @@ const handleDownload = async () => {
               <Avatar sx={{ width: 80, height: 80, bgcolor: 'secondary.main', mt: 2, mb: 2 }}>
               </Avatar>
                 <Typography component="h1" variant="h6">
-                { /* <NameFetcher /> */}
-                </Typography>
-                <Typography component="h1" variant="h6">
-                  Email
                 </Typography>
                   {/* Classes Joined */}
                   <Typography component="h1" variant="h6">
@@ -350,18 +351,16 @@ const handleDownload = async () => {
             <Avatar sx={{ width: 200, height: 200, bgcolor: 'secondary.main', mt: 4, mb: 4 }}>
             </Avatar>
               <Typography component="h1" variant="h6">
-              <div>
-              {/*  <NameFetcher /> */}
-              </div>
-              </Typography>
-              <Typography component="h1" variant="h6">
-                Email
+{/*               <div>
+                <NameFetcher/>
+              </div> */}
               </Typography>
                   {/* Classes Joined */}
                   <Typography component="h1" variant="h6">
                     Classes Joined:
                   </Typography>
                   <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
+                    <ClassesFetcher setClassesJoined={setClassesJoined} />
                     {classesJoined.map((className, idx) => (
                       <Link href="./#/main" key={idx} variant="body2" style={linkStyle}>
                         <Box sx={{ 
