@@ -33,8 +33,8 @@ const FunctionPage = () => {
 
   return (
     <>
-    <div className="mainDiv">
     <NavBar />
+    <div className="mainDiv">
     <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

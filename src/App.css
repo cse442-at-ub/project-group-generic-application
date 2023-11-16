@@ -228,3 +228,14 @@ input {
   left: 0;
 }
 
+.header{
+  position:absolute;
+  left:0;
+  top:0;
+  right:0;    
+  height:1%;
+  z-index:9999;
+  box-shadow: 5px -10px 20px #0000001e;
+  display: grid;
+}
+

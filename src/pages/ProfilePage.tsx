@@ -110,8 +110,7 @@ const handleDownload = async () => {
 
   if(isMobile) {
     return (
-      <div className="mainDiv">
-        <NavBar />  
+      <><NavBar /><div className="mainDiv">
         <CssBaseline />
         <Container component="main" maxWidth="lg">
           <Grid container spacing={2}>
@@ -124,90 +123,46 @@ const handleDownload = async () => {
                   alignItems: 'center',
                 }}
               >
-              <Avatar sx={{ width: 80, height: 80, bgcolor: 'secondary.main', mt: 2, mb: 2 }}>
-              </Avatar>
+                <Avatar sx={{ width: 80, height: 80, bgcolor: 'secondary.main', mt: 2, mb: 2 }}>
+                </Avatar>
                 <Typography component="h1" variant="h6">
-                { /* <NameFetcher /> */}
+                  {/* <NameFetcher /> */}
                 </Typography>
                 <Typography component="h1" variant="h6">
                   Email
                 </Typography>
-                  {/* Classes Joined */}
-                  <Typography component="h1" variant="h6">
-                    Classes Joined:
-                  </Typography>
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
-                    {classesJoined.map((className, idx) => (
-                      <Link href="./#/main" key={idx} variant="body2" style={{ textDecoration: 'none' }}>
-                        <Box
-                          sx={{
-                            width: isMobile ? '60px' : '150px',
-                            height: isMobile ? '60px' : '80px',
-                            background: '#87CEFA',
-                            border: '3px solid white',
-                            margin: isMobile ? '5px' : '10px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            borderRadius: '10px',
-                          }}
-                        >
-                          <Typography variant="body2">{className}</Typography>
-                        </Box>
-                      </Link>
-                    ))}
-                  </Box>
+                {/* Classes Joined */}
+                <Typography component="h1" variant="h6">
+                  Classes Joined:
+                </Typography>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
+                  {classesJoined.map((className, idx) => (
+                    <Link href="./#/main" key={idx} variant="body2" style={{ textDecoration: 'none' }}>
+                      <Box
+                        sx={{
+                          width: isMobile ? '60px' : '150px',
+                          height: isMobile ? '60px' : '80px',
+                          background: '#87CEFA',
+                          border: '3px solid white',
+                          margin: isMobile ? '5px' : '10px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          borderRadius: '10px',
+                        }}
+                      >
+                        <Typography variant="body2">{className}</Typography>
+                      </Box>
+                    </Link>
+                  ))}
+                </Box>
                 <br></br>
                 <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>
                 <br></br>
-                <button type="button" onClick={handleOpenDownload} className="btn btn-success" >Download Attendance Records</button>
+                <button type="button" onClick={handleOpenDownload} className="btn btn-success">Download Attendance Records</button>
               </Box>
               <Modal open={open} onClose={handleClose}>
-              <Box sx={{
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                position: 'absolute',
-                width: 400,
-                bgcolor: 'background.paper',
-                boxShadow: 24,
-                p: 4,
-                borderRadius: '8px',
-              }}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Join a Class
-                </Typography>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="classToken"
-                  label="Enter Class Token"
-                  name="classToken"
-                  autoFocus
-                  onChange={(e) => setClassToken(e.target.value)}
-                />
-                <Box sx={{ mt: 2 }}>
-                  <button
-                    onClick={handleJoinClass}
-                    style={{
-                      backgroundColor: 'green',
-                      border: 'none',
-                      color: 'white',
-                      padding: '10px 20px',
-                      borderRadius: '6px',
-                      cursor: 'pointer',
-                      transition: '0.3s',
-                      marginTop: '16px',
-                    }}
-                  >
-                    Join
-                  </button>
-                </Box>
-              </Box>
-            </Modal>
-            <Modal open={openDownload} onClose={handleCloseDownload}>
-              <Box sx={{
+                <Box sx={{
                   top: '50%',
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
@@ -218,9 +173,9 @@ const handleDownload = async () => {
                   p: 4,
                   borderRadius: '8px',
                 }}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Download Attendance Records
-                </Typography>
+                  <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Join a Class
+                  </Typography>
                   <TextField
                     margin="normal"
                     required
@@ -228,80 +183,122 @@ const handleDownload = async () => {
                     id="classToken"
                     label="Enter Class Token"
                     name="classToken"
-                    onChange={(e) => setClassToken(e.target.value)}
-                  />
+                    autoFocus
+                    onChange={(e) => setClassToken(e.target.value)} />
                   <Box sx={{ mt: 2 }}>
-                  <button
-                    onClick={handleDownload}
-                    style={{
-                      backgroundColor: 'green',
-                      border: 'none',
-                      color: 'white',
-                      padding: '10px 20px',
-                      borderRadius: '6px',
-                      cursor: 'pointer',
-                      transition: '0.3s',
-                      marginTop: '16px',
-                    }}
-                  >
-                    Download Record
-                  </button>
+                    <button
+                      onClick={handleJoinClass}
+                      style={{
+                        backgroundColor: 'green',
+                        border: 'none',
+                        color: 'white',
+                        padding: '10px 20px',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: '0.3s',
+                        marginTop: '16px',
+                      }}
+                    >
+                      Join
+                    </button>
+                  </Box>
                 </Box>
+              </Modal>
+              <Modal open={openDownload} onClose={handleCloseDownload}>
+                <Box sx={{
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  position: 'absolute',
+                  width: 400,
+                  bgcolor: 'background.paper',
+                  boxShadow: 24,
+                  p: 4,
+                  borderRadius: '8px',
+                }}>
+                  <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Download Attendance Records
+                  </Typography>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="classToken"
+                    label="Enter Class Token"
+                    name="classToken"
+                    onChange={(e) => setClassToken(e.target.value)} />
+                  <Box sx={{ mt: 2 }}>
+                    <button
+                      onClick={handleDownload}
+                      style={{
+                        backgroundColor: 'green',
+                        border: 'none',
+                        color: 'white',
+                        padding: '10px 20px',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        transition: '0.3s',
+                        marginTop: '16px',
+                      }}
+                    >
+                      Download Record
+                    </button>
+                  </Box>
                 </Box>
               </Modal>
             </Grid>
           </Grid>
         </Container>
-      </div>
+      </div></>
     );
   } else {
     return (
-    <div className="mainDiv">
-      <NavBar />
-      <CssBaseline />
-      <Container component="main" maxWidth="lg">
-        <Grid container spacing={2}>  
-          {/* Main Content */}
-          <Grid item xs={12} sm={12}>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-            <Avatar sx={{ width: 200, height: 200, bgcolor: 'secondary.main', mt: 4, mb: 4 }}>
-            </Avatar>
-              <Typography component="h1" variant="h6">
-              <div>
-              {/*  <NameFetcher /> */}
-              </div>
-              </Typography>
-              <Typography component="h1" variant="h6">
-                Email
-              </Typography>
-                  {/* Classes Joined */}
-                  <Typography component="h1" variant="h6">
-                    Classes Joined:
-                  </Typography>
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
-                    {classesJoined.map((className, idx) => (
-                      <Link href="./#/main" key={idx} variant="body2" style={linkStyle}>
-                        <Box sx={{ 
-                          width: isMobile ? '80px' : '150px', 
-                          height: isMobile ? '80px' : '80px', 
-                          background: '#87CEFA', 
-                          border: isMobile ? '1px' : '2px solid white', 
-                          borderRadius: '30px' }}>
-                          {className}
-                        </Box>
-                      </Link>
-                    ))}
-                  </Box>
+    <><NavBar /><div className="mainDiv">
+        <CssBaseline />
+        <Container component="main" maxWidth="lg">
+          <Grid container spacing={2}>
+            {/* Main Content */}
+            <Grid item xs={12} sm={12}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                }}
+              >
+                <Avatar sx={{ width: 200, height: 200, bgcolor: 'secondary.main', mt: 4, mb: 4 }}>
+                </Avatar>
+                <Typography component="h1" variant="h6">
+                  <div>
+                    {/*  <NameFetcher /> */}
+                  </div>
+                </Typography>
+                <Typography component="h1" variant="h6">
+                  Email
+                </Typography>
+                {/* Classes Joined */}
+                <Typography component="h1" variant="h6">
+                  Classes Joined:
+                </Typography>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
+                  {classesJoined.map((className, idx) => (
+                    <Link href="./#/main" key={idx} variant="body2" style={linkStyle}>
+                      <Box sx={{
+                        width: isMobile ? '80px' : '150px',
+                        height: isMobile ? '80px' : '80px',
+                        background: '#87CEFA',
+                        border: isMobile ? '1px' : '2px solid white',
+                        borderRadius: '30px'
+                      }}>
+                        {className}
+                      </Box>
+                    </Link>
+                  ))}
+                </Box>
                 <br></br>
                 <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>
                 <br></br>
-                <button type="button" onClick={handleOpenDownload} className="btn btn-success" >Download Attendance Records</button>
+                <button type="button" onClick={handleOpenDownload} className="btn btn-success">Download Attendance Records</button>
               </Box>
               <Modal open={open} onClose={handleClose}>
                 <div style={{
@@ -323,8 +320,7 @@ const handleDownload = async () => {
                     id="classToken"
                     label="Enter Class Token"
                     name="classToken"
-                    onChange={(e) => setClassToken(e.target.value)}
-                  />
+                    onChange={(e) => setClassToken(e.target.value)} />
                   <button
                     onClick={handleJoinClass}
                     style={{
@@ -361,8 +357,7 @@ const handleDownload = async () => {
                     id="classToken"
                     label="Enter Class Token"
                     name="classToken"
-                    onChange={(e) => setClassToken(e.target.value)}
-                  />
+                    onChange={(e) => setClassToken(e.target.value)} />
                   <button
                     onClick={handleDownload}
                     style={{
@@ -379,10 +374,10 @@ const handleDownload = async () => {
                   </button>
                 </div>
               </Modal>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
-    </div>
+        </Container>
+      </div></>
   );
 }}
   

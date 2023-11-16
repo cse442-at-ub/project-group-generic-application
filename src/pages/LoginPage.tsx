@@ -45,8 +45,8 @@ const LoginPage = () => {
 
   return (
     <>
+    <NavBar />
     <div className="mainDiv">
-      <NavBar />
     <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
