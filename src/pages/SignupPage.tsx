@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 
 const SignupPage: React.FC = () => {
     const [firstname, setFirstname] = useState('');
@@ -101,19 +102,19 @@ const SignupPage: React.FC = () => {
     };
 
     return (
-        <form className="signup-form" onSubmit={handleSubmit}>
+        <><NavBar /><form className="signup-form" onSubmit={handleSubmit}>
             <h1>Who are you...</h1>
             <div className="role-container">
-                <button 
-                    type="button" 
-                    className={`role ${role === 'Student' ? 'role-selected' : ''}`} 
+                <button
+                    type="button"
+                    className={`role ${role === 'Student' ? 'role-selected' : ''}`}
                     onClick={() => setRole('Student')}
                 >
                     Student
                 </button>
-                <button 
-                    type="button" 
-                    className={`role ${role === 'Teacher' ? 'role-selected' : ''}`} 
+                <button
+                    type="button"
+                    className={`role ${role === 'Teacher' ? 'role-selected' : ''}`}
                     onClick={() => setRole('Teacher')}
                 >
                     Teacher
@@ -131,16 +132,15 @@ const SignupPage: React.FC = () => {
             </div>
             <div className="form-group">
                 <label className="control-label">Password</label>
-                <input 
-                  placeholder="Enter your password" 
-                  name="password" 
-                  value={password} 
-                  onChange={handlePasswordChange}
-                  onFocus={() => setShowChecklist(true)}
-                  onBlur={() => setShowChecklist(false)}
-                  type="password" 
-                  className="form-control" 
-                />
+                <input
+                    placeholder="Enter your password"
+                    name="password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                    onFocus={() => setShowChecklist(true)}
+                    onBlur={() => setShowChecklist(false)}
+                    type="password"
+                    className="form-control" />
                 {showChecklist && (
                     <div className="password-checklist">
                         <ul>
@@ -174,7 +174,7 @@ const SignupPage: React.FC = () => {
             </div>
             <h2>Or</h2>
             <h3><a href="https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/#/login" target="_blank" rel="noopener noreferrer">Already have an account? Login</a></h3>
-        </form>
+        </form></>
     );
 }
 

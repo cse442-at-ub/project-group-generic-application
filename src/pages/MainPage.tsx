@@ -4,10 +4,7 @@ import { useState } from 'react';
 import '/src/App.css'
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-
-
-
-
+import NavBar from '../components/NavBar';
 
 function MainPage(this: any) {
 
@@ -101,9 +98,9 @@ function MainPage(this: any) {
         if (mainPageView == 0) {
             return (
                 <>
+                <NavBar/>
                 <div className="mobileDiv" style={{textAlign: 'center', padding:'3vh'}}>
-    
-                    
+                    {/* Add NavBar here */}
                     <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Class Name Here</h1>
                     <Form>
                         <Form.Group className="centerForm mb-3">
@@ -123,8 +120,8 @@ function MainPage(this: any) {
         } else {
             return (
                 <>
+                <NavBar/>
                 <div className="mobileDiv" style={{textAlign: 'center'}}>
-    
                     <h1 style={{fontSize:'3vh'}}>Attendance Code:</h1>
                     <h1 style={{fontSize:'10vh', fontWeight:"bold", textShadow:"5px 10px 10px #0000001e"}}>{attendanceCode}</h1>
                     <h1 style={{fontSize:'2vh', fontStyle:"italic"}}>{"Please go to <sitename.com> and enter the code"}</h1>
@@ -141,8 +138,10 @@ function MainPage(this: any) {
         if (mainPageView == 0) {
             return (
                 <>
-                
-                <div className="mainDiv" style={{textAlign: 'center', padding:'10vh'}}>   
+                <NavBar/>
+                <div className="mainDiv" style={{textAlign: 'center'}}> 
+               
+                  <div className="pad" style={{padding:'5vh'}}></div>
                     <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Class Name Here</h1>
                     <Form >
                         <Form.Group className="centerForm">
@@ -161,7 +160,9 @@ function MainPage(this: any) {
         } else { 
             return (
             <>
+            <NavBar/>
                 <div className="mainDiv" style={{textAlign: 'center'}}>
+                  
                     <button type="button" onClick={handleAttendanceButtonClick} className="btn btn-success attendanceExit" >Close Attendance</button>
                     <h1 style={{fontSize:'3vh'}}>Attendance Code:</h1>
                     <h1 style={{fontSize:'20vh', fontWeight:"bold", textShadow:"5px 10px 10px #0000001e"}}>{attendanceCode}</h1>

@@ -12,6 +12,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import NavBar from '../components/NavBar';
 
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -54,6 +55,7 @@ const LoginPage = () => {
 
   return (
     <>
+    <NavBar />
     <div className="mainDiv">
     <Container component="main" maxWidth="xs">
         <CssBaseline />
