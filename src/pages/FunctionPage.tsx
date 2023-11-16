@@ -17,11 +17,11 @@ const FunctionPage = () => {
         code,
     });
 
-    const attendCode = {
+    const attendanceCode = {
         'code': code,
     };
     
-    axios.post('http://localhost:3000/FunctionBackend.php', attendCode)
+    axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/attendanceinput.php', attendanceCode)
         .then(response => {
             console.log('Data submitted successful', response.data);
         })
