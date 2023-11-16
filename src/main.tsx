@@ -20,7 +20,7 @@ const router = createHashRouter([
   },
   {
     path: "/main",
-    element: <MainPage attendanceCode={'temp'} studentNumber={0}/>,
+    element: <MainPage />,
   },
   {
     path: "/login",

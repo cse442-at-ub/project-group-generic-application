@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <HashRouter>
-        <Route path="/main" element={<MainPage attendanceCode={''} studentNumber={0} />} />
+        <Route path="/main" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/function" element={<FunctionPage />} />
         <Route path="/signup" element={<SignupPage />} />
