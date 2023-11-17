@@ -9,7 +9,7 @@ const ClassesFetcher: React.FC<ClassesFetcherProps> = ({ setClassesJoined }) => 
   useEffect(() => {
     const fetchClasses = async () => {
       try {
-        const response = await axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Loginbackend.php', { withCredentials: true });
+        const response = await axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/test.php', { withCredentials: true });
         if (response.data?.JoinedClass) {
           setClassesJoined(response.data.JoinedClass);
         } else {

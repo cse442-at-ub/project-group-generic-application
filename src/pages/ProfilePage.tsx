@@ -11,6 +11,9 @@ import Modal from '@mui/material/Modal';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
 import ClassesFetcher from '../components/UserClass';
+import avatar1 from '../avatar/avatar1.png'
+import avatar2 from '../avatar/avatar2.png'
+
 
 const ProfilePage = () => {
   const linkStyle = {
@@ -19,10 +22,42 @@ const ProfilePage = () => {
     cursor: 'pointer', // Change cursor to pointer on hover
   };
 
-  
   const [open, setOpen] = useState(false);
+  const [openPointShop, setOpenPointShop] = useState(false);
   const [classesJoined, setClassesJoined] = useState<string[]>([]);
   const [classToken, setClassToken] = useState('');
+  const [userPoints, setUserPoints] = useState(1000);
+  const [userAvatar, setUserAvatar] = useState(localStorage.getItem('userAvatar') || '');
+  const avatars = [
+    { id: 1, image: avatar1, cost: 100 },
+    { id: 2, image: avatar2, cost: 200 },
+  ];
+
+  const handleOpenPointShop = () => {
+    setOpenPointShop(true);
+  };
+
+  const handleClosePointShop = () => {
+    setOpenPointShop(false);
+  };
+
+  const handleRedeemAvatar = (avatarId) => {
+    const selectedAvatar = avatars.find(avatar => avatar.id === avatarId);
+    if (!selectedAvatar) {
+      alert('Avatar not found.');
+      return;
+    }
+    if (userPoints < selectedAvatar.cost) {
+      alert('Not enough points to redeem this avatar.');
+      return;
+    }
+    const updatedPoints = userPoints - selectedAvatar.cost;
+    setUserPoints(updatedPoints);
+    setUserAvatar(selectedAvatar.image);
+    alert(`Avatar ${selectedAvatar.id} redeemed successfully!`);
+    setUserAvatar(selectedAvatar.image);
+    localStorage.setItem('userAvatar', selectedAvatar.image);
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -267,7 +302,12 @@ const handleDownload = async () => {
                   alignItems: 'center',
                 }}
               >
-                <Avatar sx={{ width: 200, height: 200, bgcolor: 'secondary.main', mt: 4, mb: 4 }}>
+                <Avatar
+                  sx={{ width: isMobile ? 80 : 200, height: isMobile ? 80 : 200, bgcolor: 'secondary.main', mt: 2, mb: 2 }}
+                  src={userAvatar}
+                >
+                  {/* If no avatar is selected, this text will show. You can replace it with any default text or icon. */}
+                  {!userAvatar && "UA"} 
                 </Avatar>
                 <Typography component="h1" variant="h6">
                   <div>
@@ -282,6 +322,7 @@ const handleDownload = async () => {
                   Classes Joined:
                 </Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
+                  <ClassesFetcher setClassesJoined={setClassesJoined} />
                   {classesJoined.map((className, idx) => (
                     <Link href="./#/main" key={idx} variant="body2" style={linkStyle}>
                       <Box sx={{
@@ -300,6 +341,8 @@ const handleDownload = async () => {
                 <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>
                 <br></br>
                 <button type="button" onClick={handleOpenDownload} className="btn btn-success">Download Attendance Records</button>
+                <br></br>
+                <button type="button" onClick={handleOpenPointShop} className="btn btn-success">Point shop</button>
               </Box>
               <Modal open={open} onClose={handleClose}>
                 <div style={{
@@ -373,6 +416,43 @@ const handleDownload = async () => {
                   >
                     Download Record
                   </button>
+                </div>
+              </Modal>
+              <Modal open={openPointShop} onClose={handleClosePointShop}>
+                <div style={{
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  position: 'absolute',
+                  width: 400,
+                  backgroundColor: '#F0F8FF',
+                  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
+                  padding: '20px',
+                  borderRadius: '10px',
+                }}>
+                  <h2 style={{ textAlign: 'center', color: '#333' }}>Point Shop</h2>
+                  <div style={{ marginTop: '20px' }}>
+                    {avatars.map(avatar => (
+                      <div key={avatar.id} style={{ marginBottom: '15px', textAlign: 'center' }}>
+                        <img src={avatar.image} alt={`Avatar ${avatar.id}`} style={{ maxWidth: '100px', borderRadius: '50%' }} />
+                        <p>{avatar.cost} Points</p>
+                        <button
+                          onClick={() => handleRedeemAvatar(avatar.id)}
+                          style={{
+                            backgroundColor: '#4CAF50',
+                            border: 'none',
+                            color: 'white',
+                            padding: '5px 10px',
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                            transition: '0.3s',
+                          }}
+                        >
+                          Redeem
+                        </button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </Modal>
             </Grid>
