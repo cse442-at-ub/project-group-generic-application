@@ -41,7 +41,7 @@ const ProfilePage = () => {
     setOpenPointShop(false);
   };
 
-  const handleRedeemAvatar = (avatarId) => {
+  const handleRedeemAvatar = (avatarId:number) => {
     const selectedAvatar = avatars.find(avatar => avatar.id === avatarId);
     if (!selectedAvatar) {
       alert('Avatar not found.');
