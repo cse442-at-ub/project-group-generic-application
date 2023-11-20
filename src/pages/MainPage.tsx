@@ -111,12 +111,12 @@ function MainPage(this: any) {
                 <NavBar/>
                 <div className="mobileDiv" style={{textAlign: 'center', padding:'3vh'}}>
                     {/* Add NavBar here */}
-                    <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Class Name Here</h1>
+                    <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Professor View</h1>
                     <Form>
                         <Form.Group className="centerForm mb-3">
-                        <Form.Control className='w-50' type="text" placeholder="Enter Class Name" />
+                        <Form.Control className='w-50' type="text" placeholder="Enter Class Code" />
                             <Form.Text className="text-muted">
-                            Update Your Class Name.
+                            Current Class Code: <b>ABCD</b>
                             </Form.Text>
                         </Form.Group>
                     </Form>
@@ -152,12 +152,12 @@ function MainPage(this: any) {
                 <div className="mainDiv" style={{textAlign: 'center'}}> 
                
                   <div className="pad" style={{padding:'5vh'}}></div>
-                    <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Class Name Here</h1>
+                    <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Professor View</h1>
                     <Form >
                         <Form.Group className="centerForm">
-                        <Form.Control className='w-50' type="text" placeholder="Enter Class Name" />
+                        <Form.Control className='w-50' type="text" placeholder="Enter Class Code" />
                         <Form.Text className="text-muted">
-                            Update Your Class Name.
+                        Current Class Code: <b>ABCD</b>
                             </Form.Text>
                         </Form.Group>
                     </Form>
