@@ -31,7 +31,7 @@ body{
   margin-left: auto; 
   margin-right: auto; 
   padding-bottom: 5%;
-  top:5%;
+  top:10%;
   background: linear-gradient(0.35turn,#ffffff, #bcdbff);
   border-radius: 15px;
   box-shadow: 5px 10px 20px #0000001e;
@@ -112,12 +112,16 @@ body{
 .signup-form {
   display: flex;
   padding: 6rem;
-  padding-top: 3rem;
   border: 0.5px solid white;
-  background-color: #627D91;
-  border-radius: 45px;
-  margin: 0.5rem;
-  height: 880px;
+  margin: 5.5rem;
+  padding-top:3rem;
+  background: linear-gradient(0.35turn,#ffffff, #bcdbff);
+  border-radius: 15px;
+  box-shadow: 5px 10px 20px #0000001e;
+  height: auto;
+  margin-left: auto; 
+  margin-right: auto; 
+  padding-bottom: 5%;
 }
 
 label {
@@ -165,7 +169,7 @@ input {
   padding-bottom: 2rem;
   padding-left: 2rem;
   padding-right: 2rem;
-  background-color: #D9D9D9;
+  background: linear-gradient(0.35turn,#D9D9D9, rgb(196, 208, 205));
   border-radius: 20px;
 }
 
@@ -193,6 +197,7 @@ input {
 
 .role-selected {
   border: 2px solid blue;
+  background: linear-gradient(0.35turn,#f1f1f1, rgb(201, 226, 236));
 }
 
 .password-checklist {
