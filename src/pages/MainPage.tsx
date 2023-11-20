@@ -50,6 +50,7 @@ function MainPage(this: any) {
     function handleStudentDebugClick() {
         if (studentNumberTemp < 100) {
             setStudentNumberTemp(studentNumberTemp + 1)
+            playSound(studentNumberTemp%8)
         }
     }
 
@@ -90,6 +91,15 @@ function MainPage(this: any) {
         pluralStudent = ""
     } else {
         pluralStudent = "s"
+    }
+
+    // sound function
+    let soundArray = ["joinSoundBounce.wav","joinSoundBubble.wav","joinSoundChime.wav","joinSoundCoin.wav", "joinSoundDing.wav", "joinSoundPop.wav", "joinSoundRetro.wav", "joinSoundWhir.wav"]
+
+    function playSound(sound: number) {
+        const audio = new Audio("/soundEffects/" + soundArray[sound]);
+        console.log(soundArray[sound]);
+        audio.play();
     }
 
     
@@ -171,6 +181,7 @@ function MainPage(this: any) {
 
                     {/* <h1 style={{fontSize:'3vh'}}>{"Debug Buttons"}</h1> */}
                     <button type="button" onClick={handleStudentDebugClick} className="btn btn-primary" >Add Student</button>
+                    &nbsp;
                     <button type="button" onClick={handleResetDebugClick} className="btn btn-danger" >Reset Students</button>
 
                 </div>

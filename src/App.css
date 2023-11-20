@@ -35,7 +35,6 @@ body{
   background: linear-gradient(0.35turn,#ffffff, #bcdbff);
   border-radius: 15px;
   box-shadow: 5px 10px 20px #0000001e;
-  
 }
 
 .footer{
@@ -51,22 +50,14 @@ body{
   overflow-x: hidden;
   grid-template-columns: 25vh 25vh 25vh 25vh 25vh 25vh 25vh 25vh ;
   overflow-y: scroll;
-}
-
-.footerMobile{
-  position:absolute;
-  left:0;
-  bottom:0%;
-  right:0;    
-  box-shadow: 5px -10px 20px #0000001e;
-  background: linear-gradient(0.35turn,#a3cef9, #6e87da);
-  display: flex;
+  justify-content: center;
+  padding: 2vh;
 }
 
 .profile{
   background: linear-gradient(0.35turn,#ffffff, #c1d0f8);
-  margin: 10%;
-  width: 20vh;
+  margin: 5%;
+  width: 21vh;
   box-shadow: 5px -10px 20px #0000001e;
   border-radius: 5%;
   font-weight: bold;
@@ -85,11 +76,12 @@ body{
 }
 .container img {
   /* object-fit: cover; */
-  height: 100%;
-  width: 100%;
+  height: 90%;
+  width: 90%;
   border-radius: 100%;
   box-shadow: 5px 10px 20px #0000003b;
   margin-top: 5%;
+  border: 5px solid #ffffff
 
 }
 
@@ -197,7 +189,7 @@ input {
 
 .role-selected {
   border: 2px solid blue;
-  background: linear-gradient(0.35turn,#f1f1f1, rgb(201, 226, 236));
+  background: linear-gradient(0.35turn,#f1f1f1, rgb(188, 225, 239));
 }
 
 .password-checklist {
