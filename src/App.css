@@ -236,3 +236,11 @@ input {
   display: grid;
 }
 
+.footerDebug {
+  position:absolute;
+  left: 0; 
+  right: 0; 
+  z-index:99999;
+  bottom:2vh;
+}
+

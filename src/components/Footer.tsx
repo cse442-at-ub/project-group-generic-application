@@ -88,24 +88,32 @@ function Footer({studentNumber}: Props) {
             </>
         )
     } else {
+
             // detect if there are no students in attendance
         if (studentNumber <= 0) {
             return (
-                <div className="footer" onClick={fetchStudents} style={{textAlign: 'center', alignItems: 'center', justifyContent:'center',  gridTemplateColumns:'auto'}}>
-                    <h1 style={{fontSize:'4vh', fontStyle:"italic", color:'#161b1c'}}>{"No students have joined yet."}</h1>
-                </div>
+                <>
+                    <div className="footerDebug">
+                        <button type="button" className="btn btn-primary" >Add Student</button>
+                        &nbsp;&nbsp;
+                        <button type="button" className="btn btn-danger" >Reset Students</button>
+                    </div>
+                    <div className="footer" onClick={fetchStudents} style={{textAlign: 'center', alignItems: 'center', justifyContent:'center',  gridTemplateColumns:'auto'}}>
+                        <h1 style={{fontSize:'4vh', fontStyle:"italic", color:'#161b1c'}}>{"No students have joined yet."}</h1>
+                    </div>
+                </>
             )
         }
         return (
             <>
-            <button type="button" className="btn btn-success" >Fetch Students</button>
-                <div className="footer" onClick={fetchStudents} style={{textAlign: 'center'}}>
-                    
-
-                    {renderDivs()}
-                    
+                <div className="footerDebug">
+                    <button type="button" className="btn btn-primary" >Add Student</button>
+                    &nbsp;&nbsp;
+                    <button type="button" className="btn btn-danger" >Reset Students</button>
                 </div>
-            
+                <div className="footer" onClick={fetchStudents} style={{textAlign: 'center'}}>        
+                    {renderDivs()}
+                </div>
             </>
         )
     }
