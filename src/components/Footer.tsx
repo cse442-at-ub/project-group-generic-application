@@ -1,12 +1,14 @@
 // import { useState } from "react";
+import { useEffect, useState } from "react";
 import Profile from "./Profile";
 import axios from 'axios';
 
 interface Props {
     studentNumber: number;
+    setStudentNumber: Function;
 }
 
-function Footer({studentNumber}: Props) {
+function Footer({studentNumber, setStudentNumber}: Props) {
 
     // detect if mobile view
     let isMobile = window.screen.width <= 1000
@@ -18,16 +20,16 @@ function Footer({studentNumber}: Props) {
 
     function playSound(sound: number) {
         const audio = new Audio("/soundEffects/" + soundArray[sound]);
-        console.log(soundArray[sound]);
         audio.play();
     }
-
-    // const [studentDisplayListing, setStudentDisplayList] = useState();
-
-    let studentDisplayList: string[] = ["student1", "student2", "student3"]
+    const [studentArray, setStudentArray] = useState<string[]>([]);
 
     function fetchStudents () {
-        playSound(Math.floor(Math.random() * soundArray.length))
+        // playSound(Math.floor(Math.random() * soundArray.length))
+
+        setStudentArray([])
+        setStudentNumber(0)
+
         axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Profmainstudentarray.php')
             .then(response => {
 
@@ -38,48 +40,50 @@ function Footer({studentNumber}: Props) {
                 for (let i in studentList.usernames) {
                     let student = studentList.usernames[i][0].toString()
                     console.log(student)
-                    studentDisplayList.push(student)
+                    setStudentArray([...studentArray, student])    
                 }
-
-                console.log(studentDisplayList)
-                // setStudentDisplayList([...studentDisplayList, studentDisplayList])
-                // console.log(studentDisplayListing)
             })
             .catch(error => {
                 console.error('Error submitting data', error);
             });
 
-            renderDivs()
+            setStudentNumber(studentArray.length)
       };
 
-    // let debugList = ["name1", "jonah", "hello", "hi"]
 
-    // function renderDivs(){
-    //     let count = 4
-    //     // console.log(count)
-    //     let uiItems = []
-    //     // console.log(studentDisplayList)
+    function handleAddStudentClick(this: any) {
+        playSound(Math.floor(Math.random() * soundArray.length))
+        let length = studentArray.length
+        setStudentArray([...studentArray, "name" + (length + 1)])
+        setStudentNumber(studentArray.length)
+    }
 
-        
+    useEffect(() => {
+        console.log(studentArray)
+        console.log("length: " + studentArray.length)
+        setStudentNumber(studentArray.length)
+      }, [studentArray]); // Specify "value" as the dependency
+    
 
-    //     while(count--)
-    //        uiItems.unshift(
-    //             <Profile profilePicture={images[count % 7]} username={debugList[count]} background_choice={count % 10}></Profile>
-    //         )
-    //     return uiItems;
-    // }
-
+    function handleResetStudentClick() {
+        setStudentArray([])
+        setStudentNumber(0)
+    }
 
     function renderDivs(){
         let count = studentNumber
         let uiItems = []
+
+        // move playsound to here?
+        // possibly change student array to array of arrays
+        // or keep separate array for each customization option (pictures, colors, sound)
+
         while(count--)
            uiItems.unshift(
-                <Profile profilePicture={images[count % 7]} username={"username" + String(count)} background_choice={count % 10}></Profile>
+                <Profile profilePicture={images[count % 7]} username={studentArray[count]} background_choice={count % 5}></Profile>
             )
         return uiItems;
     }
-
 
 
     if (isMobile) {
@@ -88,30 +92,36 @@ function Footer({studentNumber}: Props) {
             </>
         )
     } else {
-
-            // detect if there are no students in attendance
         if (studentNumber <= 0) {
             return (
                 <>
-                    <div className="footerDebug">
-                        <button type="button" className="btn btn-primary" >Add Student</button>
-                        &nbsp;&nbsp;
-                        <button type="button" className="btn btn-danger" >Reset Students</button>
+                    <div className="center">
+                        <div className="footerDebug">
+                            <button type="button" className="btn btn-primary" onClick={handleAddStudentClick} >Add Student</button>
+                            &nbsp;
+                            <button type="button" className="btn btn-secondary" onClick={handleResetStudentClick} >Reset Students</button>
+                            &nbsp;
+                            <button type="button" className="btn btn-success" onClick={fetchStudents} >Fetch Backend</button>
+                        </div>
                     </div>
-                    <div className="footer" onClick={fetchStudents} style={{textAlign: 'center', alignItems: 'center', justifyContent:'center',  gridTemplateColumns:'auto'}}>
+                    <div className="footer" style={{textAlign: 'center', alignItems: 'center', justifyContent:'center',  gridTemplateColumns:'auto'}}>
                         <h1 style={{fontSize:'4vh', fontStyle:"italic", color:'#161b1c'}}>{"No students have joined yet."}</h1>
                     </div>
                 </>
             )
         }
         return (
-            <>
-                <div className="footerDebug">
-                    <button type="button" className="btn btn-primary" >Add Student</button>
-                    &nbsp;&nbsp;
-                    <button type="button" className="btn btn-danger" >Reset Students</button>
+            <>  
+                <div className="center">
+                    <div className="footerDebug">
+                        <button type="button" className="btn btn-primary" onClick={handleAddStudentClick} >Add Student</button>
+                        &nbsp;
+                        <button type="button" className="btn btn-danger" onClick={handleResetStudentClick} >Reset Students</button>
+                        &nbsp;
+                        <button type="button" className="btn btn-success" onClick={fetchStudents} >Fetch Backend</button>
+                    </div>
                 </div>
-                <div className="footer" onClick={fetchStudents} style={{textAlign: 'center'}}>        
+                <div className="footer" style={{textAlign: 'center'}}>        
                     {renderDivs()}
                 </div>
             </>

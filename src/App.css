@@ -237,10 +237,18 @@ input {
 }
 
 .footerDebug {
+  z-index:99999;
+  background: linear-gradient(0.35turn,#ffffff63, #bfddff65);
+  padding: 1vh;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.center{
   position:absolute;
   left: 0; 
   right: 0; 
   z-index:99999;
-  bottom:2vh;
+  bottom:1vh;
 }
 
