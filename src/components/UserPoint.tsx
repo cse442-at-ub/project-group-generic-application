@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 
 type PointsFetcherProps = {
@@ -10,8 +10,8 @@ type PointsFetcherProps = {
         const fetchPoints = async () => {
           try {
             const response = await axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/PointsFetch.php', { withCredentials: true });
-            if (response.data?.points) {
-              setUserPoints(response.data.points);
+            if (response.data?.success) {
+              setUserPoints(response.data.data.points);
             } else if (response.data?.error) {
               console.error(response.data.error);
               setUserPoints(0);
