@@ -239,3 +239,23 @@ input {
   display: grid;
 }
 
+/* Point shop */
+@media screen and (max-width: 600px) {
+  .point-shop-modal {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .point-shop-modal h2 {
+    font-size: 18px;
+  }
+
+  .avatar-item {
+    max-width: 80px;
+  }
+
+  .redeem-button {
+    width: 100%;
+    padding: 4px 8px;
+  }
+}
