@@ -18,6 +18,13 @@ const FunctionPage = () => {
         code,
     });
 
+    const codeRegex = /^[A-Za-z0-9]+$/;
+
+    if (!codeRegex.test(code)) {
+      alert('Only capital, lowercase letters and numbers are allow');
+      return;
+  }
+
     const attendanceCode = {
         'code': code,
     };
