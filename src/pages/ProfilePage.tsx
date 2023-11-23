@@ -47,7 +47,7 @@ const ProfilePage = () => {
     setUser(userData);
   };
 
-  const handleRedeemAvatar = (avatarId:number) => {
+  const handleRedeemAvatar = async (avatarId: number) => {
     const selectedAvatar = avatars.find(avatar => avatar.id === avatarId);
     if (!selectedAvatar) {
       alert('Avatar not found.');
@@ -57,12 +57,25 @@ const ProfilePage = () => {
       alert('Not enough points to redeem this avatar.');
       return;
     }
-    const updatedPoints = userPoints - selectedAvatar.cost;
-    setUserPoints(updatedPoints);
-    setUserAvatar(selectedAvatar.image);
-    alert(`Avatar ${selectedAvatar.id} redeemed successfully!`);
-    setUserAvatar(selectedAvatar.image);
-    localStorage.setItem('userAvatar', selectedAvatar.image);
+  
+    try {
+      const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/PointsUpdate.php', {
+        pointsToDeduct: selectedAvatar.cost
+      });
+  
+      if (response.data.success) {
+        const updatedPoints = userPoints - selectedAvatar.cost;
+        setUserPoints(updatedPoints);
+        setUserAvatar(selectedAvatar.image);
+        localStorage.setItem('userAvatar', selectedAvatar.image);
+        alert(`Avatar ${selectedAvatar.id} redeemed successfully!`);
+      } else {
+        alert('Error redeeming avatar: ' + response.data.error);
+      }
+    } catch (error) {
+      console.error('Error during avatar redemption:', error);
+      alert('An error occurred while redeeming the avatar.');
+    }
   };
 
   const handleOpen = () => {
