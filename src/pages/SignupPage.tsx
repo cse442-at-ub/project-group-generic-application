@@ -37,6 +37,11 @@ const SignupPage: React.FC = () => {
             return;
         }
 
+        if (!firstname || !lastname || !email || !password || !confirmpassword || (role === 'Teacher' && !classtoken)) {
+            alert('Please fill out all fields.');
+            return;
+        }
+
         if (password.length < 8) {
             alert('Password must be at least 8 characters long.');
             return;
