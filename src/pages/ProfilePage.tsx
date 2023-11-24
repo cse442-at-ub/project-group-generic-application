@@ -181,7 +181,7 @@ const handleDownload = async () => {
                   sx={{ width: 80, height: 80, bgcolor: 'secondary.main', mt: 2, mb: 2 }}
                   src={userAvatar}
                 >
-                  {!userAvatar && "UA"} 
+                  {!userAvatar && " "} 
                 </Avatar>
                 <Typography component="h1" variant="h6">
               
