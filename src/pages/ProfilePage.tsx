@@ -64,6 +64,7 @@ const ProfilePage = () => {
       });
   
       if (response.data.success) {
+        await updateAvatarInDatabase(selectedAvatar.id);
         const updatedPoints = userPoints - selectedAvatar.cost;
         setUserPoints(updatedPoints);
         setUserAvatar(selectedAvatar.image);
@@ -77,6 +78,27 @@ const ProfilePage = () => {
       alert('An error occurred while redeeming the avatar.');
     }
   };
+
+  const updateAvatarInDatabase = async (avatarId: number) => {
+    const selectedAvatar = avatars.find(avatar => avatar.id === avatarId);
+    if (!selectedAvatar) {
+      console.error('Avatar not found for the given ID:', avatarId);
+      return;
+    } 
+  
+    try {
+      const updateResponse = await axios.post(`https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/AvatarStorage.php`, {
+        username: user.Username,
+        newAvatar: selectedAvatar.id
+      });
+  
+      if (!updateResponse.data.success) {
+        console.error('Error updating avatar in database:', updateResponse.data.error);
+      }
+    } catch (error) {
+      console.error('Error during avatar update in database:', error);
+    }
+  }
 
   const handleOpen = () => {
     setOpen(true);
