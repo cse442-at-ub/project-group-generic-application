@@ -6,13 +6,14 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from '@mui/material/Modal';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
 import ClassesFetcher from '../components/UserClass';
 import PointsFetcher from '../components/UserPoint';
 import UserFetch from '../components/UserFetch';
+import AvatarFetch from '../components/Avatar';
 import avatar1 from '../avatar/avatar1.png'
 import avatar2 from '../avatar/avatar2.png'
 
@@ -29,7 +30,16 @@ const ProfilePage = () => {
   const [classesJoined, setClassesJoined] = useState<string[]>([]);
   const [classToken, setClassToken] = useState('');
   const [userPoints, setUserPoints] = useState(0);
-  const [userAvatar, setUserAvatar] = useState(localStorage.getItem('userAvatar') || '');
+
+  const [userAvatar, setUserAvatar] = useState<string | null>(localStorage.getItem('userAvatar'));
+  useEffect(() => {
+    if (userAvatar) {
+      localStorage.setItem('userAvatar', userAvatar);
+    } else {
+      localStorage.removeItem('userAvatar');
+    }
+  }, [userAvatar]);
+
   const avatars = [
     { id: 1, image: avatar1, cost: 100 },
     { id: 2, image: avatar2, cost: 200 },
@@ -87,7 +97,7 @@ const ProfilePage = () => {
     } 
   
     try {
-      const updateResponse = await axios.post(`https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/AvatarStorage.php`, {
+      const updateResponse = await axios.post(`https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/UserAvatar.php`, {
         username: user.Username,
         newAvatar: selectedAvatar.id
       });
@@ -201,7 +211,7 @@ const handleDownload = async () => {
               >
                 <Avatar
                   sx={{ width: 80, height: 80, bgcolor: 'secondary.main', mt: 2, mb: 2 }}
-                  src={userAvatar}
+                  src={userAvatar || ''} 
                 >
                   {!userAvatar && " "} 
                 </Avatar>
@@ -410,10 +420,11 @@ const handleDownload = async () => {
                   flexDirection: 'column',
                   alignItems: 'center',
                 }}
-              >
+              > 
+                <AvatarFetch username={user.Username} setUserAvatar={setUserAvatar} />
                 <Avatar
                   sx={{ width: isMobile ? 80 : 200, height: isMobile ? 80 : 200, bgcolor: 'secondary.main', mt: 2, mb: 2 }}
-                  src={userAvatar}
+                  src={userAvatar ?? ''}
                 >
                   {/* If no avatar is selected, this text will show. You can replace it with any default text or icon. */}
                   {!userAvatar && " "} 
