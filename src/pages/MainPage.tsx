@@ -35,28 +35,11 @@ function MainPage(this: any) {
             });
       };
 
-    // function wait() {
-    //     setTimeout(() => sendAttendanceCode(), 1000)
-    // }
-
-    
-
 
 
     const [studentNumberTemp, setStudentNumberTemp] = useState(0);
     const [mainPageView, setMainPageView] = useState(0);
     let [attendanceCode, setAttendanceCodeUpdater] = useState("");
-
-    function handleStudentDebugClick() {
-        if (studentNumberTemp < 100) {
-            setStudentNumberTemp(studentNumberTemp + 1)
-        }
-    }
-
-    
-    function handleResetDebugClick() {
-        setStudentNumberTemp(0)
-    }
 
     function handleAttendanceButtonClick() {
         if (mainPageView == 0) {
@@ -90,9 +73,7 @@ function MainPage(this: any) {
         pluralStudent = ""
     } else {
         pluralStudent = "s"
-    }
-
-    
+    }    
 
     if (isMobile) {
         if (mainPageView == 0) {
@@ -101,12 +82,12 @@ function MainPage(this: any) {
                 <NavBar/>
                 <div className="mobileDiv" style={{textAlign: 'center', padding:'3vh'}}>
                     {/* Add NavBar here */}
-                    <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Class Name Here</h1>
+                    <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Professor View</h1>
                     <Form>
                         <Form.Group className="centerForm mb-3">
-                        <Form.Control className='w-50' type="text" placeholder="Enter Class Name" />
+                        <Form.Control className='w-50' type="text" placeholder="Enter Class Code" />
                             <Form.Text className="text-muted">
-                            Update Your Class Name.
+                            Current Class Code: <b>ABCD</b>
                             </Form.Text>
                         </Form.Group>
                     </Form>
@@ -124,7 +105,7 @@ function MainPage(this: any) {
                 <div className="mobileDiv" style={{textAlign: 'center'}}>
                     <h1 style={{fontSize:'3vh'}}>Attendance Code:</h1>
                     <h1 style={{fontSize:'10vh', fontWeight:"bold", textShadow:"5px 10px 10px #0000001e"}}>{attendanceCode}</h1>
-                    <h1 style={{fontSize:'2vh', fontStyle:"italic"}}>{"Please go to <sitename.com> and enter the code"}</h1>
+                    <h1 style={{fontSize:'2vh', fontStyle:"italic"}}>Please go to <b>bit.ly/cseattend</b> and enter the code</h1>
                     <h1 style={{fontWeight:"bold", fontSize:'3vh'}}>{studentNumberTemp} student{pluralStudent}</h1>
                     <button type="button" onClick={handleAttendanceButtonClick} className="btn btn-success" >Close Attendance</button>
                     
@@ -142,12 +123,12 @@ function MainPage(this: any) {
                 <div className="mainDiv" style={{textAlign: 'center'}}> 
                
                   <div className="pad" style={{padding:'5vh'}}></div>
-                    <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Class Name Here</h1>
+                    <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Professor View</h1>
                     <Form >
                         <Form.Group className="centerForm">
-                        <Form.Control className='w-50' type="text" placeholder="Enter Class Name" />
+                        <Form.Control className='w-50' type="text" placeholder="Enter Class Code" />
                         <Form.Text className="text-muted">
-                            Update Your Class Name.
+                        Current Class Code: <b>ABCD</b>
                             </Form.Text>
                         </Form.Group>
                     </Form>
@@ -166,15 +147,10 @@ function MainPage(this: any) {
                     <button type="button" onClick={handleAttendanceButtonClick} className="btn btn-success attendanceExit" >Close Attendance</button>
                     <h1 style={{fontSize:'3vh'}}>Attendance Code:</h1>
                     <h1 style={{fontSize:'20vh', fontWeight:"bold", textShadow:"5px 10px 10px #0000001e"}}>{attendanceCode}</h1>
-                    <h1 style={{fontSize:'3vh', fontStyle:"italic"}}>{"Please go to <sitename.com> and enter the code"}</h1>
+                    <h1 style={{fontSize:'3vh', fontStyle:"italic"}}>Please go to <b>bit.ly/cseattend</b> and enter the code</h1>
                     <h1 style={{fontWeight:"bold", fontSize:'5vh'}}>{studentNumberTemp} student{pluralStudent}</h1>
-
-                    {/* <h1 style={{fontSize:'3vh'}}>{"Debug Buttons"}</h1> */}
-                    <button type="button" onClick={handleStudentDebugClick} className="btn btn-primary" >Add Student</button>
-                    <button type="button" onClick={handleResetDebugClick} className="btn btn-danger" >Reset Students</button>
-
                 </div>
-                <Footer studentNumber={studentNumberTemp}></Footer>
+                <Footer studentNumber={studentNumberTemp} setStudentNumber={setStudentNumberTemp}></Footer>
             
             </>
             )

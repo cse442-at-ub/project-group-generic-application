@@ -47,22 +47,22 @@ export default function ButtonAppBar() {
                 <Toolbar>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={2}>
-                    <Button color="inherit" component={Link} to="/">Home</Button>
+                    <Button color="inherit" component={Link} to="/"><Home />&nbsp; Home</Button>
                     </Grid>
                     <Grid item xs={12} sm={2}>
-                    <Button color="inherit" component={Link} to="/main">Main</Button>
+                    <Button color="inherit" component={Link} to="/main"><School />&nbsp; Main</Button>
                     </Grid>
                     <Grid item xs={12} sm={2}>
-                    <Button color="inherit" component={Link} to="/login">Login</Button>
+                    <Button color="inherit" component={Link} to="/login"><Login />&nbsp; Login</Button>
                     </Grid>
                     <Grid item xs={12} sm={2}>
-                    <Button color="inherit" component={Link} to="/signup">Signup</Button>
+                    <Button color="inherit" component={Link} to="/signup"><Assignment />&nbsp; Signup</Button>
                     </Grid>
                     <Grid item xs={12} sm={2}>
-                    <Button color="inherit" component={Link} to="/profile">Profile</Button>
+                    <Button color="inherit" component={Link} to="/profile"><AccountCircle />&nbsp; Profile</Button>
                     </Grid>
                     <Grid item xs={12} sm={2}>
-                    <Button color="inherit" component={Link} to="/function">Function</Button>
+                    <Button color="inherit" component={Link} to="/function"><EmojiPeople />&nbsp; Function</Button>
                     </Grid>
                 </Grid>
                 </Toolbar>

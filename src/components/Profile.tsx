@@ -33,10 +33,10 @@ function Profile({profilePicture, username, background_choice}: Props) {
                     }}>
 
                 <div className="container">
-                    <img style={{ border: '5px solid #ffffff'}} src={profilePicture}></img>
+                    <img src={profilePicture}></img>
                 </div>
                     
-                    <p>@{username}</p>
+                    <p>{username}</p>
                 </div>
             
             </>
