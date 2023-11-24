@@ -36,7 +36,7 @@ function Profile({profilePicture, username, background_choice}: Props) {
                     <img src={profilePicture}></img>
                 </div>
                     
-                    <p>@{username}</p>
+                    <p>{username}</p>
                 </div>
             
             </>

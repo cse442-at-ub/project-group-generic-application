@@ -19,36 +19,41 @@ function Footer({studentNumber, setStudentNumber}: Props) {
     let soundArray = ["joinSoundBounce.wav","joinSoundBubble.wav","joinSoundChime.wav","joinSoundCoin.wav", "joinSoundDing.wav", "joinSoundPop.wav", "joinSoundRetro.wav", "joinSoundWhir.wav"]
 
     function playSound(sound: number) {
-        const audio = new Audio("/soundEffects/" + soundArray[sound]);
+        const audio = new Audio("./soundEffects/" + soundArray[sound]);
         audio.play();
     }
     const [studentArray, setStudentArray] = useState<string[]>([]);
 
-    function fetchStudents () {
-        // playSound(Math.floor(Math.random() * soundArray.length))
 
-        setStudentArray([])
-        setStudentNumber(0)
+    // running this function repeatedly should ideally be a toggle
+    function fetchStudents () {
+        playSound(Math.floor(Math.random() * soundArray.length))
+        // should really be moved somewhere else if this function will be repeatedly called
 
         axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Profmainstudentarray.php')
-            .then(response => {
+            .then(response => { 
+                
 
                 let data = response.data.slice(8)
 
+
                 const studentList = JSON.parse(data)
+                let tempArray = []
 
                 for (let i in studentList.usernames) {
                     let student = studentList.usernames[i][0].toString()
-                    console.log(student)
-                    setStudentArray([...studentArray, student])    
+                    tempArray.push(student)
                 }
+
+                setStudentArray([...tempArray]) 
+
             })
             .catch(error => {
                 console.error('Error submitting data', error);
             });
 
             setStudentNumber(studentArray.length)
-      };
+      }
 
 
     function handleAddStudentClick(this: any) {
@@ -82,6 +87,7 @@ function Footer({studentNumber, setStudentNumber}: Props) {
            uiItems.unshift(
                 <Profile profilePicture={images[count % 7]} username={studentArray[count]} background_choice={count % 5}></Profile>
             )
+            // if count = 1 playsound from array?
         return uiItems;
     }
 

@@ -41,18 +41,6 @@ function MainPage(this: any) {
     const [mainPageView, setMainPageView] = useState(0);
     let [attendanceCode, setAttendanceCodeUpdater] = useState("");
 
-    function handleStudentDebugClick() {
-        if (studentNumberTemp < 100) {
-            setStudentNumberTemp(studentNumberTemp + 1)
-            playSound(studentNumberTemp%8)
-        }
-    }
-
-    
-    function handleResetDebugClick() {
-        setStudentNumberTemp(0)
-    }
-
     function handleAttendanceButtonClick() {
         if (mainPageView == 0) {
             setMainPageView(mainPageView + 1)
@@ -85,17 +73,7 @@ function MainPage(this: any) {
         pluralStudent = ""
     } else {
         pluralStudent = "s"
-    }
-
-    // sound function
-    let soundArray = ["joinSoundBounce.wav","joinSoundBubble.wav","joinSoundChime.wav","joinSoundCoin.wav", "joinSoundDing.wav", "joinSoundPop.wav", "joinSoundRetro.wav", "joinSoundWhir.wav"]
-
-    function playSound(sound: number) {
-        const audio = new Audio("/soundEffects/" + soundArray[sound]);
-        audio.play();
-    }
-
-    
+    }    
 
     if (isMobile) {
         if (mainPageView == 0) {
