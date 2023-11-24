@@ -11,6 +11,8 @@ import Modal from '@mui/material/Modal';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
 import ClassesFetcher from '../components/UserClass';
+import PointsFetcher from '../components/UserPoint';
+import UserFetch from '../components/UserFetch';
 import avatar1 from '../avatar/avatar1.png'
 import avatar2 from '../avatar/avatar2.png'
 
@@ -21,12 +23,12 @@ const ProfilePage = () => {
     color: 'inherit', // Inherit the text color
     cursor: 'pointer', // Change cursor to pointer on hover
   };
-
+  const [user, setUser] = useState({ Username: '' });
   const [open, setOpen] = useState(false);
   const [openPointShop, setOpenPointShop] = useState(false);
   const [classesJoined, setClassesJoined] = useState<string[]>([]);
   const [classToken, setClassToken] = useState('');
-  const [userPoints, setUserPoints] = useState(1000);
+  const [userPoints, setUserPoints] = useState(0);
   const [userAvatar, setUserAvatar] = useState(localStorage.getItem('userAvatar') || '');
   const avatars = [
     { id: 1, image: avatar1, cost: 100 },
@@ -41,7 +43,11 @@ const ProfilePage = () => {
     setOpenPointShop(false);
   };
 
-  const handleRedeemAvatar = (avatarId:number) => {
+  const handleSetUser = (userData: { Username: string }) => {
+    setUser(userData);
+  };
+
+  const handleRedeemAvatar = async (avatarId: number) => {
     const selectedAvatar = avatars.find(avatar => avatar.id === avatarId);
     if (!selectedAvatar) {
       alert('Avatar not found.');
@@ -51,12 +57,25 @@ const ProfilePage = () => {
       alert('Not enough points to redeem this avatar.');
       return;
     }
-    const updatedPoints = userPoints - selectedAvatar.cost;
-    setUserPoints(updatedPoints);
-    setUserAvatar(selectedAvatar.image);
-    alert(`Avatar ${selectedAvatar.id} redeemed successfully!`);
-    setUserAvatar(selectedAvatar.image);
-    localStorage.setItem('userAvatar', selectedAvatar.image);
+  
+    try {
+      const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/PointsUpdate.php', {
+        pointsToDeduct: selectedAvatar.cost
+      });
+  
+      if (response.data.success) {
+        const updatedPoints = userPoints - selectedAvatar.cost;
+        setUserPoints(updatedPoints);
+        setUserAvatar(selectedAvatar.image);
+        localStorage.setItem('userAvatar', selectedAvatar.image);
+        alert(`Avatar ${selectedAvatar.id} redeemed successfully!`);
+      } else {
+        alert('Error redeeming avatar: ' + response.data.error);
+      }
+    } catch (error) {
+      console.error('Error during avatar redemption:', error);
+      alert('An error occurred while redeeming the avatar.');
+    }
   };
 
   const handleOpen = () => {
@@ -78,7 +97,6 @@ const ProfilePage = () => {
     .then(response => {
       const jsonResponse = JSON.parse(response.data.substring(response.data.indexOf('{')));
       console.log(response);
-      setClassesJoined(prevClassesJoined => [...prevClassesJoined, classToken]);
        if(jsonResponse.message === "Invalid class code") {
         alert('Invalid class code. Please try again.');
       } else if(jsonResponse.message === "Already in class") {
@@ -159,13 +177,18 @@ const handleDownload = async () => {
                   alignItems: 'center',
                 }}
               >
-                <Avatar sx={{ width: 80, height: 80, bgcolor: 'secondary.main', mt: 2, mb: 2 }}>
+                <Avatar
+                  sx={{ width: 80, height: 80, bgcolor: 'secondary.main', mt: 2, mb: 2 }}
+                  src={userAvatar}
+                >
+                  {!userAvatar && " "} 
                 </Avatar>
                 <Typography component="h1" variant="h6">
               
                 </Typography>
                 <Typography component="h1" variant="h6">
-                  Email
+                  <UserFetch setUser={handleSetUser} />
+                  {user.Username && <p>{user.Username}</p>}
                 </Typography>
                 {/* Classes Joined */}
                 <Typography component="h1" variant="h6">
@@ -173,7 +196,7 @@ const handleDownload = async () => {
                 </Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
                   {classesJoined.map((className, idx) => (
-                    <Link href="./#/main" key={idx} variant="body2" style={{ textDecoration: 'none' }}>
+                    <Link href="./#/function" key={idx} variant="body2" style={{ textDecoration: 'none' }}>
                       <Box
                         sx={{
                           width: isMobile ? '60px' : '150px',
@@ -196,6 +219,8 @@ const handleDownload = async () => {
                 <button type="button" onClick={handleOpen} className="btn btn-success">Join a class</button>
                 <br></br>
                 <button type="button" onClick={handleOpenDownload} className="btn btn-success">Download Attendance Records</button>
+                <br></br>
+                <button type="button" onClick={handleOpenPointShop} className="btn btn-success">Point shop</button>
               </Box>
               <Modal open={open} onClose={handleClose}>
                 <Box sx={{
@@ -282,6 +307,68 @@ const handleDownload = async () => {
                   </Box>
                 </Box>
               </Modal>
+              <Modal open={openPointShop} onClose={handleClosePointShop}>
+                <div style={{
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  position: 'absolute',
+                  width: '250px',
+                  backgroundColor: '#F0F8FF',
+                  boxShadow: '0px 8px 16px rgba(0, 0, 0, 0.1)',
+                  padding: '20px',
+                  borderRadius: '15px',
+                }}>
+                  <h2 style={{ 
+                    textAlign: 'center', 
+                    color: '#333',
+                    fontSize: '1.5em',
+                    marginBottom: '30px'
+                  }}>Point Shop</h2>
+                  <PointsFetcher setUserPoints={setUserPoints} />
+                  <div>Your points: {userPoints}</div>
+                  <div style={{ marginBottom: '30px' }}>
+                    {avatars.map(avatar => (
+                      <div key={avatar.id} style={{ 
+                        marginBottom: '20px',
+                        textAlign: 'center',
+                        width: '100%',
+                      }}>
+                        <img 
+                          src={avatar.image} 
+                          alt={`Avatar ${avatar.id}`} 
+                          style={{ 
+                            width: '80px',
+                            height: '80px',
+                            borderRadius: '50%', 
+                            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05)',
+                            marginBottom: '10px',
+                          }} 
+                        />
+                        <p style={{
+                          margin: '5px 0'
+                        }}>{avatar.cost} Points</p>
+                        <button
+                          onClick={() => handleRedeemAvatar(avatar.id)}
+                          style={{
+                            backgroundColor: '#4CAF50',
+                            border: 'none',
+                            color: 'white',
+                            padding: '10px 20px',
+                            borderRadius: '20px',
+                            cursor: 'pointer',
+                            transition: '0.3s',
+                            width: '100%',
+                            fontSize: '0.9em',
+                          }}
+                        >
+                          Redeem
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Modal>
             </Grid>
           </Grid>
         </Container>
@@ -307,7 +394,7 @@ const handleDownload = async () => {
                   src={userAvatar}
                 >
                   {/* If no avatar is selected, this text will show. You can replace it with any default text or icon. */}
-                  {!userAvatar && "UA"} 
+                  {!userAvatar && " "} 
                 </Avatar>
                 <Typography component="h1" variant="h6">
                   <div>
@@ -315,7 +402,8 @@ const handleDownload = async () => {
                   </div>
                 </Typography>
                 <Typography component="h1" variant="h6">
-                  Email
+                  <UserFetch setUser={handleSetUser} />
+                  {user.Username && <p>{user.Username}</p>}
                 </Typography>
                 {/* Classes Joined */}
                 <Typography component="h1" variant="h6">
@@ -324,7 +412,7 @@ const handleDownload = async () => {
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
                   <ClassesFetcher setClassesJoined={setClassesJoined} />
                   {classesJoined.map((className, idx) => (
-                    <Link href="./#/main" key={idx} variant="body2" style={linkStyle}>
+                    <Link href="./#/function" key={idx} variant="body2" style={linkStyle}>
                       <Box sx={{
                         width: isMobile ? '80px' : '150px',
                         height: isMobile ? '80px' : '80px',
@@ -419,36 +507,55 @@ const handleDownload = async () => {
                 </div>
               </Modal>
               <Modal open={openPointShop} onClose={handleClosePointShop}>
-                <div style={{
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  position: 'absolute',
-                  width: 400,
-                  backgroundColor: '#F0F8FF',
-                  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
-                  padding: '20px',
-                  borderRadius: '10px',
-                }}>
-                  <h2 style={{ textAlign: 'center', color: '#333' }}>Point Shop</h2>
-                  <div style={{ marginTop: '20px' }}>
-                    {avatars.map(avatar => (
-                      <div key={avatar.id} style={{ marginBottom: '15px', textAlign: 'center' }}>
-                        <img src={avatar.image} alt={`Avatar ${avatar.id}`} style={{ maxWidth: '100px', borderRadius: '50%' }} />
-                        <p>{avatar.cost} Points</p>
-                        <button
-                          onClick={() => handleRedeemAvatar(avatar.id)}
-                          style={{
-                            backgroundColor: '#4CAF50',
-                            border: 'none',
-                            color: 'white',
-                            padding: '5px 10px',
-                            borderRadius: '5px',
-                            cursor: 'pointer',
-                            transition: '0.3s',
-                          }}
-                        >
-                          Redeem
+              <div style={{
+                top: isMobile ? '20%' : '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                position: 'absolute',
+                width: isMobile ? '90%' : '400px',
+                backgroundColor: '#F0F8FF',
+                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
+                padding: isMobile ? '15px' : '20px',
+                borderRadius: '10px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'space-around',
+                zIndex: 1000,
+              }}>
+                  <h2 style={{ textAlign: 'center', color: '#333', marginBottom: '1rem' }}>Point Shop</h2>
+                  <PointsFetcher setUserPoints={setUserPoints} />
+                  <div style={{ fontSize: '1.1rem', margin: '1rem 0' }}>Your points: {userPoints}</div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
+                  {avatars.map(avatar => (
+                    <div key={avatar.id} style={{ 
+                      textAlign: 'center',
+                      padding: '1rem',
+                    }}>
+                      <img 
+                        src={avatar.image} 
+                        alt={`Avatar ${avatar.id}`} 
+                        style={{ 
+                          width: '80px',
+                          height: '80px',
+                          borderRadius: '50%',
+                          marginBottom: '0.5rem',
+                        }} 
+                      />
+                      <p>{avatar.cost} Points</p>
+                      <button
+                        onClick={() => handleRedeemAvatar(avatar.id)}
+                        style={{
+                          backgroundColor: '#4CAF50',
+                          border: 'none',
+                          color: 'white',
+                          padding: '10px 20px',
+                          borderRadius: '5px',
+                          cursor: 'pointer',
+                          transition: '0.3s',
+                        }}
+                      >
+                        Redeem
                         </button>
                       </div>
                     ))}
