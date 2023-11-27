@@ -17,10 +17,11 @@ import NavBar from '../components/NavBar';
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const LoginPage = () => {
+const LoginPage = ({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>> }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+ 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,11 +40,13 @@ const LoginPage = () => {
     .then(response => {
       if (response.data.includes('login_success!!!Student')) {
         alert('Login successful');
+        setIsLoggedIn(true);
         setTimeout(() => {
           navigate('/profile');
       }, 2000);
       } else if (response.data.includes('login_success!!!Teacher')) {
         alert('Login successful');
+        setIsLoggedIn(true);
         setTimeout(() => {
           navigate('/main');
         }, 2000);
@@ -55,7 +58,7 @@ const LoginPage = () => {
 
   return (
     <>
-    <NavBar />
+    <NavBar isLoggedIn/>
     <div className="mainDiv">
     <Container component="main" maxWidth="xs">
         <CssBaseline />

@@ -8,12 +8,11 @@ import Grid from '@mui/material/Grid';
 //import { useState } from 'react';
 //import UserFetch from '../components/UserFetch';
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar({ isLoggedIn }: { isLoggedIn: boolean }) {
     // detect if mobile view
     let isMobile = window.screen.width <= 1000
 
-    let isLoggedIn = false; // Replace with login logic // if true, show logout button // if false, show login button
-
+    //const [isLoggedIn] = useState(false);
 
     if (isMobile) {
         return (

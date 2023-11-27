@@ -79,7 +79,7 @@ function MainPage(this: any) {
         if (mainPageView == 0) {
             return (
                 <>
-                <NavBar/>
+                <NavBar isLoggedIn/>
                 <div className="mobileDiv" style={{textAlign: 'center', padding:'3vh'}}>
                     {/* Add NavBar here */}
                     <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Professor View</h1>
@@ -101,7 +101,7 @@ function MainPage(this: any) {
         } else {
             return (
                 <>
-                <NavBar/>
+                <NavBar isLoggedIn/>
                 <div className="mobileDiv" style={{textAlign: 'center'}}>
                     <h1 style={{fontSize:'3vh'}}>Attendance Code:</h1>
                     <h1 style={{fontSize:'10vh', fontWeight:"bold", textShadow:"5px 10px 10px #0000001e"}}>{attendanceCode}</h1>
@@ -119,7 +119,7 @@ function MainPage(this: any) {
         if (mainPageView == 0) {
             return (
                 <>
-                <NavBar/>
+                <NavBar isLoggedIn/>
                 <div className="mainDiv" style={{textAlign: 'center'}}> 
                
                   <div className="pad" style={{padding:'5vh'}}></div>
@@ -141,7 +141,7 @@ function MainPage(this: any) {
         } else { 
             return (
             <>
-            <NavBar/>
+            <NavBar isLoggedIn/>
                 <div className="mainDiv" style={{textAlign: 'center'}}>
                   
                     <button type="button" onClick={handleAttendanceButtonClick} className="btn btn-success attendanceExit" >Close Attendance</button>
