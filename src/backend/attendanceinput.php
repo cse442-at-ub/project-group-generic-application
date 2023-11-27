@@ -29,6 +29,11 @@ header("Access-Control-Allow-Headers: Content-Type");
            $sql = "INSERT INTO Attendance (username, `class token`)
              VALUES ('$username', '$classToken')";
             $result = mysqli_query($conn, $sql);
+            $passwordtocompare3 = "SELECT points FROM Points WHERE username = '$username'";
+            $result3 = mysqli_query($conn, $passwordtocompare3);
+            $result4 = $result3 ++;
+            $sql3 = "UPDATE Points SET points = '$result4' WHERE username = $username";
+            $result = mysqli_query($conn, $sql3);
            echo "insertion success";
         } else{
             echo "invalid code";
