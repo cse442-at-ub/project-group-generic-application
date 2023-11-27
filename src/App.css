@@ -275,3 +275,59 @@ input {
   }
 }
 
+
+.button-5 {
+  align-items: center;
+  background-clip: padding-box;
+  background: linear-gradient(0.39turn,#81bcfb, #7a7aea);
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.button-5:hover,
+.button-5:focus {
+  background: linear-gradient(0.39turn,#89a1f9, #b08eef);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-5:hover {
+  transform: translateY(-4px);
+}
+
+.button-5:active {
+  background: linear-gradient(0.39turn,#89a1f9, #b08eef);
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+
+.gradient-text {
+  background-color: rgb(93, 127, 222, 120, 243);
+  filter: drop-shadow(2px 2px 5px #ffffff);
+  background-image:  linear-gradient(0.39turn,#859ffa, #5e1ed4);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  -moz-text-fill-color: transparent;
+}
