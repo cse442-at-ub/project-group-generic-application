@@ -5,14 +5,36 @@ import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { Home, AccountCircle, EmojiPeople, Login, Assignment, School, Logout } from '@mui/icons-material';
 import Grid from '@mui/material/Grid';
-//import { useState } from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
 //import UserFetch from '../components/UserFetch';
 
-export default function ButtonAppBar({ isLoggedIn }: { isLoggedIn: boolean }) {
+export default function ButtonAppBar() {
     // detect if mobile view
     let isMobile = window.screen.width <= 1000
 
-    //const [isLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    
+    useEffect(() => {
+        const fetchUser = async () => {
+        try {
+            const response = await axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/UserFetch.php', { withCredentials: true });
+            if (response.data?.Username) {
+            setIsLoggedIn(true);
+            } else {
+            setIsLoggedIn(false);
+            }
+        } catch (error) {
+          setIsLoggedIn(false);
+         }
+      };
+      
+          fetchUser();
+        }, [setIsLoggedIn]);
+      
+     
 
     if (isMobile) {
         return (

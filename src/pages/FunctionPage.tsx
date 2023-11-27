@@ -40,7 +40,7 @@ const FunctionPage = () => {
 
   return (
     <>
-    <NavBar isLoggedIn/>
+    <NavBar />
     <div className="mainDiv">
     <Container component="main" maxWidth="xs">
         <CssBaseline />

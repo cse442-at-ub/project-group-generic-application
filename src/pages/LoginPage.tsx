@@ -13,11 +13,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import NavBar from '../components/NavBar';
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const LoginPage = ({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>> }) => {
+
+const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -40,13 +40,13 @@ const LoginPage = ({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch<React.SetS
     .then(response => {
       if (response.data.includes('login_success!!!Student')) {
         alert('Login successful');
-        setIsLoggedIn(true);
+        //setIsLoggedIn(true);
         setTimeout(() => {
           navigate('/profile');
       }, 2000);
       } else if (response.data.includes('login_success!!!Teacher')) {
         alert('Login successful');
-        setIsLoggedIn(true);
+        //setIsLoggedIn(true);
         setTimeout(() => {
           navigate('/main');
         }, 2000);
@@ -58,7 +58,7 @@ const LoginPage = ({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch<React.SetS
 
   return (
     <>
-    <NavBar isLoggedIn/>
+    <NavBar />
     <div className="mainDiv">
     <Container component="main" maxWidth="xs">
         <CssBaseline />

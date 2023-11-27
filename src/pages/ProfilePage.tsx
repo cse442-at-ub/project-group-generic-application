@@ -196,7 +196,7 @@ const handleDownload = async () => {
 
   if(isMobile) {
     return (
-      <><NavBar isLoggedIn/><div className="mainDiv">
+      <><NavBar /><div className="mainDiv">
         <CssBaseline />
         <Container component="main" maxWidth="lg">
           <Grid container spacing={2}>
@@ -408,7 +408,7 @@ const handleDownload = async () => {
     );
   } else {
     return (
-    <><NavBar isLoggedIn/><div className="mainDiv">
+    <><NavBar /><div className="mainDiv">
         <CssBaseline />
         <Container component="main" maxWidth="lg">
           <Grid container spacing={2}>

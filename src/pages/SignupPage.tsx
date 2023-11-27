@@ -107,7 +107,7 @@ const SignupPage: React.FC = () => {
     };
 
     return (
-        <><NavBar isLoggedIn/><form className="signup-form" onSubmit={handleSubmit}>
+        <><NavBar /><form className="signup-form" onSubmit={handleSubmit}>
             <h1>Who are you...</h1>
             <div className="role-container">
                 <button
