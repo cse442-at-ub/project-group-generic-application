@@ -280,7 +280,7 @@ input {
   align-items: center;
   background-clip: padding-box;
   background: linear-gradient(0.39turn,#81bcfb, #7a7aea);
-  border: 1px solid transparent;
+  border: 0px solid transparent;
   border-radius: .25rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
@@ -307,7 +307,7 @@ input {
 
 .button-5:hover,
 .button-5:focus {
-  background: linear-gradient(0.39turn,#89a1f9, #b08eef);
+  background: linear-gradient(0.39turn,#c589f9, #ef8eda);
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
@@ -316,7 +316,7 @@ input {
 }
 
 .button-5:active {
-  background: linear-gradient(0.39turn,#89a1f9, #b08eef);
+  background: linear-gradient(0.39turn,#c589f9, #ef8eda);
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
 }
