@@ -34,7 +34,30 @@ export default function ButtonAppBar() {
           fetchUser();
         }, [setIsLoggedIn]);
       
-     
+    const handleLogout = async () => {
+        try {
+            const response = await fetch('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Logout.php', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              credentials: 'include',
+              body: JSON.stringify({ signout: true }) // Include the 'signout' parameter
+            });
+        
+            if (!response.ok) {
+              throw new Error('Logout failed');
+             // alert('Logout failed');
+            }
+            console.log('Logout successful');
+            setIsLoggedIn(false);
+            window.location.href = 'https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/#/login';
+            alert('Logout successful');
+          } catch (error) {
+            console.error('Logout error:', error);
+            alert('Logout error');
+          }
+    };
 
     if (isMobile) {
         return (
@@ -50,7 +73,7 @@ export default function ButtonAppBar() {
                             </Grid>
                             {isLoggedIn ? (
                                 <Grid item xs={2} sm={2}>
-                                    <Button color="inherit" component={Link} to="/logout"><Logout /></Button>
+                                    <Button color="inherit" onClick={handleLogout}><Logout /></Button>
                                 </Grid>
                             ) : (
                                 <Grid item xs={2} sm={2}>
@@ -85,7 +108,7 @@ export default function ButtonAppBar() {
                             </Grid>
                             {isLoggedIn ? (
                                 <Grid item xs={12} sm={2}>
-                                    <Button color="inherit" component={Link} to="/logout"><Logout />&nbsp; Logout</Button>
+                                    <Button color="inherit" onClick={handleLogout}><Logout />&nbsp; Logout</Button>
                                 </Grid>
                             ) : (
                                 <Grid item xs={12} sm={2}>

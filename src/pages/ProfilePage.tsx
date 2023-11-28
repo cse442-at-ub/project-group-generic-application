@@ -178,7 +178,7 @@ const handleDownload = async () => {
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'attendance_report.csv';
+    a.download = 'attendance_reports.csv';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
