@@ -161,32 +161,35 @@ const handleCloseDownload = () => {
 
 const handleDownload = async () => {
   try {
-    const response = await fetch('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/downloadAttendance.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await axios.post(
+      'https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/downloadAttendance.php',
+      {
+        class_code: classToken,
       },
-      body: JSON.stringify({ class_code: classToken }),
-    });
+      { responseType: 'blob' } 
+    );
 
-    if (!response.ok) {
-      throw new Error('Failed to download attendance records');
+    if (response.status === 200) {
+      const blob = new Blob([response.data], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      // Create a temporary link element
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'attendance_records.csv'; 
+      document.body.appendChild(link);
+      // Trigger a click on the link to start the download
+      link.click();
+      // Remove the link from the document
+      document.body.removeChild(link);
+    } else {
+      alert('Error downloading attendance records');
     }
-
-    const blob = await response.blob();
-    const url = window.URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'attendance_reports.csv';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
   } catch (error) {
-    console.error('Error downloading attendance records:', error);
+    console.error('Error during attendance records download:', error);
+    alert('An error occurred while downloading attendance records.');
   } finally {
-    handleCloseDownload();
     setClassToken('');
+    handleCloseDownload();
   }
 };
 
