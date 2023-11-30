@@ -71,7 +71,7 @@ const FunctionPage = () => {
               autoComplete="code"
               autoFocus
               value={code}
-              onChange={(e) => setcode(e.target.value)}
+              onChange={(e) => setCode(e.target.value)}
             />
              <button style={{ fontSize: 20}} className="button-5" role="button">Join</button>
             <Grid container>
