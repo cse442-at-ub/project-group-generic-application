@@ -16,6 +16,8 @@ function HomePage() {
             <a style={{ fontSize: 20 }} href={"./#/signup"}>Click here to go to the Signup Page</a>
             <br></br>
             <a style={{ fontSize: 20 }} href={"./#/profile"}>Click here to go to the Profile Page</a>
+            <br></br>
+            <a style={{ fontSize: 20 }} href={"./#/profprofile"}>Click here to go to the Professor Profile Page</a>
 
         </div></>
     )
