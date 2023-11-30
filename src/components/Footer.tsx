@@ -19,15 +19,21 @@ function Footer({studentNumber, setStudentNumber}: Props) {
     let soundArray = ["joinSoundBounce.wav","joinSoundBubble.wav","joinSoundChime.wav","joinSoundCoin.wav", "joinSoundDing.wav", "joinSoundPop.wav", "joinSoundRetro.wav", "joinSoundWhir.wav"]
 
     function playSound(sound: number) {
+        // make pop the default and have other sounds rarer
+        if (Math.random() <= .7) {
+            sound = 5
+        }
+
         const audio = new Audio("./soundEffects/" + soundArray[sound]);
         audio.play();
     }
     const [studentArray, setStudentArray] = useState<string[]>([]);
 
 
+
     // running this function repeatedly should ideally be a toggle
     function fetchStudents () {
-        playSound(Math.floor(Math.random() * soundArray.length))
+        // playSound(Math.floor(Math.random() * soundArray.length))
         // should really be moved somewhere else if this function will be repeatedly called
 
         axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Profmainstudentarray.php')
@@ -57,16 +63,19 @@ function Footer({studentNumber, setStudentNumber}: Props) {
 
 
     function handleAddStudentClick(this: any) {
-        playSound(Math.floor(Math.random() * soundArray.length))
+        // playSound(Math.floor(Math.random() * soundArray.length))
         let length = studentArray.length
         setStudentArray([...studentArray, "name" + (length + 1)])
         setStudentNumber(studentArray.length)
     }
 
     useEffect(() => {
-        console.log(studentArray)
-        console.log("length: " + studentArray.length)
+        // console.log(studentArray)
+        // console.log("length: " + studentArray.length)
         setStudentNumber(studentArray.length)
+        if (studentArray.length > 0) [
+            playSound(Math.floor(Math.random() * soundArray.length))
+        ]
       }, [studentArray]); // Specify "value" as the dependency
     
 
@@ -79,10 +88,9 @@ function Footer({studentNumber, setStudentNumber}: Props) {
         let count = studentNumber
         let uiItems = []
 
-        // move playsound to here?
         // possibly change student array to array of arrays
         // or keep separate array for each customization option (pictures, colors, sound)
-
+        
         while(count--)
            uiItems.unshift(
                 <Profile profilePicture={images[count % 7]} username={studentArray[count]} background_choice={count % 5}></Profile>
