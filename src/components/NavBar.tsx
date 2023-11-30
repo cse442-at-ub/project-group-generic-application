@@ -122,7 +122,7 @@ export default function ButtonAppBar() {
                                 <Button color="inherit" component={Link} to="/profile"><AccountCircle />&nbsp; Profile</Button>
                             </Grid>
                             <Grid item xs={12} sm={2}>
-                                <Button color="inherit" component={Link} to="/function"><EmojiPeople />&nbsp; Function</Button>
+                                <Button color="inherit" component={Link} to="/function"><EmojiPeople />&nbsp; Attendance</Button>
                             </Grid>
                         </Grid>
                     </Toolbar>
