@@ -3,7 +3,7 @@ import { Modal, Button, TextField, Container, Typography, Grid, CssBaseline, Box
 import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 import axios from 'axios';
-/* import UserFetch from '../components/UserFetch'; */
+import UserFetch from '../components/UserFetch';
 
 const ProfProfile = () => {
   const [user, setUser] = useState({ Username: '' });
@@ -26,7 +26,7 @@ const ProfProfile = () => {
 
     try {
       const response = await axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/ClassCreate.php', {
-        username: 'Jack',// user.Username,
+        username: user.Username,
         className: newClassName,
         token: token
       });
@@ -57,10 +57,10 @@ const ProfProfile = () => {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12}>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                {/*                 <Typography component="h1" variant="h6">
+                <Typography component="h1" variant="h6">
                   <UserFetch setUser={handleSetUser} />
                   {user.Username && <p>{user.Username}</p>}
-                </Typography> */}
+                </Typography>
 
                 <Button variant="contained" color="primary" onClick={() => setOpenModal(true)}>
                   Create a Class
