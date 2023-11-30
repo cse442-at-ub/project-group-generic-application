@@ -57,10 +57,10 @@ const ProfProfile = () => {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12}>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Typography component="h1" variant="h6">
-                  <UserFetch setUser={handleSetUser} />
-                  {user.Username && <p>{user.Username}</p>}
-                </Typography>
+              <Typography component="h1" variant="h6">
+                <UserFetch setUser={handleSetUser} shouldFetchUser={true} />
+                {user.Username && <p>{user.Username}</p>}
+              </Typography>
 
                 <Button variant="contained" color="primary" onClick={() => setOpenModal(true)}>
                   Create a Class
