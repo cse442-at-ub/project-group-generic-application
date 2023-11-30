@@ -305,8 +305,7 @@ input {
   width: auto;
 }
 
-.button-5:hover,
-.button-5:focus {
+.button-5:hover {
   background: linear-gradient(0.39turn,#c589f9, #ef8eda);
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
