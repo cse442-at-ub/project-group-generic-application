@@ -2,11 +2,11 @@ import '/src/App.css'
 import NavBar from '../components/NavBar';
 import { useNavigate } from 'react-router-dom';
 
-
 function HomePage() {
 
     let navigate = useNavigate(); 
     const routeChange = () =>{ 
+
       let path = `./login`; 
       navigate(path);
     }
