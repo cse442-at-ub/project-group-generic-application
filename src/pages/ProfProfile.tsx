@@ -58,7 +58,7 @@ const ProfProfile = () => {
             <Grid item xs={12} sm={12}>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <Typography component="h1" variant="h6">
-                <UserFetch setUser={handleSetUser} shouldFetchUser={true} />
+                <UserFetch setUser={handleSetUser}/>
                 {user.Username && <p>{user.Username}</p>}
               </Typography>
 

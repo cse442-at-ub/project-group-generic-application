@@ -238,7 +238,7 @@ const handleDownload = async () => {
               
                 </Typography>
                 <Typography component="h1" variant="h6">
-                  <UserFetch setUser={handleSetUser} shouldFetchUser={true} />
+                  <UserFetch setUser={handleSetUser}/>
                   {user.Username && <p>{user.Username}</p>}
                 </Typography>
                 {/* Classes Joined */}
@@ -454,7 +454,7 @@ const handleDownload = async () => {
                   </div>
                 </Typography>
                 <Typography component="h1" variant="h6">
-                  <UserFetch setUser={handleSetUser} shouldFetchUser={true} />
+                  <UserFetch setUser={handleSetUser}/>
                   {user.Username && <p>{user.Username}</p>}
                 </Typography>
                 {/* Classes Joined */}

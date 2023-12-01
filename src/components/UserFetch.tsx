@@ -1,30 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 type UserFetchProps = {
   setUser: (user: { Username: string }) => void;
-  shouldFetchUser: boolean;
 };
 
-const UserFetch: React.FC<UserFetchProps> = ({ setUser, shouldFetchUser }) => {
+const UserFetch: React.FC<UserFetchProps> = ({ setUser }) => {
+  const [isFetching, setIsFetching] = useState(true);
+
   useEffect(() => {
-    if (shouldFetchUser) {
+    const cancelTokenSource = axios.CancelToken.source();
+
+    if (isFetching) {
       const fetchUser = async () => {
         try {
-          const response = await axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/UserFetch.php', { withCredentials: true });
+          const response = await axios.get('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/UserFetch.php', {
+            withCredentials: true,
+            cancelToken: cancelTokenSource.token
+          });
           if (response.data?.Username) {
             setUser({ Username: response.data.Username });
           } else {
             console.error('Invalid response structure:', response);
           }
         } catch (error) {
-          console.error('Error fetching user:', error);
+          if (!axios.isCancel(error)) {
+            console.error('Error fetching user:', error);
+          }
         }
       };
 
-      fetchUser();
+      fetchUser().then(() => setIsFetching(false));
     }
-  }, [setUser, shouldFetchUser]);
+
+    return () => {
+      cancelTokenSource.cancel('Component unmounted or effect re-running');
+    };
+  }, [setUser]);
 
   return null;
 };
