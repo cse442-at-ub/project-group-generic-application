@@ -442,7 +442,7 @@ const handleDownload = async () => {
               > 
                 <AvatarFetch username={user.Username} setUserAvatar={setUserAvatar} />
                 <Avatar
-                  sx={{ width: isMobile ? 80 : 200, height: isMobile ? 80 : 200, bgcolor: 'secondary.main', mt: 2, mb: 2 }}
+                  sx={{ width: isMobile ? 80 : 200, height: isMobile ? 80 : 200, bgcolor: 'secondary.main', border: '3px solid #000000', mt: 4, mb: 4 }}
                   src={userAvatar ?? ''}
                 >
                   {/* If no avatar is selected, this text will show. You can replace it with any default text or icon. */}

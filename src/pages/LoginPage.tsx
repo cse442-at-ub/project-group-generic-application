@@ -48,7 +48,7 @@ const LoginPage = () => {
         alert('Login successful');
         //setIsLoggedIn(true);
         setTimeout(() => {
-          navigate('/profProfile');
+          navigate('/profprofile');
         }, 2000);
       } else {
         alert('Login failed: ' + response.data);
