@@ -1,6 +1,5 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -8,6 +7,7 @@ import Container from '@mui/material/Container';
 import axios from 'axios';
 import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
+import { School } from '@mui/icons-material';
 
 const FunctionPage = () => {
   const [code, setcode] = useState('');
@@ -53,12 +53,12 @@ const FunctionPage = () => {
             // width: "100%"
           }}
         >
-          <Typography style={{ fontWeight: "bold", fontSize: 30}} component="h1" variant="h6">
-            Check Your Professor's Screen for The Code
+          <Typography style={{ fontWeight: "bold", fontSize: 35}} component="h1" variant="h6">
+          <School /> &nbsp; Check Your Professor's Screen for The Code
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
-              margin="normal"
+               margin="normal"
               required
               fullWidth
               id="code"

@@ -93,7 +93,7 @@ function Footer({studentNumber, setStudentNumber}: Props) {
         
         while(count--)
            uiItems.unshift(
-                <Profile profilePicture={images[count % 7]} username={studentArray[count]} background_choice={count % 5}></Profile>
+                <Profile profilePicture={images[count % 7]} username={studentArray[count]} background_choice={count % 5} arrayIndex={count}></Profile>
             )
             // if count = 1 playsound from array?
         return uiItems;

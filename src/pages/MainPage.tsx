@@ -20,6 +20,7 @@ function MainPage(this: any) {
     
         const code = {
             code: inputCode,
+            classCode: "ABCD",
         };
         
         axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Profmain.php', code, {
