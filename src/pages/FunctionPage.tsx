@@ -47,7 +47,7 @@ const FunctionPage = () => {
     <>
     <NavBar />
     <div className="mainDiv">
-    <Container component="main" maxWidth="xs">
+    <Container component="main" >
         <CssBaseline />
         <Box
           sx={{

@@ -1,4 +1,4 @@
-import { Verified, BeachAccess, BugReport, Castle, Whatshot, Mood, EmojiEvents } from '@mui/icons-material';
+import { Verified, BugReport, Whatshot, Mood, EmojiEvents } from '@mui/icons-material';
 
 
 interface Props {
