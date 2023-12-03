@@ -1,6 +1,5 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -9,6 +8,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import NavBar from '../components/NavBar';
+import { School } from '@mui/icons-material';
 
 const FunctionPage = () => {
   const [code, setCode] = useState('');
@@ -57,12 +57,12 @@ const FunctionPage = () => {
             alignItems: 'center',
           }}
         >
-          <Typography style={{ fontWeight: "bold", fontSize: 30}} component="h1" variant="h6">
-            Look up at Professor Screen for Code
+          <Typography style={{ fontWeight: "bold", fontSize: 35}} component="h1" variant="h6">
+          <School /> &nbsp; Check Your Professor's Screen for The Code
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
-              margin="normal"
+               margin="normal"
               required
               fullWidth
               id="code"
@@ -76,11 +76,6 @@ const FunctionPage = () => {
              <button style={{ fontSize: 20}} className="button-5" role="button">Join</button>
             <Grid container>
               <Grid item xs>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Having problems? Contact Us"}
-                </Link>
               </Grid>
             </Grid>
           </Box>
