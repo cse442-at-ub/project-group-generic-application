@@ -14,8 +14,14 @@ import ClassesFetcher from '../components/UserClass';
 import PointsFetcher from '../components/UserPoint';
 import UserFetch from '../components/UserFetch';
 import AvatarFetch from '../components/Avatar';
-import avatar1 from '../avatar/avatar1.png'
-import avatar2 from '../avatar/avatar2.png'
+import avatar1 from '../avatar/avatar1.png';
+import avatar2 from '../avatar/avatar2.png';
+import avatar3 from '../avatar/avatar3.png';
+import avatar4 from '../avatar/avatar4.png';
+import avatar5 from '../avatar/avatar5.png';
+import avatar6 from '../avatar/avatar6.png';
+import avatar7 from '../avatar/avatar7.png';
+import { useNavigate } from 'react-router-dom';
 
 
 const ProfilePage = () => {
@@ -30,6 +36,7 @@ const ProfilePage = () => {
   const [classesJoined, setClassesJoined] = useState<string[]>([]);
   const [classToken, setClassToken] = useState('');
   const [userPoints, setUserPoints] = useState(0);
+  const navigate = useNavigate();
 
   const [userAvatar, setUserAvatar] = useState<string | null>(localStorage.getItem('userAvatar'));
   useEffect(() => {
@@ -41,8 +48,13 @@ const ProfilePage = () => {
   }, [userAvatar]);
 
   const avatars = [
-    { id: 1, image: avatar1, cost: 100 },
-    { id: 2, image: avatar2, cost: 200 },
+    { id: 1, image: avatar1, cost: 25 },
+    { id: 2, image: avatar2, cost: 50 },
+    { id: 3, image: avatar3, cost: 75 },
+    { id: 4, image: avatar4, cost: 100 },
+    { id: 5, image: avatar5, cost: 125 },
+    { id: 6, image: avatar6, cost: 150 },
+    { id: 7, image: avatar7, cost: 200 },
   ];
 
   const handleOpenPointShop = () => {
@@ -55,6 +67,10 @@ const ProfilePage = () => {
 
   const handleSetUser = (userData: { Username: string }) => {
     setUser(userData);
+  };
+
+  const handleClassClick = (classToken: String) => {
+    navigate('/function', { state: { classToken } });
   };
 
   const handleRedeemAvatar = async (avatarId: number) => {
@@ -222,7 +238,7 @@ const handleDownload = async () => {
               
                 </Typography>
                 <Typography component="h1" variant="h6">
-                  <UserFetch setUser={handleSetUser} />
+                  <UserFetch setUser={handleSetUser}/>
                   {user.Username && <p>{user.Username}</p>}
                 </Typography>
                 {/* Classes Joined */}
@@ -426,7 +442,7 @@ const handleDownload = async () => {
               > 
                 <AvatarFetch username={user.Username} setUserAvatar={setUserAvatar} />
                 <Avatar
-                  sx={{ width: isMobile ? 80 : 200, height: isMobile ? 80 : 200, bgcolor: 'secondary.main', mt: 2, mb: 2 }}
+                  sx={{ width: isMobile ? 80 : 200, height: isMobile ? 80 : 200, bgcolor: 'secondary.main', border: '3px solid #000000', mt: 4, mb: 4 }}
                   src={userAvatar ?? ''}
                 >
                   {/* If no avatar is selected, this text will show. You can replace it with any default text or icon. */}
@@ -438,7 +454,7 @@ const handleDownload = async () => {
                   </div>
                 </Typography>
                 <Typography component="h1" variant="h6">
-                  <UserFetch setUser={handleSetUser} />
+                  <UserFetch setUser={handleSetUser}/>
                   {user.Username && <p>{user.Username}</p>}
                 </Typography>
                 {/* Classes Joined */}
@@ -448,7 +464,7 @@ const handleDownload = async () => {
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
                   <ClassesFetcher setClassesJoined={setClassesJoined} />
                   {classesJoined.map((className, idx) => (
-                    <Link href="./#/function" key={idx} variant="body2" style={linkStyle}>
+                    <button key={idx} onClick={() => handleClassClick(className)} style={linkStyle}>
                       <Box sx={{
                         width: isMobile ? '80px' : '150px',
                         height: isMobile ? '80px' : '80px',
@@ -458,7 +474,7 @@ const handleDownload = async () => {
                       }}>
                         {className}
                       </Box>
-                    </Link>
+                    </button>
                   ))}
                 </Box>
                 <br></br>
