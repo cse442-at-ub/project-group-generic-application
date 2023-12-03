@@ -337,7 +337,7 @@ input {
   background: linear-gradient(0.35turn,#ffffff, #fdfdfd);
   margin-top: 1vh;
   max-height: inherit;
-  /* font-size: 0.875rem; */
+  font-size: 0.875rem;
   font-weight: 500;
   padding-top: 5% ;
   padding-bottom: 10px;
