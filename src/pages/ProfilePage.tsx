@@ -37,6 +37,7 @@ const ProfilePage = () => {
   const [classToken, setClassToken] = useState('');
   const [userPoints, setUserPoints] = useState(0);
   const navigate = useNavigate();
+  const [token, setToken] = useState<string>('');
 
   const [userAvatar, setUserAvatar] = useState<string | null>(localStorage.getItem('userAvatar'));
   useEffect(() => {
@@ -175,12 +176,12 @@ const handleCloseDownload = () => {
   setOpenDownload(false);
 };
 
-const handleDownload = async () => {
+const handleDownload = async (token: String) => {
   try {
     const response = await axios.post(
       'https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/downloadAttendance.php',
       {
-        class_code: classToken,
+        class_code: token,
       },
       { responseType: 'blob' } 
     );
@@ -338,10 +339,10 @@ const handleDownload = async () => {
                     id="classToken"
                     label="Enter Class Token"
                     name="classToken"
-                    onChange={(e) => setClassToken(e.target.value)} />
+                    onChange = {(e) => setToken(e.target.value)} />
                   <Box sx={{ mt: 2 }}>
                     <button
-                      onClick={handleDownload}
+                      onClick={() => handleDownload(token)}
                       style={{
                         backgroundColor: 'green',
                         border: 'none',
@@ -541,9 +542,9 @@ const handleDownload = async () => {
                     id="classToken"
                     label="Enter Class Token"
                     name="classToken"
-                    onChange={(e) => setClassToken(e.target.value)} />
+                    onChange={(e) => setToken(e.target.value)} />
                   <button
-                    onClick={handleDownload}
+                    onClick={() => handleDownload(token)}
                     style={{
                       backgroundColor: 'green',
                       border: 'none',
