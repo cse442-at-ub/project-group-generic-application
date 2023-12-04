@@ -16,13 +16,13 @@ function Profile({profilePicture, username, background_choice, arrayIndex}: Prop
     // icon list (mui icons)
     let profileEmoji
 
-    if (arrayIndex <= 2) {
+    if (arrayIndex == 0) {
         profileEmoji = <EmojiEvents />;
-    } else if (arrayIndex %5 == 1 || arrayIndex %6 == 1) {
+    } else if (arrayIndex == 1 || arrayIndex == 2) {
         profileEmoji = <Verified />;
-    } else if (arrayIndex %4 == 0) {
+    } else if (arrayIndex == 3) {
         profileEmoji = <BugReport />;
-    } else if (arrayIndex %7 == 3) {
+    } else if (arrayIndex == 4) {
         profileEmoji = <Whatshot />;
     } else {
         profileEmoji = <Mood />;  

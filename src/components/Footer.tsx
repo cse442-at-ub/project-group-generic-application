@@ -13,7 +13,7 @@ function Footer({studentNumber, setStudentNumber}: Props) {
     // detect if mobile view
     let isMobile = window.screen.width <= 1000
 
-    let images = ['https://www.nps.gov/common/uploads/cropped_image/secondary/FAB0F317-9673-A7A2-8078F4B600A52F6F.jpg?width=640&quality=90&mode=crop', "https://samuelearp.com/wp-content/uploads/2023/06/Rugged-Mountains-Samuel-Earp-landscape-painting-1024x1024.jpg", "https://www.cityofredlands.org/sites/main/files/imagecache/lightbox/main-images/e0198d157dbc85383b6dfbd9e33b6c2d--low-maintenance-yard-landscape-front-yards.jpg", "https://www.boredpanda.com/blog/wp-content/uuuploads/landscape-photography/landscape-photography-3.jpg", "https://landezine.com/wp-content/uploads/2022/10/landscape_architecture_f26820ee-6f03-4b98-b86d-b9ed0bf63d51-630x630.jpg", 'https://monticello-www.s3.amazonaws.com/files/pages/square-xsml-vegetable-garden-terrace-1-1270-10142010-048.jpg', "https://img.freepik.com/premium-photo/landscape-nature-wallpaper_882954-925.jpg", "https://www.serengeti.com/assets/img/serengeti-landscape-vegetation-riverine-forest-small.jpg", "https://www.nps.gov/common/uploads/grid_builder/culturallandscapes/crop1_1/48C23B78-1DD8-B71B-0B497F159E15A370.jpg?width=640&quality=90&mode=crop"]
+    let images = ['https://www.nps.gov/common/uploads/cropped_image/secondary/FAB0F317-9673-A7A2-8078F4B600A52F6F.jpg?width=640&quality=90&mode=crop', "https://samuelearp.com/wp-content/uploads/2023/06/Rugged-Mountains-Samuel-Earp-landscape-painting-1024x1024.jpg", "https://i.imgur.com/3ZAWLhe.png", "https://i.imgur.com/99CjDf2.png", "https://i.imgur.com/W5YZQRv.jpg", 'https://i.imgur.com/J5s1MKi.png', "https://img.freepik.com/premium-photo/landscape-nature-wallpaper_882954-925.jpg", "https://www.serengeti.com/assets/img/serengeti-landscape-vegetation-riverine-forest-small.jpg", "https://www.nps.gov/common/uploads/grid_builder/culturallandscapes/crop1_1/48C23B78-1DD8-B71B-0B497F159E15A370.jpg?width=640&quality=90&mode=crop"]
 
     // sound function
     let soundArray = ["joinSoundBounce.wav","joinSoundBubble.wav","joinSoundChime.wav","joinSoundCoin.wav", "joinSoundDing.wav", "joinSoundPop.wav", "joinSoundRetro.wav", "joinSoundWhir.wav"]
@@ -61,11 +61,16 @@ function Footer({studentNumber, setStudentNumber}: Props) {
             setStudentNumber(studentArray.length)
       }
 
+    let studentNameList =["markb","abbyd98","hertzFan22","ubparking","billsmafia","ilovecse","yo"]
 
     function handleAddStudentClick(this: any) {
         // playSound(Math.floor(Math.random() * soundArray.length))
         let length = studentArray.length
-        setStudentArray([...studentArray, "name" + (length + 1)])
+        if (length < studentNameList.length) {
+            setStudentArray([...studentArray, studentNameList[length]])
+        } else {
+            setStudentArray([...studentArray, "name" + (length + 1)])
+        }
         setStudentNumber(studentArray.length)
     }
 
