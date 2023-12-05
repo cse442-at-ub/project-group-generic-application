@@ -1,9 +1,9 @@
-
 import { Modal, Button, TextField, Container, Typography, Grid, CssBaseline, Box } from '@mui/material';
 import React, { useState } from 'react';
 import NavBar from '../components/NavBar';
 import axios from 'axios';
 import UserFetch from '../components/UserFetch';
+import ClassesFetcher from '../components/CreatedClass';
 
 const ProfProfile = () => {
   const [user, setUser] = useState({ Username: '' });
@@ -45,6 +45,15 @@ const ProfProfile = () => {
     setNewClassName('');
     setOpenModal(false);
   };
+
+  const updateClassesCreated = (fetchedClasses: { classname: string, code: string }[]) => {
+    const formattedClasses = fetchedClasses.map(classData => ({
+      name: classData.classname,
+      token: classData.code
+    }));
+    setClassesCreated(formattedClasses);
+  };
+
 
   let isMobile = window.screen.width <= 1000;
 
@@ -95,6 +104,7 @@ const ProfProfile = () => {
                   Classes Created: {classesCreated.length}
                 </Typography>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
+                  <ClassesFetcher setClassesCreated={updateClassesCreated} />
                   {classesCreated.map((classItem, idx) => (
                     <Box key={idx} sx={{
                       width: isMobile ? '80px' : '150px',
