@@ -560,55 +560,65 @@ const handleDownload = async (token: String) => {
                 </div>
               </Modal>
               <Modal open={openPointShop} onClose={handleClosePointShop}>
-              <div style={{
-                top: isMobile ? '20%' : '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                position: 'absolute',
-                width: isMobile ? '90%' : '400px',
-                backgroundColor: '#F0F8FF',
-                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
-                padding: isMobile ? '15px' : '20px',
-                borderRadius: '10px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'space-around',
-                zIndex: 1000,
-              }}>
+                <div style={{
+                  top: isMobile ? '20%' : '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  position: 'absolute',
+                  width: isMobile ? '90%' : '520px',
+                  backgroundColor: '#F0F8FF',
+                  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
+                  padding: isMobile ? '15px' : '25px',
+                  borderRadius: '10px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'space-around',
+                  zIndex: 1000,
+                }}>
                   <h2 style={{ textAlign: 'center', color: '#333', marginBottom: '1rem' }}>Point Shop</h2>
                   <PointsFetcher setUserPoints={setUserPoints} />
                   <div style={{ fontSize: '1.1rem', margin: '1rem 0' }}>Your points: {userPoints}</div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
-                  {avatars.map(avatar => (
-                    <div key={avatar.id} style={{ 
-                      textAlign: 'center',
-                      padding: '1rem',
-                    }}>
-                      <img 
-                        src={avatar.image} 
-                        alt={`Avatar ${avatar.id}`} 
-                        style={{ 
-                          width: '80px',
-                          height: '80px',
-                          borderRadius: '50%',
-                          marginBottom: '0.5rem',
-                        }} 
-                      />
-                      <p>{avatar.cost} Points</p>
-                      <button
-                        onClick={() => handleRedeemAvatar(avatar.id)}
-                        style={{
-                          backgroundColor: '#4CAF50',
-                          border: 'none',
-                          color: 'white',
-                          padding: '10px 20px',
-                          borderRadius: '5px',
-                          cursor: 'pointer',
-                          transition: '0.3s',
-                        }}
-                      >
-                        Redeem
+                  <div style={{ 
+                    display: 'flex', 
+                    flexWrap: 'wrap', 
+                    justifyContent: 'center', 
+                    gap: isMobile ? '0.5rem' : '1rem',
+                    overflowX: 'hidden', 
+                    overflowY: 'auto',
+                    WebkitOverflowScrolling: 'touch',
+                    maxHeight: '300px',
+                  }}>
+                    {avatars.map(avatar => (
+                      <div key={avatar.id} style={{ 
+                        textAlign: 'center',
+                        padding: '1rem',
+                        width: isMobile ? '50%' : 'calc(33% - 1rem)',
+                      }}>
+                        <img 
+                          src={avatar.image} 
+                          alt={`Avatar ${avatar.id}`} 
+                          style={{ 
+                            width: isMobile ? '100px' : '80px',
+                            height: isMobile ? '100px' : '80px',
+                            borderRadius: '50%',
+                            marginBottom: '0.5rem',
+                          }} 
+                        />
+                        <p>{avatar.cost} Points</p>
+                        <button
+                          onClick={() => handleRedeemAvatar(avatar.id)}
+                          style={{
+                            backgroundColor: '#4CAF50',
+                            border: 'none',
+                            color: 'white',
+                            padding: isMobile ? '12px 24px' : '10px 20px',
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                            transition: '0.3s',
+                          }}
+                        >
+                          Redeem
                         </button>
                       </div>
                     ))}

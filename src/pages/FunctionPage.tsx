@@ -14,12 +14,13 @@ const FunctionPage = () => {
   const [code, setCode] = useState('');
   const location = useLocation();
   const classToken = location.state?.classToken || 'DEFAULT_TOKEN';
+  const classTokenString = Array.isArray(classToken) ? classToken.join('') : classToken;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log({
         code,
-        classToken,
+        classTokenString,
     });
 
     const codeRegex = /^[A-Za-z0-9]+$/;
@@ -31,7 +32,7 @@ const FunctionPage = () => {
 
     const attendanceCode = {
       'code': code,
-      'classToken': classToken,
+      'classToken': classTokenString,
     };
     
     axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/attendanceinput.php', attendanceCode)
