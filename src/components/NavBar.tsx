@@ -95,9 +95,7 @@ export default function ButtonAppBar() {
                                     <Button color="inherit" component={Link} to="/profile"><AccountCircle /></Button>
                                 </Grid>
                             ) : (
-                                <Grid item xs={2} sm={2}>
-                                    <Button color="inherit" component={Link} to="/profprofile"><AccountCircle /></Button>
-                                </Grid>
+                                <Grid></Grid>
                             )}
                         </Grid>
                     </Toolbar>
@@ -119,7 +117,7 @@ export default function ButtonAppBar() {
                             </Grid>
                             ) : (
                                 <Grid item xs={12} sm={2.4}>
-                                    <Button color="inherit" component={Link} to="/main"><School />&nbsp; Main</Button>
+                                    <Button color="inherit" component={Link} to="/main"><School />&nbsp; Professor Page</Button>
                                 </Grid>
                             )}
                             {isLoggedIn ? (
@@ -139,9 +137,7 @@ export default function ButtonAppBar() {
                                     <Button color="inherit" component={Link} to="/profile"><AccountCircle />&nbsp; Profile</Button>
                                 </Grid>
                             ) : (
-                                <Grid item xs={12} sm={2.4}>
-                                    <Button color="inherit" component={Link} to="/profprofile"><AccountCircle />&nbsp; Profile</Button>
-                                </Grid>
+                                <Grid></Grid>
                             )}
                         </Grid>
                     </Toolbar>
