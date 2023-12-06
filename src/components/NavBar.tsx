@@ -15,7 +15,18 @@ export default function ButtonAppBar() {
     let isMobile = window.screen.width <= 1000
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    
+    const [student, setStudent] = useState(false);
 
+    const userRole = localStorage.getItem('userRole');
+
+    if (userRole == 'student') {
+        setStudent(true);
+    }
+
+    if (userRole == 'teacher') {
+        setStudent(false);
+    }
     
     useEffect(() => {
         const fetchUser = async () => {
@@ -83,9 +94,15 @@ export default function ButtonAppBar() {
                             <Grid item xs={2} sm={2}>
                                 <Button color="inherit" component={Link} to="/signup"><Assignment /></Button>
                             </Grid>
-                            <Grid item xs={2} sm={2}>
-                                <Button color="inherit" component={Link} to="/profile"><AccountCircle /></Button>
-                            </Grid>
+                            {student ? (
+                                <Grid item xs={2} sm={2}>
+                                    <Button color="inherit" component={Link} to="/profile"><AccountCircle /></Button>
+                                </Grid>
+                            ) : (
+                                <Grid item xs={2} sm={2}>
+                                    <Button color="inherit" component={Link} to="/profprofile"><AccountCircle /></Button>
+                                </Grid>
+                            )}
                             <Grid item xs={2} sm={2}>
                                 <Button color="inherit" component={Link} to="/function"><EmojiPeople /></Button>
                             </Grid>
@@ -118,9 +135,15 @@ export default function ButtonAppBar() {
                             <Grid item xs={12} sm={2}>
                                 <Button color="inherit" component={Link} to="/signup"><Assignment />&nbsp; Signup</Button>
                             </Grid>
-                            <Grid item xs={12} sm={2}>
-                                <Button color="inherit" component={Link} to="/profile"><AccountCircle />&nbsp; Profile</Button>
-                            </Grid>
+                            {student ? (
+                                <Grid item xs={12} sm={2}>
+                                    <Button color="inherit" component={Link} to="/profile"><AccountCircle />&nbsp; Profile</Button>
+                                </Grid>
+                            ) : (
+                                <Grid item xs={12} sm={2}>
+                                    <Button color="inherit" component={Link} to="/profprofile"><AccountCircle />&nbsp; Profile</Button>
+                                </Grid>
+                            )}
                             <Grid item xs={12} sm={2}>
                                 <Button color="inherit" component={Link} to="/function"><EmojiPeople />&nbsp; Attendance</Button>
                             </Grid>

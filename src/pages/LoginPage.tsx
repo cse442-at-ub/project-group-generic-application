@@ -21,7 +21,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
- 
+  //const [userRole, setUserRole] = useState<string | null>(null); 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,13 +40,15 @@ const LoginPage = () => {
     .then(response => {
       if (response.data.includes('login_success!!!Student')) {
         alert('Login successful');
-        //setIsLoggedIn(true);
+        //setUserRole('student');
+        localStorage.setItem('userRole', 'student');
         setTimeout(() => {
           navigate('/profile');
       }, 2000);
       } else if (response.data.includes('login_success!!!Teacher')) {
         alert('Login successful');
-        //setIsLoggedIn(true);
+        //setUserRole('teacher');
+        localStorage.setItem('userRole', 'teacher');
         setTimeout(() => {
           navigate('/profprofile');
         }, 2000);
