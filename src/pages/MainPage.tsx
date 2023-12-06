@@ -5,6 +5,7 @@ import '/src/App.css'
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
+import ProfProfile from './ProfProfile';
 
 function MainPage(this: any) {
 
@@ -84,17 +85,10 @@ function MainPage(this: any) {
                 <div className="mobileDiv" style={{textAlign: 'center', padding:'3vh'}}>
                     {/* Add NavBar here */}
                     <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Professor View</h1>
-                    <Form>
-                        <Form.Group className="centerForm mb-3">
-                        <Form.Control className='w-50' type="text" placeholder="Enter Class Code" />
-                            <Form.Text className="text-muted">
-                            Current Class Code: <b>ABCD</b>
-                            </Form.Text>
-                        </Form.Group>
-                    </Form>
+
+                    <ProfProfile />
                     
-                   
-                    <h1 style={{fontSize:'3vh'}}>Attendance Controls</h1>
+                    <br></br>
                     <button type="button" onClick={handleAttendanceButtonClick} className="btn btn-success" >Open Attendance</button>
                 </div>
                 </>
@@ -125,16 +119,9 @@ function MainPage(this: any) {
                
                   <div className="pad" style={{padding:'5vh'}}></div>
                     <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Professor View</h1>
-                    <Form >
-                        <Form.Group className="centerForm">
-                        <Form.Control className='w-50' type="text" placeholder="Enter Class Code" />
-                        <Form.Text className="text-muted">
-                        Current Class Code: <b>ABCD</b>
-                            </Form.Text>
-                        </Form.Group>
-                    </Form>
-                    
-                    <h1 style={{fontSize:'3vh'}}>Attendance Controls</h1>
+
+                    <ProfProfile />
+                    <br></br>
                     <button type="button" onClick={handleAttendanceButtonClick} className="btn btn-success" >Open Attendance</button>
                 </div>
                 </>
