@@ -10,6 +10,7 @@ const ProfProfile = () => {
   const [openModal, setOpenModal] = useState(false);
   const [newClassName, setNewClassName] = useState('');
   const [classesCreated, setClassesCreated] = useState<{ name: string, token: string }[]>([]);
+  const [token1, setToken] = useState<string>('');
 
   const handleSetUser = (userData: { Username: string }) => {
     setUser(userData);
@@ -54,6 +55,50 @@ const ProfProfile = () => {
     setClassesCreated(formattedClasses);
   };
 
+//Functions for Downloading Attendance Records 
+const [openDownload, setOpenDownload] = useState(false);
+
+const handleOpenDownload = () => {
+  setOpenDownload(true);
+};
+
+const handleCloseDownload = () => {
+  setOpenDownload(false);
+};
+
+const handleDownload = async (token1: String) => {
+  try {
+    const response = await axios.post(
+      'https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/downloadAttendance.php',
+      {
+        class_code: token1,
+      },
+      { responseType: 'blob' } 
+    );
+
+    if (response.status === 200) {
+      const blob = new Blob([response.data], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      // Create a temporary link element
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'attendance_records.csv'; 
+      document.body.appendChild(link);
+      // Trigger a click on the link to start the download
+      link.click();
+      // Remove the link from the document
+      document.body.removeChild(link);
+    } else {
+      alert('Error downloading attendance records');
+    }
+  } catch (error) {
+    console.error('Error during attendance records download:', error);
+    alert('An error occurred while downloading attendance records.');
+  } finally {
+    setToken('');
+    handleCloseDownload();
+  }
+};
 
   let isMobile = window.screen.width <= 1000;
 
@@ -123,6 +168,46 @@ const ProfProfile = () => {
                   ))}
                 </Box>
               </Box>
+              <br></br>
+              <button type="button" onClick={handleOpenDownload} className="btn btn-success">Download Attendance Records</button>
+              <br></br>
+              <Modal open={openDownload} onClose={handleCloseDownload}>
+                <div style={{
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  position: 'absolute',
+                  width: 400,
+                  backgroundColor: '#AAC9F9',
+                  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+                  padding: '20px',
+                  borderRadius: '8px'
+                }}>
+                  <h2>Download Attendance Records</h2>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="classToken"
+                    label="Enter Class Token"
+                    name="classToken"
+                    onChange={(e) => setToken(e.target.value)} />
+                  <button
+                    onClick={() => handleDownload(token1)}
+                    style={{
+                      backgroundColor: 'green',
+                      border: 'none',
+                      color: 'white',
+                      padding: '10px 20px',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      transition: '0.3s',
+                    }}
+                  >
+                    Download Record
+                  </button>
+                </div>
+              </Modal>
             </Grid>
           </Grid>
         </Container>

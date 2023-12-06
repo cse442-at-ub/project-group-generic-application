@@ -16,6 +16,7 @@ export default function ButtonAppBar() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+    const userRole = localStorage.getItem('userRole');
     
     useEffect(() => {
         const fetchUser = async () => {
@@ -64,13 +65,19 @@ export default function ButtonAppBar() {
             <Box className="header" sx={{ flexGrow: 1 }}>
                 <AppBar position="static">
                     <Toolbar>
-                        <Grid container spacing={1}>
+                        <Grid container spacing={2}>
                             <Grid item xs={2} sm={2}>
                                 <Button color="inherit" component={Link} to="/"><Home /></Button>
                             </Grid>
+                            {userRole == 'student' ? (
                             <Grid item xs={2} sm={2}>
-                                <Button color="inherit" component={Link} to="/main"><School /></Button>
+                                <Button color="inherit" component={Link} to="/function"><EmojiPeople /></Button>
                             </Grid>
+                            ) : (
+                                <Grid item xs={2} sm={2}>
+                                    <Button color="inherit" component={Link} to="/main"><School /></Button>
+                                </Grid>
+                            )}
                             {isLoggedIn ? (
                                 <Grid item xs={2} sm={2}>
                                     <Button color="inherit" onClick={handleLogout}><Logout /></Button>
@@ -83,12 +90,15 @@ export default function ButtonAppBar() {
                             <Grid item xs={2} sm={2}>
                                 <Button color="inherit" component={Link} to="/signup"><Assignment /></Button>
                             </Grid>
-                            <Grid item xs={2} sm={2}>
-                                <Button color="inherit" component={Link} to="/profile"><AccountCircle /></Button>
-                            </Grid>
-                            <Grid item xs={2} sm={2}>
-                                <Button color="inherit" component={Link} to="/function"><EmojiPeople /></Button>
-                            </Grid>
+                            {userRole == 'student' ? (
+                                <Grid item xs={2} sm={2}>
+                                    <Button color="inherit" component={Link} to="/profile"><AccountCircle /></Button>
+                                </Grid>
+                            ) : (
+                                <Grid item xs={2} sm={2}>
+                                    <Button color="inherit" component={Link} to="/profprofile"><AccountCircle /></Button>
+                                </Grid>
+                            )}
                         </Grid>
                     </Toolbar>
                 </AppBar>
@@ -100,30 +110,39 @@ export default function ButtonAppBar() {
                 <AppBar position="static">
                     <Toolbar>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={2}>
+                            <Grid item xs={12} sm={2.4}>
                                 <Button color="inherit" component={Link} to="/"><Home />&nbsp; Home</Button>
                             </Grid>
-                            <Grid item xs={12} sm={2}>
-                                <Button color="inherit" component={Link} to="/main"><School />&nbsp; Main</Button>
+                            {userRole == 'student' ? (
+                            <Grid item xs={12} sm={2.4}>
+                                <Button color="inherit" component={Link} to="/function"><EmojiPeople />&nbsp; Attendance</Button>
                             </Grid>
+                            ) : (
+                                <Grid item xs={12} sm={2.4}>
+                                    <Button color="inherit" component={Link} to="/main"><School />&nbsp; Main</Button>
+                                </Grid>
+                            )}
                             {isLoggedIn ? (
-                                <Grid item xs={12} sm={2}>
+                                <Grid item xs={12} sm={2.4}>
                                     <Button color="inherit" onClick={handleLogout}><Logout />&nbsp; Logout</Button>
                                 </Grid>
                             ) : (
-                                <Grid item xs={12} sm={2}>
+                                <Grid item xs={12} sm={2.4}>
                                     <Button color="inherit" component={Link} to="/login"><Login />&nbsp; Login</Button>
                                 </Grid>
                             )}
-                            <Grid item xs={12} sm={2}>
+                            <Grid item xs={12} sm={2.4}>
                                 <Button color="inherit" component={Link} to="/signup"><Assignment />&nbsp; Signup</Button>
                             </Grid>
-                            <Grid item xs={12} sm={2}>
-                                <Button color="inherit" component={Link} to="/profile"><AccountCircle />&nbsp; Profile</Button>
-                            </Grid>
-                            <Grid item xs={12} sm={2}>
-                                <Button color="inherit" component={Link} to="/function"><EmojiPeople />&nbsp; Attendance</Button>
-                            </Grid>
+                            {userRole == 'student' ? (
+                                <Grid item xs={12} sm={2.4}>
+                                    <Button color="inherit" component={Link} to="/profile"><AccountCircle />&nbsp; Profile</Button>
+                                </Grid>
+                            ) : (
+                                <Grid item xs={12} sm={2.4}>
+                                    <Button color="inherit" component={Link} to="/profprofile"><AccountCircle />&nbsp; Profile</Button>
+                                </Grid>
+                            )}
                         </Grid>
                     </Toolbar>
                 </AppBar>
