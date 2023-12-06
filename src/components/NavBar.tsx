@@ -59,7 +59,7 @@ export default function ButtonAppBar() {
             alert('Logout error');
           }
     };
-
+if (isLoggedIn == true) {
     if (isMobile) {
         return (
             <Box className="header" sx={{ flexGrow: 1 }}>
@@ -145,4 +145,5 @@ export default function ButtonAppBar() {
             </Box>
         )
     }
+}
 }
