@@ -40,6 +40,10 @@ function MainPage(this: any) {
       };
 
     function handleAttendanceButtonClick() {
+        if (!token1) {
+            alert("Please select a class for open attendance!");
+            return;
+          }
         if (mainPageView == 0) {
             let tempToken = "ABCD"
             setMainPageView(mainPageView + 1)

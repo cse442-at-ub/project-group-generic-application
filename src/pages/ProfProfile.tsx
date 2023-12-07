@@ -108,7 +108,7 @@ const handleDownload = async (token1: String) => {
 
   return (
     <>
-        <h1 style={{fontSize:'2vh'}}>Current Attendance Token: {token1}</h1>
+        <h1 style={{fontSize:'2vh'}}>Current Attendance Token: {token1 ? token1 : <span style={{ fontSize: '16px' }}>No class has been selected!</span>} </h1>
         <CssBaseline />
         <Container component="main" maxWidth="lg">
           <Grid container spacing={2}>
@@ -154,7 +154,7 @@ const handleDownload = async (token1: String) => {
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', mt: 2 }}>
                   <ClassesFetcher setClassesCreated={updateClassesCreated} />
                   {classesCreated.map((classItem, idx) => (
-                    <Box key={idx} sx={{
+                    <Box key={idx} onClick={() => setToken(classItem.token)} sx={{
                       width: isMobile ? '80px' : '150px',
                       height: isMobile ? '80px' : '80px',
                       background: '#87CEFA',
@@ -165,6 +165,7 @@ const handleDownload = async (token1: String) => {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
+                      cursor: 'pointer',
                     }}>
                       {classItem.name} (Token: {classItem.token})
                     </Box>
