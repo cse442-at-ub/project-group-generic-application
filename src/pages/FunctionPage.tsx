@@ -38,9 +38,13 @@ const FunctionPage = () => {
     axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/attendanceinput.php', attendanceCode)
         .then(response => {
             console.log('Data submitted successfully', response.data);
+            if (response.status === 200) {
+              alert('You are in! + 10 points \n Please keeping it up!');
+          }
         })
         .catch(error => {
             console.error('Error submitting data', error);
+            alert('Invalid code!');
         });
   };
 
