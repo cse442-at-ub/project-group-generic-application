@@ -8,7 +8,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import NavBar from '../components/NavBar';
-import { School } from '@mui/icons-material';
+import { NewReleases, School } from '@mui/icons-material';
 
 const FunctionPage = () => {
   const [code, setCode] = useState('');
@@ -57,8 +57,11 @@ const FunctionPage = () => {
             alignItems: 'center',
           }}
         >
-          <Typography style={{ fontWeight: "bold", fontSize: 35}} component="h1" variant="h6">
-          <School /> &nbsp; Check Your Professor's Screen for The Code
+          <Typography style={{ fontWeight: "bold", fontSize: 10}} variant="h3">
+          <School /> 
+          </Typography>
+          <Typography style={{ fontWeight: "bold", fontSize: 15}} component="h1" variant="h6">
+          Check Your Professor's Screen for The Code
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -76,6 +79,10 @@ const FunctionPage = () => {
              <button style={{ fontSize: 20}} className="button-5" role="button">Join</button>
             <Grid container>
               <Grid item xs>
+                <br></br>
+              <Typography style={{ fontSize: 12, padding:"2vh"}} component="h1" variant="h6">
+          <NewReleases /> &nbsp; Attendance Points: <b>1500</b>
+          </Typography>
               </Grid>
             </Grid>
           </Box>
