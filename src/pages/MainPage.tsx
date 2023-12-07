@@ -2,25 +2,28 @@ import 'bootstrap/dist/css/bootstrap.css'
 import Footer from "../components/Footer";
 import { useState } from 'react';
 import '/src/App.css'
-import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import NavBar from '../components/NavBar';
+import ProfProfile from './ProfProfile';
 
 function MainPage(this: any) {
-
+    const [studentNumberTemp, setStudentNumberTemp] = useState(0);
+    const [mainPageView, setMainPageView] = useState(0);
+    let [attendanceCode, setAttendanceCodeUpdater] = useState("");
+    let [token1, setToken] = useState("");
     // detect if mobile view
     let isMobile = window.screen.width <= 1000
 
-
     // function for handling sending the attendance code to backend
-    function sendAttendanceCode (inputCode: String) {
+    function sendAttendanceCode (inputCode: String, token: String) {
+
         console.log({
-            inputCode,
+            inputCode, token
         });
     
         const code = {
             code: inputCode,
-            classCode: "ABCD",
+            classcode: token,
         };
         
         axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Profmain.php', code, {
@@ -36,18 +39,18 @@ function MainPage(this: any) {
             });
       };
 
-
-
-    const [studentNumberTemp, setStudentNumberTemp] = useState(0);
-    const [mainPageView, setMainPageView] = useState(0);
-    let [attendanceCode, setAttendanceCodeUpdater] = useState("");
-
     function handleAttendanceButtonClick() {
         if (mainPageView == 0) {
+            let tempToken = "ABCD"
             setMainPageView(mainPageView + 1)
             let tempCode = makeid(5)
             setAttendanceCodeUpdater(tempCode)
-            sendAttendanceCode(tempCode)
+            if (token1 == "") {
+                console.log("No token found, setting backup token to ABCD")
+                sendAttendanceCode(tempCode, tempToken)
+            } else {
+                sendAttendanceCode(tempCode, token1)
+            }
             
         } else {
             setMainPageView(mainPageView - 1)
@@ -83,18 +86,11 @@ function MainPage(this: any) {
                 <NavBar />
                 <div className="mobileDiv" style={{textAlign: 'center', padding:'3vh'}}>
                     {/* Add NavBar here */}
-                    <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Professor View</h1>
-                    <Form>
-                        <Form.Group className="centerForm mb-3">
-                        <Form.Control className='w-50' type="text" placeholder="Enter Class Code" />
-                            <Form.Text className="text-muted">
-                            Current Class Code: <b>ABCD</b>
-                            </Form.Text>
-                        </Form.Group>
-                    </Form>
+                    <h1 style={{fontWeight:"bold", fontSize:'5vh'}}>Professor View</h1>
+
+                    <ProfProfile token1={token1} setToken={setToken}/>
                     
-                   
-                    <h1 style={{fontSize:'3vh'}}>Attendance Controls</h1>
+                    <br></br>
                     <button type="button" onClick={handleAttendanceButtonClick} className="btn btn-success" >Open Attendance</button>
                 </div>
                 </>
@@ -124,17 +120,10 @@ function MainPage(this: any) {
                 <div className="mainDiv" style={{textAlign: 'center'}}> 
                
                   <div className="pad" style={{padding:'5vh'}}></div>
-                    <h1 style={{fontWeight:"bold", fontSize:'4vh'}}>Professor View</h1>
-                    <Form >
-                        <Form.Group className="centerForm">
-                        <Form.Control className='w-50' type="text" placeholder="Enter Class Code" />
-                        <Form.Text className="text-muted">
-                        Current Class Code: <b>ABCD</b>
-                            </Form.Text>
-                        </Form.Group>
-                    </Form>
-                    
-                    <h1 style={{fontSize:'3vh'}}>Attendance Controls</h1>
+                    <h1 style={{fontWeight:"bold", fontSize:'5vh'}}>Professor View</h1>
+
+                    <ProfProfile token1={token1} setToken={setToken}/>
+                    <br></br>
                     <button type="button" onClick={handleAttendanceButtonClick} className="btn btn-success" >Open Attendance</button>
                 </div>
                 </>

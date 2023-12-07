@@ -12,7 +12,6 @@ import HomePage from './pages/HomePage.tsx';
 import FunctionPage from './pages/FunctionPage.tsx';
 import SignupPage from './pages/SignupPage.tsx';
 import ProfilePage from './pages/ProfilePage.tsx';
-import ProfProfile from './pages/ProfProfile.tsx';
 
 const router = createHashRouter([
   {
@@ -38,10 +37,6 @@ const router = createHashRouter([
   {
     path: "/profile",
     element: <ProfilePage/>
-  },
-  {
-    path: "/profprofile",
-    element: <ProfProfile/>
   }
 ]);
 
