@@ -47,7 +47,7 @@ function Footer({studentNumber, setStudentNumber}: Props) {
                 let tempArray = []
 
                 for (let i in studentList.usernames) {
-                    let student = studentList.usernames[i][0].toString()
+                    let student = studentList.usernames[i][0].toString().split('@')[0]
                     tempArray.push(student)
                 }
 
