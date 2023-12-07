@@ -7,27 +7,23 @@ import NavBar from '../components/NavBar';
 import ProfProfile from './ProfProfile';
 
 function MainPage(this: any) {
-
+    const [studentNumberTemp, setStudentNumberTemp] = useState(0);
+    const [mainPageView, setMainPageView] = useState(0);
+    let [attendanceCode, setAttendanceCodeUpdater] = useState("");
+    let [token1, setToken] = useState("");
     // detect if mobile view
     let isMobile = window.screen.width <= 1000
 
-
     // function for handling sending the attendance code to backend
-    function sendAttendanceCode (inputCode: String) {
-
-
-        if (token1 == "") {
-            setToken("ABCD")
-            console.log("No token found, setting backup token to ABCD")
-        }
+    function sendAttendanceCode (inputCode: String, token: String) {
 
         console.log({
-            inputCode, token1
+            inputCode, token
         });
     
         const code = {
             code: inputCode,
-            classcode: token1,
+            classcode: token,
         };
         
         axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/Profmain.php', code, {
@@ -43,19 +39,18 @@ function MainPage(this: any) {
             });
       };
 
-
-
-    const [studentNumberTemp, setStudentNumberTemp] = useState(0);
-    const [mainPageView, setMainPageView] = useState(0);
-    let [attendanceCode, setAttendanceCodeUpdater] = useState("");
-    const [token1, setToken] = useState<string>('');
-
     function handleAttendanceButtonClick() {
         if (mainPageView == 0) {
+            let tempToken = "ABCD"
             setMainPageView(mainPageView + 1)
             let tempCode = makeid(5)
             setAttendanceCodeUpdater(tempCode)
-            sendAttendanceCode(tempCode)
+            if (token1 == "") {
+                console.log("No token found, setting backup token to ABCD")
+                sendAttendanceCode(tempCode, tempToken)
+            } else {
+                sendAttendanceCode(tempCode, token1)
+            }
             
         } else {
             setMainPageView(mainPageView - 1)
