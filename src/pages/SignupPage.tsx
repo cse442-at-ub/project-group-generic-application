@@ -178,7 +178,7 @@ const SignupPage: React.FC = () => {
                 <button type="submit" className="signup">Sign Up</button>
             </div>
             <h2>Or</h2>
-            <h3><a href="https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/#/login" target="_blank" rel="noopener noreferrer">Already have an account? Login</a></h3>
+            <h3><a href="#/login">Already have an account? Login</a></h3>
         </form></>
     );
 }

@@ -50,7 +50,7 @@ const LoginPage = () => {
         //setUserRole('teacher');
         localStorage.setItem('userRole', 'teacher');
         setTimeout(() => {
-          navigate('/profprofile');
+          navigate('/main');
         }, 2000);
       } else {
         alert('Login failed: ' + response.data);

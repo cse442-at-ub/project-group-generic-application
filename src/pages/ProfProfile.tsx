@@ -1,16 +1,19 @@
 import { Modal, Button, TextField, Container, Typography, Grid, CssBaseline, Box } from '@mui/material';
 import React, { useState } from 'react';
-import NavBar from '../components/NavBar';
 import axios from 'axios';
 import UserFetch from '../components/UserFetch';
 import ClassesFetcher from '../components/CreatedClass';
 
-const ProfProfile = () => {
+interface Props {
+  token1: string;
+  setToken: Function;
+}
+
+const ProfProfile = ({token1, setToken}: Props) => {
   const [user, setUser] = useState({ Username: '' });
   const [openModal, setOpenModal] = useState(false);
   const [newClassName, setNewClassName] = useState('');
   const [classesCreated, setClassesCreated] = useState<{ name: string, token: string }[]>([]);
-  const [token1, setToken] = useState<string>('');
 
   const handleSetUser = (userData: { Username: string }) => {
     setUser(userData);
@@ -35,6 +38,7 @@ const ProfProfile = () => {
       if (response.data.success) {
         setClassesCreated(prevClasses => [...prevClasses, { name: newClassName, token: token }]);
         alert('Class created successfully with token: ' + token);
+        setToken(token)
       } else {
         alert('Error creating class: ' + response.data.message);
       }
@@ -104,8 +108,7 @@ const handleDownload = async (token1: String) => {
 
   return (
     <>
-      <NavBar />
-      <div className="mainDiv">
+        <h1 style={{fontSize:'2vh'}}>Current Attendance Token: {token1}</h1>
         <CssBaseline />
         <Container component="main" maxWidth="lg">
           <Grid container spacing={2}>
@@ -168,6 +171,9 @@ const handleDownload = async (token1: String) => {
                   ))}
                 </Box>
               </Box>
+              <hr />
+              <h1 style={{fontWeight:"bold", fontSize:'3vh'}}>Attendance Controls</h1>
+
               <br></br>
               <button type="button" onClick={handleOpenDownload} className="btn btn-success">Download Attendance Records</button>
               <br></br>
@@ -192,6 +198,7 @@ const handleDownload = async (token1: String) => {
                     label="Enter Class Token"
                     name="classToken"
                     onChange={(e) => setToken(e.target.value)} />
+                    
                   <button
                     onClick={() => handleDownload(token1)}
                     style={{
@@ -211,7 +218,6 @@ const handleDownload = async (token1: String) => {
             </Grid>
           </Grid>
         </Container>
-      </div>
     </>
   );
 }
