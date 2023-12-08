@@ -1,10 +1,12 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
-print "success1";
+header('Access-Control-Allow-Credentials: true');
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: http://localhost:5173');
+
 session_start();
 include 'dbconnect.php';
-echo "success1";
 //echo "success";
  //Check if the user is already logged in
 if (isset($_SESSION['username'])) {
@@ -13,7 +15,9 @@ if (isset($_SESSION['username'])) {
 	$result10 = mysqli_query($conn, $passwordtocompare10);
 	$row10 = mysqli_fetch_all($result10);
 	$row20 = $row10[0][0]; // returns student or teacher or whatever is in row
-    echo "already connected";
+    echo json_encode(array("status" => "already connected"));
+    ob_end_clean();
+    $conn->close();
     exit;
 }
 
@@ -22,11 +26,9 @@ $jsonData = file_get_contents('php://input');
 $data = json_decode($jsonData, true);
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    echo "success2";
     $email = $data["email"];;
     $password = $data["password"];;
     //$password = password_hash($password, PASSWORD_DEFAULT);
-    echo "success3";
     // Retrieve user input
     // Query the database for the user
     $sql = "SELECT * FROM userSignup WHERE username = '$email'";
@@ -47,6 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$row10 = mysqli_fetch_all($result10);
 	$row20 = $row10[0][0]; // returns student or teacher or whatever is in row
 	echo $row20;
+	$passwordtocompare2 = "SELECT code FROM class_token WHERE username = '$username'";
+   	 $result2 = mysqli_query($conn, $passwordtocompare2);
+  	  $row2 = mysqli_fetch_all($result2); 
+  	  $row20 = $row2[0];// classes to be retrieved
+	$JoinedClass = array("JoinedClass" => $row2);
+    echo json_encode($JoinedClass); //classes joined   
         $conn->close();
         exit;
     } else {
