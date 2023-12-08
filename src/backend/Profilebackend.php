@@ -25,12 +25,30 @@ else{
     $passwordtocompare3 = "SELECT * FROM Attendance WHERE username = '$username'";
     $result3 = mysqli_query($conn, $passwordtocompare3);
     $row3 = mysqli_fetch_all($result3); 
+ $passwordtocompare3 = "SELECT * FROM Attendance WHERE username = '$username'";
+    $result3 = mysqli_query($conn, $passwordtocompare3);
+    $row3 = mysqli_fetch_all($result3); 
+
     $row30 = $row3[0];// attendance to be retrieved
     print_r($row10);
     print_r($row40);
     print_r($row20);
     print_r($row30);
-    
+$response = array("usernames" => $username);
+    echo json_encode($response); // email to be retrieved
+$response1 = array("classes" => $row2);
+    echo json_encode($response1); //classes joined   
+//return roles
+ $username = $_SESSION['username']; // email to be retrieved
+	$passwordtocompare10 = "SELECT role FROM userSignup WHERE username = '$username'";
+	$result10 = mysqli_query($conn, $passwordtocompare10);
+	$row10 = mysqli_fetch_all($result10);
+	$row20 = $row10[0][0]; // returns student or teacher or whatever is in row
+	echo $row20;
+$response5 = array("role" => $row20);
+    echo json_encode($response5); //classes joined   
+
+
 }
 $conn->close();
 ?>

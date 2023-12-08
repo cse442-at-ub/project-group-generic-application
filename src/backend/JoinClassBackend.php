@@ -18,7 +18,7 @@
             $sql = "SELECT * FROM class_token WHERE `username` = \"$username\" AND code = \"$joincode\"";
             $result = mysqli_query($conn, $sql);
             $num = mysqli_num_rows($result);
-            echo $num;
+            //echo $num;
             if ($num == 0){
                 $sql = "INSERT INTO class_token (code, username, `role`) VALUES ('$joincode', '$username', '$role')";
                 $result = mysqli_query($conn, $sql);
