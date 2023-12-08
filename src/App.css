@@ -106,7 +106,7 @@ body{
   background-color: #627D91;
   border-radius: 45px;
   margin: 0.5rem;
-  height: 800px;
+  height: 830px;
 }
 
 label {
@@ -123,23 +123,25 @@ input {
   border-radius: 10px;
 }
 
-input[name="classtoken"] {
-  margin-bottom: 20px;
-}
-
 .signup-submit, .signup {
-  padding: 10px;
+  padding: 10px 30px;
   border: none;
   background-color: #40C62B;
   border-radius: 100px;
   cursor: pointer;
   color: white;
   margin: 4px auto;
-  width: 188px;
+  width: auto; 
 }
 
 .signup {
   font-size: 18px;
+  font-weight: bold; /* Made text bolder */
+  transition: background-color 0.3s ease; /* Transition for smooth color change */
+}
+
+.signup:hover {
+  background-color: #32A022; /* Darker shade for hover effect */
 }
 
 .role-container {
@@ -176,4 +178,8 @@ input[name="classtoken"] {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.role-selected {
+  border: 2px solid blue;
 }

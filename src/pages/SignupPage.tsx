@@ -8,16 +8,29 @@ const SignupPage: React.FC = () => {
     const [password, setPassword] = useState('');
     const [confirmpassword, setConfirmPassword] = useState('');
     const [classtoken, setClassToken] = useState('');
+    const [role, setRole] = useState('');
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (!role) {
+            console.error('Please select a role.');
+            return;
+        }    
+
+        if (role === 'Teacher' && classtoken !== 'JU8OS1B') {
+            console.error('Verification code invaild');
+            return;
+        }
+
         console.log({
             firstname,
             lastname,
             email,
             password,
             confirmpassword,
-            classtoken
+            classtoken,
+            role
         });
 
         const userData = {
@@ -26,7 +39,8 @@ const SignupPage: React.FC = () => {
             'cpassword': confirmpassword,
             'firstname': firstname,
             'lastname': lastname,
-            'classtoken': classtoken
+            'classtoken': classtoken,
+            'role': role
         };
         
         axios.post('https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/SignupBackend.php', userData)
@@ -44,8 +58,20 @@ const SignupPage: React.FC = () => {
         <form className="signup-form" onSubmit={handleSubmit}>
             <h1>Who are you...</h1>
             <div className="role-container">
-                <button className="role">Student</button>
-                <button className="role">Teacher</button>
+                <button 
+                    type="button" 
+                    className={`role ${role === 'Student' ? 'role-selected' : ''}`} 
+                    onClick={() => setRole('Student')}
+                >
+                    Student
+                </button>
+                <button 
+                    type="button" 
+                    className={`role ${role === 'Teacher' ? 'role-selected' : ''}`} 
+                    onClick={() => setRole('Teacher')}
+                >
+                    Teacher
+                </button>
             </div>
             <div className="form-group">
                 <label className="control-label">Firstname</label>
@@ -65,15 +91,25 @@ const SignupPage: React.FC = () => {
                 <label className="control-label">Confirm Password</label>
                 <input placeholder="Confirm your password" name="confirmpassword" value={confirmpassword} onChange={(e) => setConfirmPassword(e.target.value)} type="password" className="form-control" />
             </div>
-            <div className="form-group">
-                <label className="control-label">Class Token</label>
-                <input placeholder="Enter your class token" name="classtoken" value={classtoken} onChange={(e) => setClassToken(e.target.value)} type="text" className="form-control" />
-            </div>
+            {role === 'Student' && (
+                <div className="form-group">
+                    <label className="control-label">Class Token</label>
+                    <input placeholder="Enter your class token (optional)" name="classtoken" value={classtoken} onChange={(e) => setClassToken(e.target.value)} type="text" className="form-control" />
+                </div>
+            )}
+
+            {role === 'Teacher' && (
+                <div className="form-group">
+                    <label className="control-label">Verification Code</label>
+                    <input placeholder="Enter your verification code" name="verificationcode" value={classtoken} onChange={(e) => setClassToken(e.target.value)} type="text" className="form-control" />
+                </div>
+            )}
+
             <div className="signup-submit">
                 <button type="submit" className="signup">Sign Up</button>
             </div>
             <h2>Or</h2>
-            <h3>Already have an account? Login </h3>
+            <h3><a href="https://www-student.cse.buffalo.edu/CSE442-542/2023-Fall/cse-442ab/#/login" target="_blank" rel="noopener noreferrer">Already have an account? Login</a></h3>
         </form>
     );
 }
