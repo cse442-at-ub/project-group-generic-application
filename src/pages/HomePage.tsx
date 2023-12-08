@@ -9,7 +9,6 @@ import Confetti from '../components/Confetti';
 function HomePage() {
     let navigate = useNavigate(); 
     const buttonClick = () =>{ 
-        setTimeout(routeChange, 600)
         setIsVisible(true)    
     }
 
@@ -37,10 +36,7 @@ function HomePage() {
             
             
             </div>
-            <br></br>
-            <a style={{ fontSize: 20 }} href={"./#/profile"}>Click here to go to the Profile Page</a>
-            <br></br>
-            <a style={{ fontSize: 20 }} href={"./#/profprofile"}>Click here to go to the Professor Profile Page</a>
+
 
         </div></>
     )

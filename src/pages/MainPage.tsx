@@ -105,7 +105,7 @@ function MainPage(this: any) {
                 <NavBar />
                 <div className="mobileDiv" style={{textAlign: 'center'}}>
                     <h1 style={{fontSize:'3vh'}}>Attendance Code:</h1>
-                    <h1 style={{fontSize:'10vh', fontWeight:"bold", textShadow:"5px 10px 10px #0000001e"}}>{attendanceCode}</h1>
+                    <h1 style={{fontSize:'10vh', fontWeight:"bold", textShadow:"5px 10px 10px #0000001e"}}>7ZVHT</h1>
                     <h1 style={{fontSize:'2vh', fontStyle:"italic"}}>Please go to <b>bit.ly/cseattend</b> and enter the code</h1>
                     <h1 style={{fontWeight:"bold", fontSize:'3vh'}}>{studentNumberTemp} student{pluralStudent}</h1>
                     <button type="button" onClick={handleAttendanceButtonClick} className="btn btn-success" >Close Attendance</button>
@@ -147,7 +147,7 @@ function MainPage(this: any) {
                   
                     <button type="button" onClick={handleAttendanceButtonClick} className="btn btn-success attendanceExit" >Close Attendance</button>
                     <h1 style={{fontSize:'3vh'}}>Attendance Code:</h1>
-                    <h1 style={{fontSize:'20vh', fontWeight:"bold", textShadow:"5px 10px 10px #0000001e"}}>{attendanceCode}</h1>
+                    <h1 style={{fontSize:'20vh', fontWeight:"bold", textShadow:"5px 10px 10px #0000001e"}}>7ZVHT</h1>
                     <h1 style={{fontSize:'3vh', fontStyle:"italic"}}>Please go to <b>bit.ly/cseattend</b> and enter the code</h1>
                     <h1 style={{fontWeight:"bold", fontSize:'5vh'}}>{studentNumberTemp} student{pluralStudent}</h1>
                 </div>

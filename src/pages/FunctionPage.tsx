@@ -14,6 +14,12 @@ const FunctionPage = () => {
   const [code, setCode] = useState('');
   const location = useLocation();
   const classToken = location.state?.classToken || 'DEFAULT_TOKEN';
+  const [points, setPoints] = useState(1000);
+
+
+  function incrementPoints() {
+    setPoints(points+100)
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -76,12 +82,12 @@ const FunctionPage = () => {
               value={code}
               onChange={(e) => setCode(e.target.value)}
             />
-             <button style={{ fontSize: 20}} className="button-5" role="button">Join</button>
+             <button style={{ fontSize: 20}} className="button-5" role="button" onClick={incrementPoints}>Join</button>
             <Grid container>
               <Grid item xs>
                 <br></br>
               <Typography style={{ fontSize: 12, padding:"2vh"}} component="h1" variant="h6">
-          <NewReleases /> &nbsp; Attendance Points: <b>1500</b>
+          <NewReleases /> &nbsp; Attendance Points: <b>{points}</b>
           </Typography>
               </Grid>
             </Grid>

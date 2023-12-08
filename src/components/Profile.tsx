@@ -1,4 +1,4 @@
-import { Verified, BugReport, Whatshot, Mood, EmojiEvents } from '@mui/icons-material';
+import { Verified, BugReport, Whatshot, Mood, EmojiEvents, Person } from '@mui/icons-material';
 
 
 interface Props {
@@ -41,7 +41,7 @@ function Profile({profilePicture, username, background_choice, arrayIndex}: Prop
                     <img src={profilePicture}></img>
                 </div>
                 <figcaption className='usernameContainer'>
-                    <p>{profileEmoji} {username}</p>   
+                    <p><Person /> {username}</p>   
                 </figcaption>
             </figure>
         
